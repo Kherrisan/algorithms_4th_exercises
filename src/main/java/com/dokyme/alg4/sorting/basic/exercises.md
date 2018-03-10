@@ -122,3 +122,140 @@ input       E   A   S   Y   S   H   E   L   L   S   O   R   T   Q   U   E   S   
             
 ## 2.1.10
 
+因为在对一个子序列实现h有序时，这个子序列往往是已经局部有序的了。如在进行4-sort的过程中，会先对a[0],a[4]进行局部排序，然后会对a[0],a[4],a[8]进行局部排序，这是0和4位置的元素已经是有序的了。为了充分利用这种局部有序的性质，减少比较的次数，选择插入排序而不是选择排序。
+
+## 2.1.11
+
+```java_holder_method_tree
+    public static int[] hArray;
+
+    static {
+        int i = 1, h = 1;
+        hArray = new int[30000];
+        while (i < hArray.length) {
+            while (i < (h + 1) * 3 && i < hArray.length) {
+                hArray[i] = h;
+                i++;
+            }
+            h = 3 * h + 1;
+        }
+        System.out.println(Arrays.toString(hArray));
+    }
+```
+
+## 2.1.12
+
+```java_holder_method_tree
+    public static void sort(Comparable[] a, boolean x) {
+        int N = a.length;
+        int h = hArray[a.length];
+        Map<Integer, Double> comparsionFactor = new LinkedHashMap();
+        while (h >= 1) {
+            int time = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = i; j >= h; j -= h) {
+                    time++;
+                    if (Example.less(a[j], a[j - h])) {
+                        Example.exch(a, j, j - h);
+                    } else {
+                        break;
+                    }
+                }
+            }
+            comparsionFactor.put(h, (double) time / (double) N);
+            h = h / 3;
+        }
+        System.out.println("N=" + a.length);
+        for (Map.Entry<Integer, Double> hi : comparsionFactor.entrySet()) {
+            System.out.println("\th=" + hi.getKey() + "\tcomparsion/N=" + hi.getValue());
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        for (int i = 100; i < 1 << 30; i *= 10) {
+            Double[] array = new Double[i];
+            for (int j = 0; j < array.length; j++) {
+                array[j] = StdRandom.uniform();
+            }
+            sort(array, true);
+        }
+    }
+
+```
+
+我也不知道统计逻辑的对不对，对排序中比较次数进行统计得到的结果是：
+
+```java_holder_method_tree
+N=100
+	h=40	comparsion/N=0.71
+	h=13	comparsion/N=1.51
+	h=4	comparsion/N=2.29
+	h=1	comparsion/N=3.16
+
+N=1000
+	h=364	comparsion/N=0.807
+	h=121	comparsion/N=1.677
+	h=40	comparsion/N=2.251
+	h=13	comparsion/N=3.05
+	h=4	comparsion/N=3.319
+	h=1	comparsion/N=2.732
+
+N=10000
+	h=9841	comparsion/N=0.0159
+	h=3280	comparsion/N=0.8945
+	h=1093	comparsion/N=1.7302
+	h=364	comparsion/N=2.3623
+	h=121	comparsion/N=2.8685
+	h=40	comparsion/N=3.3581
+	h=13	comparsion/N=4.2925
+	h=4	comparsion/N=4.2929
+	h=1	comparsion/N=2.7762
+
+N=100000
+	h=88573	comparsion/N=0.11427
+	h=29524	comparsion/N=0.97871
+	h=9841	comparsion/N=1.76028
+	h=3280	comparsion/N=2.40965
+	h=1093	comparsion/N=2.99653
+	h=364	comparsion/N=3.8316
+	h=121	comparsion/N=4.84592
+	h=40	comparsion/N=5.91445
+	h=13	comparsion/N=6.58539
+	h=4	comparsion/N=4.72084
+	h=1	comparsion/N=2.76235
+
+N=1000000
+	h=797161	comparsion/N=0.202839
+	h=265720	comparsion/N=1.050042
+	h=88573	comparsion/N=1.831309
+	h=29524	comparsion/N=2.450498
+	h=9841	comparsion/N=3.074946
+	h=3280	comparsion/N=3.867689
+	h=1093	comparsion/N=5.025239
+	h=364	comparsion/N=7.030636
+	h=121	comparsion/N=10.206639
+	h=40	comparsion/N=12.588854
+	h=13	comparsion/N=13.15827
+	h=4	comparsion/N=4.621902
+	h=1	comparsion/N=2.759154
+
+N=10000000
+	h=7174453	comparsion/N=0.2825547
+	h=2391484	comparsion/N=1.1210637
+	h=797161	comparsion/N=1.8975449
+	h=265720	comparsion/N=2.5011382
+	h=88573	comparsion/N=3.1162255
+	h=29524	comparsion/N=3.9292178
+	h=9841	comparsion/N=5.0785526
+	h=3280	comparsion/N=6.9474069
+	h=1093	comparsion/N=10.0585983
+	h=364	comparsion/N=15.5543458
+	h=121	comparsion/N=18.6002489
+	h=40	comparsion/N=22.6961629
+	h=13	comparsion/N=12.2431535
+	h=4	comparsion/N=4.6181411
+	h=1	comparsion/N=2.7555026
+```
+
+较小的h如1、4，他们比较次数与整个数组长度的比值接近于一个常数，其他的数字倒没有体现出这种特征，不知道是不是我代码写错了。

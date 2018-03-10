@@ -1,11 +1,8 @@
-package com.dokyme.alg4.sorting;
+package com.dokyme.alg4.sorting.basic;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-
-import java.util.Date;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -16,6 +13,7 @@ import java.util.Date;
  */
 public class SortCompare {
     public static double time(String alg, Double[] a) {
+        int n = Shell.hArray.length;
         Stopwatch timer = new Stopwatch();
         if ("insertion".equals(alg.toLowerCase())) {
             Insertion.sort(a);

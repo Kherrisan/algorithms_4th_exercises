@@ -1,4 +1,4 @@
-package com.dokyme.alg4.sorting;
+package com.dokyme.alg4.sorting.basic;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
