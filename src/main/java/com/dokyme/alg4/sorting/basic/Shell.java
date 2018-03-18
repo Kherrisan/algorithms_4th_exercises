@@ -13,12 +13,34 @@ import java.util.*;
  */
 public class Shell {
 
+    public static boolean compare(Comparable[] a, Comparable[] b) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean check(Comparable[] a) {
+        Comparable[] backup = new Comparable[a.length];
+        for (int i = 0; i < a.length; i++) {
+            backup[i] = a[i];
+        }
+        sort(a);
+        if (!compare(a, backup)) {
+            return false;
+        }
+        Arrays.sort(backup);
+        if (!compare(a, backup)) {
+            return false;
+        }
+        return true;
+    }
+
     public static void sort(Comparable[] a) {
         int N = a.length;
         int h = hArray[a.length];
-//        while (h < N / 3) {
-//            h = 3 * h + 1;
-//        }
         while (h >= 1) {
             for (int i = 0; i < N; i++) {
                 for (int j = i; j >= h && Example.less(a[j], a[j - h]); j -= h) {
@@ -56,12 +78,12 @@ public class Shell {
     }
 
     public static void main(String[] args) {
-        for (int i = 100; i < 1 << 30; i *= 10) {
+        for (int i = 100; i < 101; i++) {
             Double[] array = new Double[i];
             for (int j = 0; j < array.length; j++) {
                 array[j] = StdRandom.uniform();
             }
-            sort(array, true);
+            System.out.println(check(array));
         }
     }
 
