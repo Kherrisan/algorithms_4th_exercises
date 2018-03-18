@@ -7,6 +7,6 @@
 
 [练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/exercises.md)
 
-提高题
+[提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/improvements.md)
 
 实验题
