@@ -2,6 +2,7 @@ package com.dokyme.alg4.sorting.basic;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -19,6 +20,7 @@ public class Selection {
      * @param a
      */
     public static void sort(Comparable[] a) {
+        SortingDrawer drawer = new SortingDrawer(a);
         int N = a.length;
         for (int i = 0; i < N; i++) {
             //i记录了当前待定的是数组第i小的元素。
@@ -29,6 +31,7 @@ public class Selection {
                 }
             }
             exch(a, i, min);
+            drawer.focus(i).focus(min).update(a);
         }
     }
 
@@ -65,9 +68,10 @@ public class Selection {
     }
 
     public static void main(String[] args) {
-        String[] a = In.readStrings();
-        sort(a);
-        assert isSorted(a);
-        show(a);
+        Double[] array = new Double[100];
+        for (int j = 0; j < array.length; j++) {
+            array[j] = StdRandom.uniform();
+        }
+        sort(array);
     }
 }

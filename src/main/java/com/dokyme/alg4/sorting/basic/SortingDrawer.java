@@ -45,6 +45,11 @@ public class SortingDrawer<T extends Comparable> {
         return this;
     }
 
+    public SortingDrawer unFocus(int i) {
+        focus[i] = 0;
+        return this;
+    }
+
     public void update() {
         for (int i = 0; i < length; i++) {
             double value = Double.valueOf(getByIndex(i).toString());
