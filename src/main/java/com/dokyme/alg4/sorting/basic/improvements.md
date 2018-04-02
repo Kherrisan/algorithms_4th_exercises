@@ -42,3 +42,30 @@
 
 ### 2.1.17 动画
 
+[自己写的排序可视化类](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/SortingDrawer.java)
+
+SortingDrawer类，是一个致力于可复用、自适应、体验良好的专用于排序算法可视化的类。使用方法如下：
+
+```java_holder_method_tree
+public static void sort(Comparable[] a) {
+        SortingDrawer drawer = new SortingDrawer(a);
+        int N = a.length;
+        int h = hArray[a.length];
+        while (h >= 1) {
+            for (int i = 0; i < N; i++) {
+                for (int j = i; j >= h && Example.less(a[j], a[j - h]); j -= h) {
+                    Example.exch(a, j, j - h);
+                    drawer.focus(j).focus(j - h).update(a);
+                }
+            }
+            h = h / 3;
+        }
+    }
+```
+
+参考了CopyOnWrite的思想，在内部维持上一次绘制后的数组，如果新数组的元素和原来数组中对应位置的元素不对应，就重绘那一个bin。
+focus用于使用特殊颜色突出强调某个bin，update用于重绘画面。
+
+### 2.1.18 可视轨迹
+
+直接在2.1.17上做了一些修改，使移动的bin的颜色较为突出。
