@@ -24,6 +24,12 @@ public class Example {
         a[j] = t;
     }
 
+    public static void exch(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
     public static void show(Comparable[] a) {
         for (int i = 0; i < a.length; i++) {
             StdOut.print(a[i] + " ");

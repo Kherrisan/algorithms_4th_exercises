@@ -20,7 +20,6 @@ public class Selection {
      * @param a
      */
     public static void sort(Comparable[] a) {
-        SortingDrawer drawer = new SortingDrawer(a);
         int N = a.length;
         for (int i = 0; i < N; i++) {
             //i记录了当前待定的是数组第i小的元素。
@@ -31,7 +30,6 @@ public class Selection {
                 }
             }
             exch(a, i, min);
-            drawer.focus(i).focus(min).update(a);
         }
     }
 

@@ -12,24 +12,33 @@ import edu.princeton.cs.algs4.Stopwatch;
  * Description:
  */
 public class SortCompare {
+    public static final String INSERTION = "insertion";
+    public static final String SELECTION = "selection";
+    public static final String SHELL = "shell";
+    public static final String INSERTION_WITHOUT_EXCH = "insertion without exchange";
+    public static final String INSERTION_INT = "insertion int";
+
     public static double time(String alg, Double[] a) {
-        int n = Shell.hArray.length;
         Stopwatch timer = new Stopwatch();
-        if ("insertion".equals(alg.toLowerCase())) {
+        if (INSERTION.equals(alg.toLowerCase())) {
             Insertion.sort(a);
-        } else if ("selection".equals(alg.toLowerCase())) {
+        } else if (SELECTION.equals(alg.toLowerCase())) {
             Selection.sort(a);
-        } else if ("shell".equals(alg.toLowerCase())) {
+        } else if (SHELL.equals(alg.toLowerCase())) {
             Shell.sort(a);
+        } else if (INSERTION_WITHOUT_EXCH.equals(alg.toLowerCase())) {
+            Insertion.sortWithoutExch(a);
+        } else if (INSERTION_INT.equals(alg.toLowerCase())) {
         }
+
         return timer.elapsedTime();
     }
 
-    public static double timeRandomInput(String alg, int N, int T) {
+    public static double timeRandomInput(String alg, int length, int times) {
         double total = 0.0;
-        Double[] a = new Double[N];
-        for (int t = 0; t < T; t++) {
-            for (int i = 0; i < N; i++) {
+        Double[] a = new Double[length];
+        for (int t = 0; t < times; t++) {
+            for (int i = 0; i < length; i++) {
                 a[i] = StdRandom.uniform();
             }
             total += time(alg, a);
@@ -37,15 +46,55 @@ public class SortCompare {
         return total;
     }
 
+    public static void testIntWithIntegerAutoBoxing(int length, int times) {
+        Integer[] array = new Integer[length];
+        double total1 = 0.0;
+        for (int t = 0; t < times; t++) {
+            for (int i = 0; i < length; i++) {
+                array[i] = StdRandom.uniform(length);
+            }
+            Stopwatch stopwatch = new Stopwatch();
+            Insertion.sort(array);
+            total1 += stopwatch.elapsedTime();
+        }
+        double total2 = 0.0;
+        for (int t = 0; t < times; t++) {
+            for (int i = 0; i < length; i++) {
+                array[i] = StdRandom.uniform(length);
+            }
+            Stopwatch stopwatch = new Stopwatch();
+            Insertion.sortWithAutoBoxing(array);
+            total2 += stopwatch.elapsedTime();
+        }
+        StdOut.printf("For %d random Integers\n  %s is", length, INSERTION);
+        StdOut.printf(" %.1f times faster than %s\n", total2 / total1, INSERTION_INT);
+    }
+
+    public static void testThreeAlgsWithPowerOf2() {
+        int length = 1 << 6;
+        int times = 256;
+        //数组长度从2^6增到2^16
+        for (int i = 0; i < 10; i++) {
+            double t1 = timeRandomInput(SELECTION, length, times);
+            double t2 = timeRandomInput(INSERTION, length, times);
+            double t3 = timeRandomInput(SHELL, length, times);
+            StdOut.printf("Selection:%.1f\tInsertion:%.1f\tShell:%.1f", t1, t2, t3);
+            System.out.println();
+            length <<= 1;
+        }
+    }
+
     public static void main(String[] args) {
-        String alg1 = args[0];
-        String alg2 = args[1];
-        int N = Integer.parseInt(args[2]);
-        int T = Integer.parseInt(args[3]);
-        double t1 = timeRandomInput(alg1, N, T);
-        double t2 = timeRandomInput(alg2, N, T);
-        StdOut.printf("For %d random Doubles\n  %s is", N, alg1);
-        StdOut.printf(" %.1f times faster than %s\n", t2 / t1, alg2);
+//        int N = 10000;
+//        int T = 200;
+//        String alg1 = SHELL;
+//        String alg2 = INSERTION_WITHOUT_EXCH;
+//        double t1 = timeRandomInput(alg1, N, T);
+//        double t2 = timeRandomInput(alg2, N, T);
+//        StdOut.printf("For %d random Doubles\n  %s is", N, alg1);
+//        StdOut.printf(" %.1f times faster than %s\n", t2 / t1, alg2);
+//        testIntWithIntegerAutoBoxing(1000, 100);
+        testThreeAlgsWithPowerOf2();
     }
 
 }

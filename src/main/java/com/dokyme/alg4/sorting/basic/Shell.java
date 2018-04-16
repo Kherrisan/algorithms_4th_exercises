@@ -40,14 +40,14 @@ public class Shell {
     }
 
     public static void sort(Comparable[] a) {
-        SortingDrawer drawer = new SortingDrawer(a);
+//        SortingDrawer drawer = new SortingDrawer(a);
         int N = a.length;
         int h = hArray[a.length];
         while (h >= 1) {
             for (int i = 0; i < N; i++) {
                 for (int j = i; j >= h && Example.less(a[j], a[j - h]); j -= h) {
                     Example.exch(a, j, j - h);
-                    drawer.focus(j).focus(j - h).update(a);
+//                    drawer.focus(j).focus(j - h).update(a);
                 }
             }
             h = h / 3;
@@ -86,6 +86,7 @@ public class Shell {
             for (int j = 0; j < array.length; j++) {
                 array[j] = StdRandom.uniform();
             }
+            Arrays.sort(array);
             sort(array);
         }
     }

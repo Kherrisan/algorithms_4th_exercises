@@ -69,3 +69,60 @@ focus用于使用特殊颜色突出强调某个bin，update用于重绘画面。
 ### 2.1.18 可视轨迹
 
 直接在2.1.17上做了一些修改，使移动的bin的颜色较为突出。
+
+### 2.1.19 希尔排序的最好情况
+
+最好情况应该是顺序排列吧。
+
+### 2.1.20 可比较的交易
+
+```java_holder_method_tree
+public class Transaction implements Comparable<Transaction> {
+
+    private final double amount;
+
+    public Transaction(double amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public int compareTo(Transaction o) {
+        if (this.amount > o.amount) {
+            return 1;
+        } else if (this.amount < o.amount) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+}
+
+```
+
+### 2.1.21 交易排序测试用例
+
+```java_holder_method_tree
+public class SortTransaction {
+
+    public static Transaction[] readTransactions() {
+        StdOut.print("The number of transactions:");
+        int number = StdIn.readInt();
+        Transaction[] result = new Transaction[number];
+        while (number-- > 0) {
+            StdOut.print("Input next transaction amount:");
+            result[number] = new Transaction(StdIn.readDouble());
+        }
+        StdOut.print("Input finished.");
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Transaction[] transactions = readTransactions();
+        Shell.sort(transactions);
+        for (Transaction t : transactions) {
+            StdOut.println(t);
+        }
+    }
+}
+```
+

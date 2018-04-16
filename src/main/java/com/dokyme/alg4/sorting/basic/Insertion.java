@@ -1,6 +1,10 @@
 package com.dokyme.alg4.sorting.basic;
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+
+import java.util.Arrays;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -29,10 +33,61 @@ public class Insertion {
         }
     }
 
+    public static void sort(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            for (int j = i; j > 0 && a[j] < a[j - 1]; j--) {
+                Example.exch(a, j, j - 1);
+            }
+        }
+    }
+
+    public static void sortWithAutoBoxing(Comparable[] a) {
+        int N = a.length;
+        for (int i = 1; i < N; i++) {
+            for (int j = i; j > 0 && Example.less(a[j], a[j - 1]); j--) {
+                Example.exch(a, j, j - 1);
+            }
+        }
+    }
+
+    public static void sortWithoutExch(Comparable[] a) {
+        for (int i = 1; i < a.length; i++) {
+            Comparable t = a[i];
+            int j = i;
+            for (; j > 0 && t.compareTo(a[j - 1]) < 0; j--) {
+                a[j] = a[j - 1];
+            }
+            a[j] = t;
+        }
+    }
+
+    public static void testSortWithoutExch() {
+        Double[] array = new Double[10];
+        for (int j = 0; j < array.length; j++) {
+            array[j] = StdRandom.uniform();
+        }
+        sortWithoutExch(array);
+        StdOut.print("Is sorted:" + Example.isSorted(array));
+
+    }
+
+    public static void sort(Comparable[] a, boolean useGuardian) {
+        int guardian = 0;
+        for (int i = 1; i < a.length; i++) {
+            if (a[guardian].compareTo(a[i]) > 0) {
+                guardian = i;
+            }
+        }
+        Example.exch(a, 0, guardian);
+        //第一次找出最小的元素放到数组的最左边，这样在内循环中就不需要判断j>0的数组越界的问题。
+        for (int i = 2; i < a.length; i++) {
+            for (int j = i; a[j].compareTo(a[j - 1]) < 0; j--) {
+                Example.exch(a, j, j - 1);
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        String[] a = In.readStrings();
-        sort(a);
-        assert Example.isSorted(a);
-        Example.show(a);
+        testSortWithoutExch();
     }
 }
