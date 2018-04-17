@@ -238,7 +238,7 @@ merge(a,0,31,38)
 
 那么对于一个有序的长度为N（N为2的幂次）数组，需要的比较次数为：
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=C=\sum_{i=1}^{logN}\frac{N}{2^i}=2(1-(\frac{1}{2})^{logN})N=O(N)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C=\sum_{i=1}^{logN}\frac{N}{2^i}=2(1-(\frac{1}{2})^{logN})N=O(N)" title="C=\sum_{i=1}^{logN}\frac{N}{2^i}=2(1-(\frac{1}{2})^{logN})N=O(N)" /></a>
+![](http://latex.codecogs.com/gif.latex?C=\\sum_{i=1}^{logN}\\frac{N}{2^i}=2(1-(\\frac{1}{2})^{logN})N=O(N))
 
 ## 2.2.9
 
