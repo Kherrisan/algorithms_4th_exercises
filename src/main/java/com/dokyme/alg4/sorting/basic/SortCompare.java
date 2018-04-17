@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import java.util.Arrays;
+
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  *
@@ -46,6 +48,26 @@ public class SortCompare {
         return total;
     }
 
+    public static void testTwoDistinctPrimaryKey(int length, int times) {
+        int[] array = new int[length];
+        double t1 = 0.0, t2 = 0.0;
+        for (int j = 0; j < times; j++) {
+            for (int i = 0; i < length; i++) {
+                array[i] = StdRandom.uniform(2);
+            }
+            Stopwatch stopwatch = new Stopwatch();
+            Insertion.sort(array);
+            t1 += stopwatch.elapsedTime();
+            for (int i = 0; i < length; i++) {
+                array[i] = StdRandom.uniform(2);
+            }
+            Stopwatch stopwatch2 = new Stopwatch();
+            Insertion.sort(array);
+            t2 += stopwatch2.elapsedTime();
+        }
+        StdOut.printf("Insertion:%.1f\tSelection:%.1f\n", t1, t2);
+    }
+
     public static void testIntWithIntegerAutoBoxing(int length, int times) {
         Integer[] array = new Integer[length];
         double total1 = 0.0;
@@ -84,6 +106,24 @@ public class SortCompare {
         }
     }
 
+    public static double testArraysSort(int length, int times) {
+        double[] array = new double[length];
+        double total = 0.0;
+        for (int j = 0; j < times; j++) {
+            for (int i = 0; i < array.length; i++) {
+                array[i] = StdRandom.uniform();
+            }
+            Stopwatch w = new Stopwatch();
+            Arrays.sort(array);
+            total += w.elapsedTime();
+            if (j % 10 == 0) {
+                StdOut.println(j);
+            }
+        }
+        return total;
+
+    }
+
     public static void main(String[] args) {
 //        int N = 10000;
 //        int T = 200;
@@ -94,7 +134,8 @@ public class SortCompare {
 //        StdOut.printf("For %d random Doubles\n  %s is", N, alg1);
 //        StdOut.printf(" %.1f times faster than %s\n", t2 / t1, alg2);
 //        testIntWithIntegerAutoBoxing(1000, 100);
-        testThreeAlgsWithPowerOf2();
+//        testThreeAlgsWithPowerOf2();
+        testTwoDistinctPrimaryKey(10000, 1000);
     }
 
 }

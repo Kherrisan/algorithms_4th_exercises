@@ -18,6 +18,12 @@ public class Example {
         return v.compareTo(w) < 0;
     }
 
+    public static void exch(double[] a, int i, int j) {
+        double temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
     public static void exch(Comparable[] a, int i, int j) {
         Comparable t = a[i];
         a[i] = a[j];

@@ -1,7 +1,8 @@
 package com.dokyme.alg4.sorting.basic;
 
-import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Stopwatch;
 
 import java.util.*;
 
@@ -54,6 +55,114 @@ public class Shell {
         }
     }
 
+    public static int[] sedgewick() {
+        int[] seq = new int[1 << 10];
+        int i = 0, j = 2;
+        int c = 0;
+        int value1 = 1;
+        int value2 = 5;
+        while (c < seq.length) {
+            if (value1 < value2) {
+                seq[c++] = value1;
+                i++;
+                value1 = Double.valueOf(9 * Math.pow(4.0, i * 1.0) - 9 * Math.pow(2.0, i * 1.0) + 1).intValue();
+            } else {
+                seq[c++] = value2;
+                j++;
+                value2 = Double.valueOf(Math.pow(4.0, j * 1.0) - 3 * Math.pow(2.0, j * 1.0) + 1).intValue();
+            }
+        }
+        return seq;
+    }
+
+    public static int[] gonnet() {
+        int[] seq = new int[1 << 20];
+        seq[0] = 1;
+        for (int i = 1; i < seq.length; i++) {
+            seq[i] = 2 * seq[i - 1] + 1;
+        }
+        return seq;
+    }
+
+    public static int[] hibbard() {
+        int[] seq = new int[1 << 20];
+        seq[0] = 1;
+        for (int i = 1; i < seq.length; i++) {
+            seq[i] = 2 * seq[i - 1] + 1;
+        }
+        return seq;
+    }
+
+    public static int[] shell() {
+        int[] seq = new int[1 << 20];
+        seq[0] = 1;
+        for (int i = 1; i < seq.length; i++) {
+            seq[i] = 2 * seq[i - 1];
+        }
+        return seq;
+    }
+
+    public static int[] knuth() {
+        int i = 1, h = 1;
+        int[] seq = new int[1 << 20];
+        while (i < seq.length) {
+            while (i < (h + 1) * 3 && i < seq.length) {
+                seq[i] = h;
+                i++;
+            }
+            h = 3 * h + 1;
+        }
+        return seq;
+    }
+
+
+    public static double testSpecifiedSequence(int times, int length, int[] hArray) {
+        double[] array = new double[length];
+        double t = 0.0;
+        for (int i = 0; i < times; i++) {
+            for (int j = 0; j < array.length; j++) {
+                array[j] = StdRandom.uniform();
+            }
+            Stopwatch stopwatch = new Stopwatch();
+            sort(array, hArray);
+            t += stopwatch.elapsedTime();
+            if (i % 10 == 0) {
+                StdOut.println(i);
+            }
+        }
+        return t;
+    }
+
+    public static void sort(double[] a, int[] hArray) {
+        int N = a.length;
+        int hi = 0;
+        for (; hi < hArray.length && hArray[hi] < N; hi++) {
+        }
+        while (hi >= 0) {
+            for (int i = 0; i < a.length; i++) {
+                for (int j = i; j >= hArray[hi] && a[j] < a[j - 1]; j -= hArray[hi]) {
+                    Example.exch(a, j, j - hArray[hi]);
+                }
+            }
+            hi--;
+        }
+    }
+
+    public static void sort(Comparable[] a, int[] hArray) {
+        int hi = 0;
+        int N = a.length;
+        for (; hi < hArray.length && N > hArray[hi]; hi++) {
+        }
+        while (hi >= 0) {
+            for (int i = 0; i < a.length; i++) {
+                for (int j = i; j >= hArray[hi] && a[j].compareTo(a[j - hArray[hi]]) < 0; j -= hArray[hi]) {
+                    Example.exch(a, j, j - hArray[hi]);
+                }
+            }
+            hi--;
+        }
+    }
+
     public static void sort(Comparable[] a, boolean x) {
         int N = a.length;
         int h = hArray[a.length];
@@ -81,21 +190,25 @@ public class Shell {
     }
 
     public static void main(String[] args) {
-        for (int i = 100; i < 101; i++) {
-            Double[] array = new Double[i];
-            for (int j = 0; j < array.length; j++) {
-                array[j] = StdRandom.uniform();
-            }
-            Arrays.sort(array);
-            sort(array);
-        }
+        int times = 1000;
+        int length = 1000000;
+        double t1 = SortCompare.testArraysSort(length, times);
+        double t2 = testSpecifiedSequence(times, length, sedgewick());
+        StdOut.println("sedgewick finished");
+        double t3 = testSpecifiedSequence(times, length, gonnet());
+        StdOut.println("gonnet finished");
+        double t4 = testSpecifiedSequence(times, length, hibbard());
+        StdOut.println("hibbard finished");
+        double t5 = testSpecifiedSequence(times, length, shell());
+        StdOut.println("shell finished");
+        StdOut.printf("With test %d times of length:%d\n\nArrays.sort:%.1f\nSedgewich:%.1f\nGonnet:%.1f\nHibbard:%.1f\nShell:%.1f\n", times, length, t1, t2, t3, t4, t5);
     }
 
     public static int[] hArray;
 
     static {
         int i = 1, h = 1;
-        hArray = new int[1 << 60];
+        hArray = new int[1 << 20];
         while (i < hArray.length) {
             while (i < (h + 1) * 3 && i < hArray.length) {
                 hArray[i] = h;
