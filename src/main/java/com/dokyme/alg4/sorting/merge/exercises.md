@@ -212,6 +212,8 @@ merge(a,0,31,38)
 
 于是在做到此题是顺便实现了此功能。
 
+[自己写的曲线图绘制类]()
+
 ![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/2-2-6-1.jpg?raw=true)
 
 图中反映了对于不同规模（从1到512）的数组，两种归并排序所需要的访问内存的总次数。

@@ -42,6 +42,8 @@
 
 ### 2.1.17 动画
 
+![]()
+
 [自己写的排序可视化类](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/SortingDrawer.java)
 
 SortingDrawer类，是一个致力于可复用、自适应、体验良好的专用于排序算法可视化的类。使用方法如下：

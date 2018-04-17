@@ -41,14 +41,14 @@ public class Shell {
     }
 
     public static void sort(Comparable[] a) {
-//        SortingDrawer drawer = new SortingDrawer(a);
+        SortingDrawer drawer = new SortingDrawer(a);
         int N = a.length;
         int h = hArray[a.length];
         while (h >= 1) {
             for (int i = 0; i < N; i++) {
                 for (int j = i; j >= h && Example.less(a[j], a[j - h]); j -= h) {
                     Example.exch(a, j, j - h);
-//                    drawer.focus(j).focus(j - h).update(a);
+                    drawer.focus(j).focus(j - h).update(a);
                 }
             }
             h = h / 3;
@@ -190,18 +190,12 @@ public class Shell {
     }
 
     public static void main(String[] args) {
-        int times = 1000;
-        int length = 1000000;
-        double t1 = SortCompare.testArraysSort(length, times);
-        double t2 = testSpecifiedSequence(times, length, sedgewick());
-        StdOut.println("sedgewick finished");
-        double t3 = testSpecifiedSequence(times, length, gonnet());
-        StdOut.println("gonnet finished");
-        double t4 = testSpecifiedSequence(times, length, hibbard());
-        StdOut.println("hibbard finished");
-        double t5 = testSpecifiedSequence(times, length, shell());
-        StdOut.println("shell finished");
-        StdOut.printf("With test %d times of length:%d\n\nArrays.sort:%.1f\nSedgewich:%.1f\nGonnet:%.1f\nHibbard:%.1f\nShell:%.1f\n", times, length, t1, t2, t3, t4, t5);
+        Double[] a = new Double[100];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = StdRandom.uniform();
+        }
+        sort(a);
+        assert Example.isSorted(a);
     }
 
     public static int[] hArray;
