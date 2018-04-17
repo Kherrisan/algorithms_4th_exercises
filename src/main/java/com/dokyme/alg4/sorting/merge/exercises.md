@@ -1,3 +1,5 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 # 练习
 
 ## 2.2.1
@@ -237,7 +239,7 @@ merge(a,0,31,38)
 那么对于一个有序的长度为N（N为2的幂次）数组，需要的比较次数为：
 
 $$
-C=\sum_i=0^n
+C=\sum_{i=1}^{logN}\frac{N}{2^i}=2(1-(\frac{1}{2})^{logN})N=O(N)
 $$
 
 ## 2.2.9
