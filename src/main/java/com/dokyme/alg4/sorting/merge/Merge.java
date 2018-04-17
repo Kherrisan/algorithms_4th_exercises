@@ -25,13 +25,12 @@ public class Merge {
         public int value = 0;
     }
 
-    public static void merge(Comparable[] a, int lo, int mid, int hi, Comparable[] aux, AccessCounter counter) {
+    public static void merge(Comparable[] a, int lo, int mid, int hi, Comparable[] aux) {
         //把a[lo...mid]和a[mid+1...hi]归并
         int i = lo, j = mid + 1;
         for (int k = lo; k <= hi; k++) {
             aux[k] = a[k];
         }
-        counter.value += (hi - lo) * 2;
         for (int k = lo; k <= hi; k++) {
             if (i > mid) {
                 //左半边用尽
@@ -40,33 +39,28 @@ public class Merge {
                 //右半边用尽
                 a[k] = aux[i++];
             } else if (Example.less(aux[j], aux[i])) {
-                counter.value += 2;
                 //右半边当前元素小于左半边当前元素
                 a[k] = aux[j++];
             } else {
-                counter.value += 2;
                 //左半边当前元素小于右半边当前元素
                 a[k] = aux[i++];
             }
-            counter.value += 2;
         }
     }
 
     public static void sort(Comparable[] a) {
         aux = new Comparable[a.length];
-        AccessCounter counter = new AccessCounter();
-        sort(a, 0, a.length - 1, counter);
-        accessCounts.add(counter.value);
+        sort(a, 0, a.length - 1);
     }
 
-    public static void sort(Comparable[] a, int lo, int hi, AccessCounter counter) {
+    public static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) {
             return;
         }
         int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid, counter);
-        sort(a, mid + 1, hi, counter);
-        merge(a, lo, mid, hi, aux, counter);
+        sort(a, lo, mid);
+        sort(a, mid + 1, hi);
+        merge(a, lo, mid, hi, aux);
     }
 
     public static List<Integer> testAccessMemoryCounts() {

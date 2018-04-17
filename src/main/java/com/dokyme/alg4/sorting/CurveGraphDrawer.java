@@ -34,6 +34,7 @@ public class CurveGraphDrawer<T extends Comparable> {
     static {
         colorList.add(Color.BLACK);
         colorList.add(Color.BLUE);
+        colorList.add(Color.YELLOW);
     }
 
     public CurveGraphDrawer() {

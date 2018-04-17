@@ -22,15 +22,13 @@ public class MergeBU {
     private static List<Integer> accessCounts;
 
     public static void sort(Comparable[] a) {
-        Merge.AccessCounter counter = new Merge.AccessCounter();
         int N = a.length;
         aux = new Comparable[N];
         for (int sz = 1; sz < N; sz *= 2) {
             for (int lo = 0; lo < N - sz; lo += 2 * sz) {
-                Merge.merge(a, lo, lo + sz - 1, Math.min(lo + 2 * sz - 1, N - 1), aux, counter);
+                Merge.merge(a, lo, lo + sz - 1, Math.min(lo + 2 * sz - 1, N - 1), aux);
             }
         }
-        accessCounts.add(counter.value);
     }
 
     public static List<Integer> testAccessMemoryCounts() {
@@ -45,10 +43,19 @@ public class MergeBU {
         return accessCounts;
     }
 
+    public static List<Integer> nlognSequence(int n) {
+        List<Integer> seq = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            seq.add(new Double(6 * i * Math.log(i)).intValue());
+        }
+        return seq;
+    }
+
     public static void main(String[] args) {
-        CurveGraphDrawer<Integer> drawer=new CurveGraphDrawer<>();
-        drawer.addDataSet("1",testAccessMemoryCounts())
-                .addDataSet("2",Merge.testAccessMemoryCounts())
+        CurveGraphDrawer<Integer> drawer = new CurveGraphDrawer<>();
+        drawer.addDataSet("1", testAccessMemoryCounts())
+                .addDataSet("2", Merge.testAccessMemoryCounts())
+                .addDataSet("3", nlognSequence(512))
                 .draw();
     }
 }

@@ -42,7 +42,7 @@
 
 ### 2.1.17 动画
 
-![]()
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/2-1-17-1.jpg?raw=true)
 
 [自己写的排序可视化类](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/SortingDrawer.java)
 

@@ -212,7 +212,7 @@ merge(a,0,31,38)
 
 于是在做到此题是顺便实现了此功能。
 
-[自己写的曲线图绘制类]()
+[自己写的曲线图绘制类](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/CurveGraphDrawer.java)
 
 ![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/2-2-6-1.jpg?raw=true)
 
@@ -220,3 +220,26 @@ merge(a,0,31,38)
 
 图中黑线为MergeBU，蓝线为Merge。二者访存次数的值和增长趋势基本一致。蓝线更平滑一些。
 
+下图中黄线是6NlogN的序列。
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/2-2-6-2.jpg?raw=true)
+
+由图可知，访存次数是大于6NlogN的。这个结论与书上的命题G是完全相反的，因此怀疑自己是不是程序写错了。
+
+## 2.2.7
+
+一个长度为N（N为2的幂次）的数组，在归并排序的过程中，需要的最少比较的次数为N/2*logN。显然这是一个单调递增的东西。
+
+## 2.2.8
+
+假如在归并之前，先判断前半段的最后一个是否小于后半段的第一个，如果满足这个条件的话，就不需要归并这两个子数组了。
+
+那么对于一个有序的长度为N（N为2的幂次）数组，需要的比较次数为：
+
+$$
+C=\sum_i=0^n
+$$
+
+## 2.2.9
+
+这个简单，就不贴代码了。
