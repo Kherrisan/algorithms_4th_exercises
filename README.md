@@ -13,7 +13,7 @@
 
 ## 2.2 归并排序
 
-[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/exercises.md)
+[练习（完成）](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/exercises.md)
 
 [提高题]()
 
