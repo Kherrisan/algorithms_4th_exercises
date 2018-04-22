@@ -11,7 +11,7 @@
 
 [提高题（完成）](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/improvements.md)
 
-[实验题（到2.1.29）](https://github.com/Dokyme/algorithms_v4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/experiments.md)
+[实验题（到2.1.29）](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/experiments.md)
 
 ## 2.2 归并排序
 

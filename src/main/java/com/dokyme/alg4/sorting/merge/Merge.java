@@ -1,5 +1,6 @@
 package com.dokyme.alg4.sorting.merge;
 
+import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
 import com.dokyme.alg4.sorting.basic.SortingDrawer;
 import edu.princeton.cs.algs4.StdOut;
@@ -17,7 +18,7 @@ import java.util.List;
  * @date 2018/4/17-12:20
  * Description:
  */
-public class Merge {
+public class Merge implements Sorting {
     private static Comparable[] aux;
     private static List<Integer> accessCounts;
 
@@ -48,7 +49,8 @@ public class Merge {
         }
     }
 
-    public static void sort(Comparable[] a) {
+    @Override
+    public void sort(Comparable[] a) {
         aux = new Comparable[a.length];
         sort(a, 0, a.length - 1);
     }
@@ -63,15 +65,15 @@ public class Merge {
         merge(a, lo, mid, hi, aux);
     }
 
-    public static List<Integer> testAccessMemoryCounts() {
-        accessCounts = new ArrayList<>();
-        for (int N = 1; N < 512; N++) {
-            Double[] a = new Double[N];
-            for (int i = 0; i < a.length; i++) {
-                a[i] = StdRandom.uniform();
-            }
-            sort(a);
-        }
-        return accessCounts;
-    }
+//    public static List<Integer> testAccessMemoryCounts() {
+//        accessCounts = new ArrayList<>();
+//        for (int N = 1; N < 512; N++) {
+//            Double[] a = new Double[N];
+//            for (int i = 0; i < a.length; i++) {
+//                a[i] = StdRandom.uniform();
+//            }
+//            sort(a);
+//        }
+//        return accessCounts;
+//    }
 }

@@ -2,6 +2,10 @@ package com.dokyme.alg4.sorting.basic;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -58,10 +62,30 @@ public class Example {
         return true;
     }
 
+    public static Comparable[] generateTestData(Object cls, int length) {
+        if (cls.getClass().equals(Double.class)) {
+            Double[] a = new Double[length];
+            for (int i = 0; i < length; i++) {
+                a[i] = StdRandom.uniform();
+            }
+            return a;
+        } else if (cls.getClass().equals(Integer.class)) {
+            Integer[] a = new Integer[length];
+            for (int i = 0; i < length; i++) {
+                a[i] = StdRandom.uniform(length);
+            }
+            return a;
+        } else {
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
-        String[] a = In.readStrings();
+        Double[] a = (Double[]) generateTestData(new Double(1.0), 100);
         sort(a);
-        assert isSorted(a);
+        exch(a, 0, 1);
+        boolean r=isSorted(a);
+        assert r;
         show(a);
     }
 }

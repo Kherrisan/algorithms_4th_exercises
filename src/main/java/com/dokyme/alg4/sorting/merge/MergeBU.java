@@ -1,6 +1,7 @@
 package com.dokyme.alg4.sorting.merge;
 
 import com.dokyme.alg4.sorting.CurveGraphDrawer;
+import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
 import com.dokyme.alg4.sorting.basic.SortingDrawer;
 import edu.princeton.cs.algs4.StdDraw;
@@ -17,11 +18,13 @@ import java.util.List;
  * @date 2018/4/17-14:46
  * Description:
  */
-public class MergeBU {
+public class MergeBU implements Sorting {
     private static Comparable[] aux;
     private static List<Integer> accessCounts;
 
-    public static void sort(Comparable[] a) {
+
+    @Override
+    public void sort(Comparable[] a) {
         int N = a.length;
         aux = new Comparable[N];
         for (int sz = 1; sz < N; sz *= 2) {
@@ -31,17 +34,17 @@ public class MergeBU {
         }
     }
 
-    public static List<Integer> testAccessMemoryCounts() {
-        accessCounts = new ArrayList<>();
-        for (int N = 1; N < 512; N++) {
-            Double[] a = new Double[N];
-            for (int i = 0; i < a.length; i++) {
-                a[i] = StdRandom.uniform();
-            }
-            sort(a);
-        }
-        return accessCounts;
-    }
+//    public static List<Integer> testAccessMemoryCounts() {
+//        accessCounts = new ArrayList<>();
+//        for (int N = 1; N < 512; N++) {
+//            Double[] a = new Double[N];
+//            for (int i = 0; i < a.length; i++) {
+//                a[i] = StdRandom.uniform();
+//            }
+//            sort(a);
+//        }
+//        return accessCounts;
+//    }
 
     public static List<Integer> nlognSequence(int n) {
         List<Integer> seq = new ArrayList<>();
@@ -52,10 +55,10 @@ public class MergeBU {
     }
 
     public static void main(String[] args) {
-        CurveGraphDrawer<Integer> drawer = new CurveGraphDrawer<>();
-        drawer.addDataSet("1", testAccessMemoryCounts())
-                .addDataSet("2", Merge.testAccessMemoryCounts())
-                .addDataSet("3", nlognSequence(512))
-                .draw();
+//        CurveGraphDrawer<Integer> drawer = new CurveGraphDrawer<>();
+//        drawer.addDataSet("1", testAccessMemoryCounts())
+//                .addDataSet("2", Merge.testAccessMemoryCounts())
+//                .addDataSet("3", nlognSequence(512))
+//                .draw();
     }
 }

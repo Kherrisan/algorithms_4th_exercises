@@ -1,10 +1,14 @@
 package com.dokyme.alg4.sorting.basic;
 
+import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
+
+import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -122,6 +126,22 @@ public class SortCompare {
         }
         return total;
 
+    }
+
+    public static double testSort(Sorting sorting, int length, int times) {
+        double total = 0;
+        try {
+            for (int t = 0; t < times; t++) {
+                Double[] array = (Double[]) generateTestData(new Double(1.0), length);
+                Stopwatch stopwatch = new Stopwatch();
+                sorting.sort(array);
+                total += stopwatch.elapsedTime();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1.0;
+        }
+        return total;
     }
 
     public static void main(String[] args) {
