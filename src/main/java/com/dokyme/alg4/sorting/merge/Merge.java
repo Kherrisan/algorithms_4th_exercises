@@ -7,9 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -24,6 +22,29 @@ public class Merge implements Sorting {
 
     public static class AccessCounter {
         public int value = 0;
+    }
+
+    public static <T extends Comparable> Queue<T> merge(Queue<T> a, Queue<T> b) {
+        Queue<T> r = new LinkedList<>();
+        T ai = a.poll();
+        T bi = b.poll();
+        while (ai != null && bi != null) {
+            if (Example.less(ai, bi)) {
+                r.add(ai);
+                ai = a.poll();
+            } else {
+                r.add(bi);
+                bi = b.poll();
+            }
+        }
+        if (ai == null) {
+            r.add(bi);
+            r.addAll(b);
+        } else if (bi == null) {
+            r.add(ai);
+            r.addAll(a);
+        }
+        return r;
     }
 
     public static void merge(Comparable[] a, int lo, int mid, int hi, Comparable[] aux) {
@@ -63,6 +84,10 @@ public class Merge implements Sorting {
         sort(a, lo, mid);
         sort(a, mid + 1, hi);
         merge(a, lo, mid, hi, aux);
+    }
+
+    public static void main(String[] args) {
+
     }
 
 //    public static List<Integer> testAccessMemoryCounts() {

@@ -8,5 +8,5 @@ package com.dokyme.alg4.sorting;
  * Description:
  */
 public interface Sorting {
-    void sort(Comparable[] comparables);
+    void sort(Comparable[] a);
 }

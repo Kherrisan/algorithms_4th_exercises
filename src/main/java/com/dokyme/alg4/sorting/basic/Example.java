@@ -1,5 +1,6 @@
 package com.dokyme.alg4.sorting.basic;
 
+import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -80,11 +81,23 @@ public class Example {
         }
     }
 
+    public static void testSorting(Sorting sorting) {
+        Double[] array = new Double[1000];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = StdRandom.uniform();
+        }
+        sorting.sort(array);
+        assert isSorted(array);
+        for (double d : array) {
+            StdOut.print(d + "\n");
+        }
+    }
+
     public static void main(String[] args) {
         Double[] a = (Double[]) generateTestData(new Double(1.0), 100);
         sort(a);
         exch(a, 0, 1);
-        boolean r=isSorted(a);
+        boolean r = isSorted(a);
         assert r;
         show(a);
     }
