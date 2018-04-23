@@ -13,6 +13,7 @@ import static com.dokyme.alg4.sorting.merge.Merge.merge;
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  * 2.2.15
+ *
  * @author dokym
  * @date 2018/4/23-1:39
  * Description:

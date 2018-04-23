@@ -11,6 +11,7 @@ import static com.dokyme.alg4.sorting.basic.SortCompare.*;
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  * 2.2.10
+ *
  * @author dokym
  * @date 2018/4/22-9:40
  * Description:

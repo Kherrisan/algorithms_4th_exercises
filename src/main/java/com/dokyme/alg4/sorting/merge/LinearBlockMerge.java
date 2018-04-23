@@ -6,6 +6,7 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
+ * 2.2.12
  *
  * @author dokym
  * @date 2018/4/22-14:24
