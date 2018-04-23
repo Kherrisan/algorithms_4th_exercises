@@ -22,6 +22,8 @@
     }
 ```
 
+[QuickMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/QuickMerge.java)
+
 ## 2.2.11 改进
 
 ```java_holder_method_tree
@@ -54,9 +56,13 @@ public static void sort(Comparable[] a, int lo, int hi, Comparable[] aux, boolea
 
 然而，并没有快很多。
 
+[ImprovedMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/ImprovedMerge.java)
+
 ## 2.2.12 次线性的额外空间
 
 **暂留**
+
+[LinearBlockMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/LinearBlockMerge.java)
 
 ## 2.2.13 平均情况的下界
 
@@ -89,6 +95,7 @@ public static void sort(Comparable[] a, int lo, int hi, Comparable[] aux, boolea
         }
         return r;
     }
+```
 
 ## 2.2.15 自底向上的有序队列归并排序
 
@@ -110,6 +117,8 @@ public static void sort(Comparable[] a, int lo, int hi, Comparable[] aux, boolea
         }
     }
 ```
+
+[OrderedQueueMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/OrderedQueueMerge.java)
 
 ## 2.2.16 自然的归并排序
 
@@ -154,6 +163,8 @@ public class NaturalMerge implements Sorting {
 }
 ```
 
+[NaturalMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/NaturalMerge.java)
+
 ## 2.2.17 链表排序
 
 要对链表做归并排序，我觉得有一些问题需要考虑：
@@ -166,6 +177,8 @@ public class NaturalMerge implements Sorting {
 
 **暂留**
 
+[LinkedListNaturalMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/LinkedListNaturalMerge.java)
+
 ## 2.2.18 打乱链表
 
 我不知题目所说的打乱要打乱到何种程度。
@@ -177,6 +190,8 @@ public class NaturalMerge implements Sorting {
 在Stack Overflow上找到了这道题的答案，logn空间复杂度的意思就是这是要递归的所以你栈至少要有logn吧。。。。。。
 
 **暂留**
+
+[DisorderLinkedList.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/DisorderLinkedList.java)
 
 ## 2.2.19 倒置
 
@@ -204,11 +219,15 @@ public class NaturalMerge implements Sorting {
 
 ```
 
+[InverseCounter.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/InverseCounter.java)
+
 **倒置的数量=左半段倒置的数量+右半段倒置数量+跨中点一左一右倒置数量**
 
 ## 2.2.20 间接排序
 
 相当于对数组的元素值排序，但只记录索引的变化，不改变元素的位置。
+
+[IndirectMergeSort.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/IndirectMergeSort.java)
 
 ## 2.2.21 一式三份
 

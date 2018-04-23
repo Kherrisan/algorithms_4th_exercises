@@ -7,6 +7,7 @@ import static com.dokyme.alg4.sorting.merge.LinkedListNaturalMerge.LinkedList;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
+ * 2.2.18
  *
  * @author dokym
  * @date 2018/4/23-17:43

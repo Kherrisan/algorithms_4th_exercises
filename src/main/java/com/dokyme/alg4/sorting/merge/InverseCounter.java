@@ -5,6 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
+ * 2.2.19
  *
  * @author dokym
  * @date 2018/4/23-18:55
