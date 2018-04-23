@@ -56,11 +56,11 @@ public static void sort(Comparable[] a, int lo, int hi, Comparable[] aux, boolea
 
 ## 2.2.12 次线性的额外空间
 
-暂留
+**暂留**
 
 ## 2.2.13 平均情况的下界
 
-暂留
+**暂留**
 
 ## 2.2.14 归并有序队列
 
@@ -162,4 +162,60 @@ public class NaturalMerge implements Sorting {
 2. 如果界定子序列的边界：也不能用下标访问。
 2. 如何归并两个子序列。
 
-但是考虑到LinkedListNode是private，我访问不到。emmmmmm。
+但是考虑到LinkedListNode是private，我访问不到。emmmmmm。只能字节写一个简单的LinkedList了。
+
+**暂留**
+
+## 2.2.18 打乱链表
+
+我不知题目所说的打乱要打乱到何种程度。
+
+链表和数组的区别在于，数组可以通过随机取索引来做shuffle，但是链表不能够通过索引访问（效率太低）。
+
+题目要求对数级别的额外空间，那么可以理解成一个树状的结构，每层分配一个空间。
+
+在Stack Overflow上找到了这道题的答案，logn空间复杂度的意思就是这是要递归的所以你栈至少要有logn吧。。。。。。
+
+**暂留**
+
+## 2.2.19 倒置
+
+可以调整归并排序的算法，应该统计倒置本身就是一个规模逐步扩大的问题。一边统计一边修正逆序对，局部的修正可以保证每次只修正一个逆序对，不会影响局部内外元素的逆序关系。
+
+```java_holder_method_tree
+
+    private int merge(Comparable[] a, int lo, int mid, int hi, Comparable[] copy) {
+        int count = 0;
+        int i = lo, j = mid + 1;
+        System.arraycopy(a, lo, copy, lo, hi - lo + 1);
+        for (int k = lo; k <= hi; k++) {
+            if (i == mid + 1) {
+                a[k] = copy[j++];
+            } else if (j == hi + 1) {
+                a[k] = copy[i++];
+            } else if (Example.less(copy[j], copy[i])) {
+                count += (mid - i + 1);
+                a[k] = copy[j++];
+            } else {
+                a[k] = copy[i++];
+            }
+        }
+        return count;
+
+```
+
+**倒置的数量=左半段倒置的数量+右半段倒置数量+跨中点一左一右倒置数量**
+
+## 2.2.20 间接排序
+
+相当于对数组的元素值排序，但只记录索引的变化，不改变元素的位置。
+
+## 2.2.21 一式三份
+
+第一反应是把三个列表排序，然后逐个扫描就可以定位到同时出现在三个名单里的名字。先找到两张表里同时出现的名字，再在第三张表里二分查找他。最坏情况是，两张列表中的名字完全相同，但是没有任何一个名字出现在第三张列表里，那么所需要的时间为NlogN。
+
+## 2.2.22 三向归并排序
+
+假设分成三段，分别排序，然后归并。三段各有一个指针，每次比较三个指针指向的元素大小，让较小的元素胜出，并向后移动一位较小元素所在段的指针。每一层归并所需要的时间仍然是线性的。
+
+T(n)=3T(1/3*n)+O(n)
