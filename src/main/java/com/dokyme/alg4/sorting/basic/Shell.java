@@ -1,5 +1,7 @@
 package com.dokyme.alg4.sorting.basic;
 
+import com.dokyme.alg4.sorting.CompareUtil;
+import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
@@ -13,7 +15,7 @@ import java.util.*;
  * @date 2018/3/10-15:08
  * Description:
  */
-public class Shell {
+public class Shell implements Sorting {
 
     public static boolean compare(Comparable[] a, Comparable[] b) {
         for (int i = 0; i < a.length; i++) {
@@ -24,7 +26,7 @@ public class Shell {
         return true;
     }
 
-    public static boolean check(Comparable[] a) {
+    public boolean check(Comparable[] a) {
         Comparable[] backup = new Comparable[a.length];
         for (int i = 0; i < a.length; i++) {
             backup[i] = a[i];
@@ -40,15 +42,14 @@ public class Shell {
         return true;
     }
 
-    public static void sort(Comparable[] a) {
-        SortingDrawer drawer = new SortingDrawer(a);
+    @Override
+    public void sort(Comparable[] a) {
         int N = a.length;
         int h = hArray[a.length];
         while (h >= 1) {
             for (int i = 0; i < N; i++) {
                 for (int j = i; j >= h && Example.less(a[j], a[j - h]); j -= h) {
                     Example.exch(a, j, j - h);
-                    drawer.focus(j).focus(j - h).update(a);
                 }
             }
             h = h / 3;
@@ -190,12 +191,7 @@ public class Shell {
     }
 
     public static void main(String[] args) {
-        Double[] a = new Double[100];
-        for (int i = 0; i < a.length; i++) {
-            a[i] = StdRandom.uniform();
-        }
-        sort(a);
-        assert Example.isSorted(a);
+
     }
 
     public static int[] hArray;

@@ -6,8 +6,7 @@ import com.dokyme.alg4.sorting.basic.Example;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
-import static com.dokyme.alg4.sorting.basic.Example.exch;
-import static com.dokyme.alg4.sorting.CompareUtil.less;
+import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.

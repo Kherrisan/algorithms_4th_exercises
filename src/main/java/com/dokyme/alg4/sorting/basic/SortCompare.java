@@ -31,7 +31,7 @@ public class SortCompare {
         } else if (SELECTION.equals(alg.toLowerCase())) {
             Selection.sort(a);
         } else if (SHELL.equals(alg.toLowerCase())) {
-            Shell.sort(a);
+            new Shell().sort(a);
         } else if (INSERTION_WITHOUT_EXCH.equals(alg.toLowerCase())) {
             Insertion.sortWithoutExch(a);
         } else if (INSERTION_INT.equals(alg.toLowerCase())) {
@@ -120,9 +120,6 @@ public class SortCompare {
             Stopwatch w = new Stopwatch();
             Arrays.sort(array);
             total += w.elapsedTime();
-            if (j % 10 == 0) {
-                StdOut.println(j);
-            }
         }
         return total;
 

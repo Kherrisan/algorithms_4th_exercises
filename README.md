@@ -1,7 +1,7 @@
 # algorithms_4th_exercises
 《算法（第四版）》书后习题记录。
 
-![cover](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/cover.jpg?raw=true)
+书后的题目很多，很多题目不仅没有思路，而且网上还一点都找不到同类型的问题。
 
 # 2.排序
 
@@ -18,5 +18,13 @@
 [练习（完成）](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/exercises.md)
 
 [提高题（部分完成）](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/improvements.md)
+
+[实验题]()
+
+## 2.2 快速排序
+
+[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/quick/exercises.md)
+
+[提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/)
 
 [实验题]()

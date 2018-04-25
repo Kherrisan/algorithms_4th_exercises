@@ -26,7 +26,7 @@ public class SortTransaction {
 
     public static void main(String[] args) {
         Transaction[] transactions = readTransactions();
-        Shell.sort(transactions);
+        new Shell().sort(transactions);
         for (Transaction t : transactions) {
             StdOut.println(t);
         }

@@ -1,6 +1,11 @@
 package com.dokyme.alg4.sorting.quick;
 
 import com.dokyme.alg4.sorting.Sorting;
+import com.dokyme.alg4.sorting.basic.Shell;
+import com.dokyme.alg4.sorting.basic.SortCompare;
+import com.dokyme.alg4.sorting.merge.Merge;
+import com.dokyme.alg4.sorting.merge.MergeBU;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
@@ -42,6 +47,14 @@ public class Quick3Way implements Sorting {
 
 
     public static void main(String[] args) {
-
+        int length = 1000000;
+        int times = 100;
+        double t1 = SortCompare.testSort(new Quick3Way(), length, times);
+        double t2 = SortCompare.testSort(new Quick(), length, times);
+        double t3 = SortCompare.testSort(new Merge(), length, times);
+        double t4 = SortCompare.testSort(new MergeBU(), length, times);
+        double t5 = SortCompare.testSort(new Shell(), length, times);
+        double t6 = SortCompare.testArraysSort(length, times);
+        StdOut.printf("Quick3way:%f\nQuick:%f\nMerge:%f\nMergeBU:%f\nShell:%f\nArrays.sort:%f\n", t1, t2, t3, t4, t5, t6);
     }
 }
