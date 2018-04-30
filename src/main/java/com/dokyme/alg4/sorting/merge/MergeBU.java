@@ -1,12 +1,6 @@
 package com.dokyme.alg4.sorting.merge;
 
-import com.dokyme.alg4.sorting.CurveGraphDrawer;
 import com.dokyme.alg4.sorting.Sorting;
-import com.dokyme.alg4.sorting.basic.Example;
-import com.dokyme.alg4.sorting.basic.SortingDrawer;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.ArrayList;
 import java.util.List;

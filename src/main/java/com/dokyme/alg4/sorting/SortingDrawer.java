@@ -1,12 +1,10 @@
-package com.dokyme.alg4.sorting.basic;
+package com.dokyme.alg4.sorting;
 
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.

@@ -82,7 +82,11 @@ public class Example {
     }
 
     public static void testSorting(Sorting sorting) {
-        Double[] array = new Double[1000];
+        testSorting(sorting, 1000);
+    }
+
+    public static void testSorting(Sorting sorting, int length) {
+        Double[] array = new Double[length];
         for (int i = 0; i < array.length; i++) {
             array[i] = StdRandom.uniform();
         }
