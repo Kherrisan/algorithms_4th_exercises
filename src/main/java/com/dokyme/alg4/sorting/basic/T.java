@@ -13,5 +13,6 @@ public class T {
 
     public static void main(String[] args) {
         StdOut.print(", , , ,        a, eaefa".split(" ").length);
+
     }
 }

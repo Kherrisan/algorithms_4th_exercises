@@ -4,9 +4,12 @@ import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Stopwatch;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+
+import static com.dokyme.alg4.sorting.basic.SortCompare.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -17,6 +20,10 @@ import java.util.Arrays;
  */
 public class Example {
     public static void sort(Comparable[] a) {
+    }
+
+    public static boolean eq(Comparable v, Comparable w) {
+        return v.compareTo(w) == 0;
     }
 
     public static boolean less(Comparable v, Comparable w) {
@@ -94,6 +101,24 @@ public class Example {
         assert isSorted(array);
         for (double d : array) {
             StdOut.print(d + "\n");
+        }
+    }
+
+    public static void doubleTesting(Sorting sorting) {
+        final int start = 1 << 8;
+        final int end = 1 << 22;
+        double prev = 1;
+        for (int i = start; i <= end; i <<= 1) {
+            double time = 0;
+            for (int t = 0; t < 100; t++) {
+                Comparable[] array = generateTestData(new Double(1), i);
+                Stopwatch stopwatch = new Stopwatch();
+                sorting.sort(array);
+                time += stopwatch.elapsedTime();
+            }
+            double arraysort = testArraysSort(i, 100);
+            StdOut.printf("size:%d\ttime:%f\tratio:%f\tArrays.sort:%f\n", i, time, time / prev, arraysort);
+            prev = time;
         }
     }
 

@@ -52,18 +52,19 @@ public class Quick implements Sorting {
             exch(a, i, j);
         }
         exch(a, lo, j);
-        return i;
+        return j;
     }
 
     public static void main(String[] args) {
-        for (int N = 100; N < 100000000; N *= 10) {
-            Integer[] array = new Integer[N];
-            for (int i = 0; i < array.length; i++) {
-                array[i] = 1;
-            }
-            CompareUtil.count = 0;
-            new Quick().sort(array);
-            StdOut.printf("N:%d\tC:%d\tNlogN:%d\n", N, CompareUtil.count, new Double(N * Math.log(N * 1.0) / Math.log(2)).intValue());
-        }
+//        for (int N = 100; N < 100000000; N *= 10) {
+//            Integer[] array = new Integer[N];
+//            for (int i = 0; i < array.length; i++) {
+//                array[i] = 1;
+//            }
+//            CompareUtil.count = 0;
+//            new Quick().sort(array);
+//            StdOut.printf("N:%d\tC:%d\tNlogN:%d\n", N, CompareUtil.count, new Double(N * Math.log(N * 1.0) / Math.log(2)).intValue());
+//        }
+        testSorting(new Quick());
     }
 }
