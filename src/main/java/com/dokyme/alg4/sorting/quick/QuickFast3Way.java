@@ -3,6 +3,9 @@ package com.dokyme.alg4.sorting.quick;
 import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
@@ -27,7 +30,7 @@ public class QuickFast3Way implements Sorting {
      * @param hi
      * @param lo
      */
-    public static void sort(Comparable[] a, int hi, int lo) {
+    public static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) {
             return;
         }

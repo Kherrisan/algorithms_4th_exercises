@@ -57,8 +57,22 @@ size:524288	time:19.641000	ratio:2.988588
 
 ## 2.3.22 快速三向切分
 
+Bently-McIlroy三向划分
+
 [QuickFast3Way.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/quick/QuickFast3Way.java)
 
-还有bug
+![Dijkstra三向切分和Bently-McIlroy三向划分的区分](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/2-3-22-1.jpg)
 
-**暂留**
+## 2.3.23 Java的排序库函数
+
+其实不同版本的JDK所采用的通用排序算法是不一样的。
+
+JDK6中，对于基本数据类型采用的就是Bently-McIlroy的快速排序，对于引用类型采用的是一种修改过的归并排序。
+JDK7中，对于基本数据类型采用的是双枢轴快速排序（Dual-Pivot Quicksort by Vladimir Yaroslavskiy, Jon Bentley, and Joshua Bloch），对于引用类型采用的也是一种修改过的归并排序。
+
+本题要求使用Tukey's ninther方法找出切分元素。
+
+[QuickInJDK6.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/quick/QuickInJDK6.java)
+
+## 2.3.24 取样排序
+

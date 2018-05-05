@@ -37,7 +37,7 @@ public class QuickMedianOf3Partion implements Sorting {
      * @param lo
      * @param hi
      */
-    private static void medianOf3(Comparable[] a, int lo, int hi) {
+    public static void medianOf3(Comparable[] a, int lo, int hi) {
         int mid = lo + (hi - lo) / 2;
         if (less(a[mid], a[lo])) {
             exch(a, lo, mid);
