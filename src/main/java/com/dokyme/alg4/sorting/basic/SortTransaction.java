@@ -18,7 +18,7 @@ public class SortTransaction {
         Transaction[] result = new Transaction[number];
         while (number-- > 0) {
             StdOut.print("Input next transaction amount:");
-            result[number] = new Transaction(StdIn.readDouble());
+            result[number] = new Transaction(StdIn.readLine());
         }
         StdOut.print("Input finished.");
         return result;

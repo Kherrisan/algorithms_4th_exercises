@@ -68,6 +68,7 @@ Bently-McIlroy三向划分
 其实不同版本的JDK所采用的通用排序算法是不一样的。
 
 JDK6中，对于基本数据类型采用的就是Bently-McIlroy的快速排序，对于引用类型采用的是一种修改过的归并排序。
+
 JDK7中，对于基本数据类型采用的是双枢轴快速排序（Dual-Pivot Quicksort by Vladimir Yaroslavskiy, Jon Bentley, and Joshua Bloch），对于引用类型采用的也是一种修改过的归并排序。
 
 本题要求使用Tukey's ninther方法找出切分元素。
