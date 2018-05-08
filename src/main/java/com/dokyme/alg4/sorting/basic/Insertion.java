@@ -15,6 +15,14 @@ import java.util.Arrays;
  */
 public class Insertion {
 
+    public static void sort(Comparable[] a, int lo, int hi) {
+        for (int i = lo + 1; i <= hi; i++) {
+            for (int j = i; j > lo && Example.less(a[j], a[j - 1]); j--) {
+                Example.exch(a, j, j - 1);
+            }
+        }
+    }
+
     /**
      * 对于有序或者部分有序的数组很有效，因为能够迅速发现一个元素已经就位。
      * 平均情况下需要平方的时间。
@@ -28,6 +36,14 @@ public class Insertion {
             //将a[i]插入到a[0],a[1],...,a[i-1]中去
             for (int j = i; j > 0 && Example.less(a[j], a[j - 1]); j--) {
                 //如果a[j]比有序的子序列中比前一个小，就和前一个交换次序，否则内循环结束。
+                Example.exch(a, j, j - 1);
+            }
+        }
+    }
+
+    public static void sort(double[] a, int lo, int hi) {
+        for (int i = lo + 1; i <= hi; i++) {
+            for (int j = i; j > lo && a[j] < a[j - 1]; j--) {
                 Example.exch(a, j, j - 1);
             }
         }

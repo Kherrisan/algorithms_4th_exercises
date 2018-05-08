@@ -111,7 +111,7 @@ public class SortCompare {
     }
 
     public static double testArraysSort(int length, int times) {
-        double[] array = new double[length];
+        Double[] array = new Double[length];
         double total = 0.0;
         for (int j = 0; j < times; j++) {
             for (int i = 0; i < array.length; i++) {

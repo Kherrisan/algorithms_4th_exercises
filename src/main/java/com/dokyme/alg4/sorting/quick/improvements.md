@@ -1,20 +1,20 @@
 # 提高题
 
-##2.3.15 螺丝和螺帽
+## 2.3.15 螺丝和螺帽
 
 对螺丝进行排序时，从螺帽数组中选取pivot，一遍扫描过后，肯定是左侧的螺丝偏小，右侧的螺丝偏大，中间的螺丝正好吻合。再拿这个螺丝作为pivot对螺帽数组进行排序。递归地对左侧子数组和右侧子数组进行排序。
 
-##2.3.16 最佳情况
+## 2.3.16 最佳情况
 
 **暂留**
 
-##2.3.17 哨兵
+## 2.3.17 哨兵
 
 [QuickSentinels.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/quick/QuickSentinels.java)
 
 做划分的时候，由于取的是数组左侧第一个元素，因此左移的指针不可能越界；由于当前数组的右边界的右侧第一个元素肯定比当前数组中所有元素大，因此右移指针最多移动到右边界的右侧一个元素。而最终的交换是交换数组第一个元素和左移指针，和右移指针无关。
 
-##2.3.18 三取样划分
+## 2.3.18 三取样划分
 
 通过取数个样本的中位数来保证枢轴最终处于相对居中的位置，一般是取数组第一个，中间一个，最后一个，这三个元素，取其中位数作为pivot，同时把最大的一个放在数组末尾，这样右移指针就不可能越界（因为pivot不可能比最后一个大）。
 
@@ -37,7 +37,7 @@ size:524288	time:19.641000	ratio:2.988588
 
 倍率实验结果如上。
 
-##2.3.19 五取样划分
+## 2.3.19 五取样划分
 
 **暂留**
 
@@ -73,6 +73,19 @@ JDK7中，对于基本数据类型采用的是双枢轴快速排序（Dual-Pivot
 本题要求使用Tukey's ninther方法找出切分元素。
 
 [QuickInJDK6.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/quick/QuickInJDK6.java)
+
+有生之年能够写出运行效率与库函数可比的排序算法也是可以了。
+
+```
+Length:1024	Arrays.sort:0.084000	jdk6:0.078000
+Length:2048	Arrays.sort:0.248000	jdk6:0.167000
+Length:4096	Arrays.sort:0.109000	jdk6:0.258000
+Length:8192	Arrays.sort:0.226000	jdk6:0.262000
+Length:16384	Arrays.sort:0.362000	jdk6:0.293000
+Length:32768	Arrays.sort:0.576000	jdk6:0.535000
+Length:65536	Arrays.sort:1.126000	jdk6:1.237000
+Length:131072	Arrays.sort:2.583000	jdk6:3.109000
+```
 
 ## 2.3.24 取样排序
 

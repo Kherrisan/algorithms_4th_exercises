@@ -2,6 +2,7 @@ package com.dokyme.alg4.sorting.quick;
 
 import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Insertion;
+import com.dokyme.alg4.sorting.basic.SortCompare;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -74,7 +75,7 @@ public class QuickInJDK6 implements Sorting {
     public static void sort(Comparable[] a, int lo, int hi) {
         int n = hi - lo + 1;
         if (n <= INSERTION_SORT_THRESHOLD) {
-            Insertion.sort(a);
+            Insertion.sort(a, lo, hi);
             return;
         } else if (n <= MEDIAN_THREE_THRESHOLD) {
             QuickMedianOf3Partion.medianOf3(a, lo, hi);
@@ -123,11 +124,12 @@ public class QuickInJDK6 implements Sorting {
     }
 
     public static void main(String[] args) {
-        testSorting(new QuickInJDK6());
-//        Integer[] a = new Integer[9];
-//        for (int i = 0; i < 9; i++) {
-//            a[i] = i;
-//        }
-//        tukeysNinther(a, 0, a.length - 1);
+//        testSorting(new QuickInJDK6());
+        int times = 100;
+        for (int n = 1024; n < 1 << 20; n <<= 1) {
+            double arrays = SortCompare.testArraysSort(n, times);
+            double jdk6 = SortCompare.testSort(new QuickInJDK6(), n, times);
+            StdOut.printf("Length:%d\tArrays.sort:%f\tjdk6:%f\n", n, arrays, jdk6);
+        }
     }
 }

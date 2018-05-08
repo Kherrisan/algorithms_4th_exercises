@@ -1,6 +1,8 @@
 package com.dokyme.alg4.sorting.quick;
 
 import com.dokyme.alg4.sorting.Sorting;
+import com.dokyme.alg4.sorting.basic.SortCompare;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.ArrayList;
@@ -81,6 +83,6 @@ public class QuickFast3Way implements Sorting {
     }
 
     public static void main(String[] args) {
-        testSorting(new QuickFast3Way());
+
     }
 }
