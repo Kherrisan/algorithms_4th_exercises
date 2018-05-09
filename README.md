@@ -28,3 +28,11 @@
 [提高题（部分完成）](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/quick/improvements.md)
 
 [实验题]()
+
+## 2.3 优先队列
+
+[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/priorityqueue/exercises.md)
+
+[提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/priorityqueue)
+
+[实验题]()
