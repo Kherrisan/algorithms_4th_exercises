@@ -32,14 +32,6 @@ public class MinPQ<T extends Comparable> extends AbstractPriorityQueue<T> implem
         pq = (T[]) new Comparable[n + 1];
     }
 
-    public boolean isEmpty() {
-        return n == 0;
-    }
-
-    public int size() {
-        return n;
-    }
-
     @Override
     public void insert(T t) {
         pq[++n] = t;

@@ -23,8 +23,6 @@ public abstract class AbstractPriorityQueue<T extends Comparable> implements PQ<
         pq[j] = temp;
     }
 
-    public abstract void insert(T t);
-
     @Override
     public boolean isEmpty() {
         return n==0;
