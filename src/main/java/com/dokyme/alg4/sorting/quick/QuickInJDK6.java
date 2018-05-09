@@ -49,24 +49,24 @@ public class QuickInJDK6 implements Sorting {
     private static int medianOf3(Comparable[] a, int i, int j, int k) {
         if (less(a[i], a[j])) {
             if (less(a[j], a[k])) {
-                //a[i]<a[j]<a[k]
+                //pq[i]<pq[j]<pq[k]
                 return j;
             } else if (less(a[k], a[i])) {
-                //a[k]<a[i]<a[j]
+                //pq[k]<pq[i]<pq[j]
                 return i;
             } else {
-                //a[i]<a[k]<a[j]
+                //pq[i]<pq[k]<pq[j]
                 return k;
             }
         } else {
             if (less(a[i], a[k])) {
-                //a[j]<a[i]<a[k]
+                //pq[j]<pq[i]<pq[k]
                 return i;
             } else if (less(a[k], a[j])) {
-                //a[k]<a[j]<a[i]
+                //pq[k]<pq[j]<pq[i]
                 return j;
             } else {
-                //a[j]<a[k]<a[i]
+                //pq[j]<pq[k]<pq[i]
                 return k;
             }
         }

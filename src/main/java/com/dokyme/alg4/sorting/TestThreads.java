@@ -13,7 +13,7 @@ public class TestThreads {
 
     public static class T extends Thread{
         /**
-         * If this thread was constructed using a separate
+         * If this thread was constructed using pq separate
          * <code>Runnable</code> run object, then that
          * <code>Runnable</code> object's <code>run</code> method is called;
          * otherwise, this method does nothing and returns.
@@ -33,7 +33,7 @@ public class TestThreads {
     public static class Task1 implements Runnable {
         /**
          * When an object implementing interface <code>Runnable</code> is used
-         * to create a thread, starting the thread causes the object's
+         * to create pq thread, starting the thread causes the object's
          * <code>run</code> method to be called in that separately executing
          * thread.
          * <p>
@@ -66,7 +66,7 @@ public class TestThreads {
     public static class Task2 implements Runnable {
         /**
          * When an object implementing interface <code>Runnable</code> is used
-         * to create a thread, starting the thread causes the object's
+         * to create pq thread, starting the thread causes the object's
          * <code>run</code> method to be called in that separately executing
          * thread.
          * <p>

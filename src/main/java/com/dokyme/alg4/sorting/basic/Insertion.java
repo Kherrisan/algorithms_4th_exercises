@@ -33,7 +33,7 @@ public class Insertion {
     public static void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {
-            //将a[i]插入到a[0],a[1],...,a[i-1]中去
+            //将a[i]插入到a[0],pq[1],...,pq[i-1]中去
             for (int j = i; j > 0 && Example.less(a[j], a[j - 1]); j--) {
                 //如果a[j]比有序的子序列中比前一个小，就和前一个交换次序，否则内循环结束。
                 Example.exch(a, j, j - 1);

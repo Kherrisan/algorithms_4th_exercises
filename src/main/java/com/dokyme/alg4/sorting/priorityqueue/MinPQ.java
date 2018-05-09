@@ -1,8 +1,6 @@
 package com.dokyme.alg4.sorting.priorityqueue;
 
-import edu.princeton.cs.algs4.StdIn;
-
-import java.lang.reflect.Array;
+import com.dokyme.alg4.sorting.Sorting;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -14,26 +12,38 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * @date 2018/5/8-22:07
  * Description:
  */
-public class MinPQ<T extends Comparable> {
+public class MinPQ<T extends Comparable> extends AbstractPriorityQueue<T> implements Sorting, IMinPQ<T> {
 
-    private T[] pq;
-    private int N = 0;
+    @Override
+    public void sort(Comparable[] a) {
+        pq = (T[]) new Comparable[a.length + 1];
+        System.arraycopy(a, 0, pq, 1, a.length);
+        n = a.length;
+        for (int k = n / 2; k >= 1; k--) {
+            sink(k);
+        }
+        while (n > 1) {
+            exch(1, n--);
+            sink(1);
+        }
+    }
 
     public MinPQ(Class cls, int n) {
         pq = (T[]) new Comparable[n + 1];
     }
 
     public boolean isEmpty() {
-        return N == 0;
+        return n == 0;
     }
 
     public int size() {
-        return N;
+        return n;
     }
 
+    @Override
     public void insert(T t) {
-        pq[++N] = t;
-        swim(N);
+        pq[++n] = t;
+        swim(n);
     }
 
     /**
@@ -41,10 +51,11 @@ public class MinPQ<T extends Comparable> {
      *
      * @return
      */
+    @Override
     public T delMin() {
         T min = pq[1];
-        exch(1, N--);
-        pq[N + 1] = null;
+        exch(1, n--);
+        pq[n + 1] = null;
         sink(1);
         return min;
     }
@@ -55,7 +66,7 @@ public class MinPQ<T extends Comparable> {
      * @param k
      */
     private void sink(int k) {
-        while (2 * k + 1 <= N) {
+        while (2 * k + 1 <= n) {
             int n = k * 2;
             if (less(n + 1, n)) {
                 //找到最小的子节点
@@ -82,17 +93,7 @@ public class MinPQ<T extends Comparable> {
         }
     }
 
-    private boolean less(int i, int j) {
-        return pq[i].compareTo(pq[j]) < 0;
-    }
-
-    private void exch(int i, int j) {
-        T temp = pq[i];
-        pq[i] = pq[j];
-        pq[j] = temp;
-    }
-
     public static void main(String[] args) {
-
+//        testSorting(new MinPQ<>(Double.class, 10), true);
     }
 }

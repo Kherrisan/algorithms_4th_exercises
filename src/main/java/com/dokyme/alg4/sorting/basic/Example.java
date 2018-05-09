@@ -55,16 +55,28 @@ public class Example {
         StdOut.println();
     }
 
+    public static boolean isSorted(Comparable[] a) {
+        return isSorted(a, false);
+    }
+
     /**
      * 检查一个数组的元素是否按照升序排列。
      *
      * @param a
      * @return
      */
-    public static boolean isSorted(Comparable[] a) {
-        for (int i = 1; i < a.length; i++) {
-            if (less(a[i], a[i - 1])) {
-                return false;
+    public static boolean isSorted(Comparable[] a, boolean desc) {
+        if (!desc) {
+            for (int i = 1; i < a.length; i++) {
+                if (less(a[i], a[i - 1])) {
+                    return false;
+                }
+            }
+        } else {
+            for (int i = 1; i < a.length; i++) {
+                if (less(a[i - 1], a[i])) {
+                    return false;
+                }
             }
         }
         return true;
@@ -89,16 +101,24 @@ public class Example {
     }
 
     public static void testSorting(Sorting sorting) {
-        testSorting(sorting, 1000);
+        testSorting(sorting, 1000, false);
     }
 
     public static void testSorting(Sorting sorting, int length) {
+        testSorting(sorting, length, false);
+    }
+
+    public static void testSorting(Sorting sorting, boolean desc) {
+        testSorting(sorting, 1000, desc);
+    }
+
+    public static void testSorting(Sorting sorting, int length, boolean desc) {
         Double[] array = new Double[length];
         for (int i = 0; i < array.length; i++) {
             array[i] = StdRandom.uniform();
         }
         sorting.sort(array);
-        assert isSorted(array);
+        assert isSorted(array, desc);
         for (double d : array) {
             StdOut.print(d + "\n");
         }
@@ -123,11 +143,11 @@ public class Example {
     }
 
     public static void main(String[] args) {
-        Double[] a = (Double[]) generateTestData(new Double(1.0), 100);
-        sort(a);
-        exch(a, 0, 1);
-        boolean r = isSorted(a);
-        assert r;
-        show(a);
+//        Double[] pq = (Double[]) generateTestData(new Double(1.0), 100);
+//        sort(pq);
+//        exch(pq, 0, 1);
+//        boolean r = isSorted(pq);
+//        assert r;
+//        show(pq);
     }
 }

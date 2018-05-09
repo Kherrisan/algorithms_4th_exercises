@@ -89,11 +89,11 @@ public class Merge implements Sorting {
 //    public static List<Integer> testAccessMemoryCounts() {
 //        accessCounts = new ArrayList<>();
 //        for (int N = 1; N < 512; N++) {
-//            Double[] a = new Double[N];
-//            for (int i = 0; i < a.length; i++) {
-//                a[i] = StdRandom.uniform();
+//            Double[] pq = new Double[N];
+//            for (int i = 0; i < pq.length; i++) {
+//                pq[i] = StdRandom.uniform();
 //            }
-//            sort(a);
+//            sort(pq);
 //        }
 //        return accessCounts;
 //    }
