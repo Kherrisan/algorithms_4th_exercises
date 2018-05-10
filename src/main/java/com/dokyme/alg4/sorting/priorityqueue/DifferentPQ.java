@@ -36,6 +36,60 @@ public class DifferentPQ {
         assert testMaxPQ(new OrderedArray<>(10), generateTestData(new Double(1), 10));
         assert testMaxPQ(new UnOrderedArray<>(10), generateTestData(new Double(1), 10));
         assert testMaxPQ(new UnOrderedLinkedList<>(), generateTestData(new Double(1), 10));
+        assert testMaxPQ(new OrderedArray<>(10), generateTestData(new Double(1), 10));
+    }
+}
+
+class Node<T> {
+    T val;
+    Node<T> next;
+
+}
+
+class OrderedLinkedList<T extends Comparable> implements IMaxPQ<T> {
+    private int size = 0;
+    private Node<T> first;
+    private Node<T> last;
+
+    @Override
+    public void insert(T t) {
+        size++;
+        Node<T> node = new Node<>();
+        node.val = t;
+        if (first == null) {
+            first = last = node;
+        } else {
+            Node<T> cur = first, pre = first;
+            while ((cur = cur.next) != null) {
+                if (less(cur.val, node.val)) {
+                    pre.next = node;
+                    node.next = cur;
+                    break;
+                }
+                pre = pre.next;
+            }
+        }
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public T delMax() {
+        size--;
+        T max = first.val;
+        first = first.next;
+        if (size == 0) {
+            last = null;
+        }
+        return max;
     }
 }
 
@@ -43,14 +97,9 @@ class UnOrderedLinkedList<T extends Comparable> implements IMaxPQ<T> {
 
     private int size;
 
-    public class Node {
-        T val;
-        Node next;
-    }
+    private Node<T> first;
 
-    private Node first;
-
-    private Node last;
+    private Node<T> last;
 
     @Override
     public boolean isEmpty() {
@@ -81,7 +130,7 @@ class UnOrderedLinkedList<T extends Comparable> implements IMaxPQ<T> {
     @Override
     public T delMax() {
         size--;
-        Node max = first, cur = first, pre = first, preMax = first;
+        Node<T> max = first, cur = first, pre = first, preMax = first;
         while ((cur = cur.next) != null) {
             if (less(max.val, cur.val)) {
                 preMax = pre;
