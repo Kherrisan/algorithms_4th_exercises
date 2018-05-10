@@ -11,11 +11,18 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * @date 2018/5/9-22:59
  * Description:
  */
-public class MaxPQ<T extends Comparable> extends AbstractPriorityQueue<T> implements Sorting, IMaxPQ<T> {
+public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> implements Sorting, IMaxPQ<T> {
 
     @SuppressWarnings("unchecked")
-    public MaxPQ(int n) {
+    public MaxHeap(int n) {
         pq = (T[]) new Comparable[n + 1];
+    }
+
+    @SuppressWarnings("unchecked")
+    public MaxHeap(T[] array) {
+        pq = (T[]) new Comparable[array.length + 1];
+        System.arraycopy(array, 0, pq, 1, array.length);
+        adjustHeap();
     }
 
     @Override
@@ -54,20 +61,25 @@ public class MaxPQ<T extends Comparable> extends AbstractPriorityQueue<T> implem
         }
     }
 
+    private void adjustHeap() {
+        for (int i = n / 2; i > 0; i--) {
+            sink(i);
+        }
+    }
+
     @Override
     public void sort(Comparable[] a) {
         pq = (T[]) new Comparable[a.length + 1];
         n = a.length;
         System.arraycopy(a, 0, pq, 1, a.length);
-        for (int k = n / 2; k >= 1; k--) {
-            sink(k);
-        }
+        adjustHeap();
         while (n > 1) {
             exch(1, n--);
             sink(1);
         }
         System.arraycopy(pq, 1, a, 0, a.length);
     }
+
 
     public static void main(String[] args) {
 

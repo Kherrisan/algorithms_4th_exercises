@@ -2,7 +2,6 @@ package com.dokyme.alg4.sorting.priorityqueue;
 
 import com.dokyme.alg4.sorting.basic.Transaction;
 import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.io.*;
@@ -21,16 +20,16 @@ public class TopM {
         try {
             int M = 5;
             Scanner scanner = new Scanner(new File("tinyBatch.txt"));
-            MinPQ<Transaction> minPQ = new MinPQ<>(Transaction.class, 20);
+            MinHeap<Transaction> minHeap = new MinHeap<>(Transaction.class, 20);
             while (scanner.hasNextLine()) {
-                minPQ.insert(new Transaction(scanner.nextLine()));
-                if (minPQ.size() > M) {
-                    minPQ.delMin();
+                minHeap.insert(new Transaction(scanner.nextLine()));
+                if (minHeap.size() > M) {
+                    minHeap.delMin();
                 }
             }
             Stack<Transaction> stack = new Stack<>();
-            while (!minPQ.isEmpty()) {
-                stack.push(minPQ.delMin());
+            while (!minHeap.isEmpty()) {
+                stack.push(minHeap.delMin());
             }
             for (Transaction t : stack) {
                 StdOut.println(t);

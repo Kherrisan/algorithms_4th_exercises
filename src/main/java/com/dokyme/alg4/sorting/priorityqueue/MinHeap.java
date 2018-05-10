@@ -1,6 +1,7 @@
 package com.dokyme.alg4.sorting.priorityqueue;
 
 import com.dokyme.alg4.sorting.Sorting;
+import com.dokyme.alg4.sorting.basic.Example;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -12,7 +13,7 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * @date 2018/5/8-22:07
  * Description:
  */
-public class MinPQ<T extends Comparable> extends AbstractPriorityQueue<T> implements Sorting, IMinPQ<T> {
+public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> implements Sorting, IMinPQ<T> {
 
     @Override
     public void sort(Comparable[] a) {
@@ -28,7 +29,7 @@ public class MinPQ<T extends Comparable> extends AbstractPriorityQueue<T> implem
         }
     }
 
-    public MinPQ(Class cls, int n) {
+    public MinHeap(Class cls, int n) {
         pq = (T[]) new Comparable[n + 1];
     }
 
@@ -85,7 +86,22 @@ public class MinPQ<T extends Comparable> extends AbstractPriorityQueue<T> implem
         }
     }
 
+    public static <T extends Comparable> boolean test(MinHeap<T> minHeap) {
+        T[] pq = minHeap.pq;
+        for (int i = 2; i <= minHeap.n; i++) {
+            if (Example.less(pq[i], pq[i / 2])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-//        testSorting(new MinPQ<>(Double.class, 10), true);
+        MinHeap<Double> minHeap = new MinHeap<>(Double.class, 100);
+        for (Comparable d : generateTestData(new Double(1), 100)) {
+            minHeap.insert((Double) d);
+        }
+        assert test(minHeap);
+//        testSorting(new MinHeap<>(Double.class, 10), true);
     }
 }
