@@ -17,6 +17,10 @@ public abstract class AbstractPriorityQueue<T extends Comparable> implements PQ<
         return pq[i].compareTo(pq[j]) < 0;
     }
 
+    protected boolean less(T i, T j) {
+        return i.compareTo(j) < 0;
+    }
+
     protected void exch(int i, int j) {
         T temp = pq[i];
         pq[i] = pq[j];
@@ -25,7 +29,7 @@ public abstract class AbstractPriorityQueue<T extends Comparable> implements PQ<
 
     @Override
     public boolean isEmpty() {
-        return n==0;
+        return n == 0;
     }
 
     @Override

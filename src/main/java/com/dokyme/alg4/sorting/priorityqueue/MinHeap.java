@@ -29,7 +29,7 @@ public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
         }
     }
 
-    public MinHeap(Class cls, int n) {
+    public MinHeap(int n) {
         pq = (T[]) new Comparable[n + 1];
     }
 
@@ -58,7 +58,7 @@ public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
      *
      * @param k
      */
-    private void sink(int k) {
+    protected void sink(int k) {
         while (2 * k + 1 <= n) {
             int n = k * 2;
             if (less(n + 1, n)) {
@@ -79,7 +79,7 @@ public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
      *
      * @param k
      */
-    private void swim(int k) {
+    protected void swim(int k) {
         while (k > 1 && less(k, k / 2)) {
             exch(k, k / 2);
             k /= 2;
@@ -97,7 +97,7 @@ public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
     }
 
     public static void main(String[] args) {
-        MinHeap<Double> minHeap = new MinHeap<>(Double.class, 100);
+        MinHeap<Double> minHeap = new MinHeap<>(100);
         for (Comparable d : generateTestData(new Double(1), 100)) {
             minHeap.insert((Double) d);
         }

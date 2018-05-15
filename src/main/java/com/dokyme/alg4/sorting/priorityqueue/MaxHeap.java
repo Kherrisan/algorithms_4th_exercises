@@ -1,11 +1,13 @@
 package com.dokyme.alg4.sorting.priorityqueue;
 
 import com.dokyme.alg4.sorting.Sorting;
+import com.dokyme.alg4.sorting.basic.Example;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
+ * 就是MaxPQ
  *
  * @author dokym
  * @date 2018/5/9-22:59
@@ -27,6 +29,12 @@ public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
 
     @Override
     public void insert(T t) {
+        if (n + 1 >= pq.length) {
+            int newLength = n + n / 2;
+            T[] npq = (T[]) new Comparable[newLength];
+            System.arraycopy(pq, 0, npq, 0, pq.length);
+            pq = npq;
+        }
         pq[++n] = t;
         swim(n);
     }
@@ -80,8 +88,21 @@ public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
         System.arraycopy(pq, 1, a, 0, a.length);
     }
 
+    public static <T extends Comparable> boolean test(MaxHeap<T> maxHeap) {
+        T[] pq = maxHeap.pq;
+        for (int i = 2; i <= maxHeap.n; i++) {
+            if (Example.less(pq[i / 2], pq[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public static void main(String[] args) {
-
+        MaxHeap<Double> maxHeap = new MaxHeap<>(10);
+        for (Comparable d : generateTestData(new Double(1), 100)) {
+            maxHeap.insert((Double) d);
+        }
+        assert test(maxHeap);
     }
 }

@@ -20,7 +20,7 @@ public class TopM {
         try {
             int M = 5;
             Scanner scanner = new Scanner(new File("tinyBatch.txt"));
-            MinHeap<Transaction> minHeap = new MinHeap<>(Transaction.class, 20);
+            MinHeap<Transaction> minHeap = new MinHeap<>(20);
             while (scanner.hasNextLine()) {
                 minHeap.insert(new Transaction(scanner.nextLine()));
                 if (minHeap.size() > M) {
