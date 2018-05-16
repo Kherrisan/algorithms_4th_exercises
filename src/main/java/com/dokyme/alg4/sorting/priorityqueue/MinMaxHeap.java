@@ -23,12 +23,20 @@ public class MinMaxHeap<T extends Comparable<T>> extends AbstractPriorityQueue<T
         return l % 2 == 0;
     }
 
+    @Override
     public T max() {
-
+        if (n < 2) {
+            return pq[1];
+        } else if (n > 2) {
+            return pq[2].compareTo(pq[3]) > 0 ? pq[2] : pq[3];
+        } else {
+            return pq[2];
+        }
     }
 
+    @Override
     public T min() {
-
+        return pq[1];
     }
 
     @Override
@@ -128,13 +136,23 @@ public class MinMaxHeap<T extends Comparable<T>> extends AbstractPriorityQueue<T
 
     @Override
     public T delMax() {
+        int maxIndex = 2;
+        if (n > 2) {
+            maxIndex = pq[2].compareTo(pq[3]) > 0 ? 2 : 3;
+        }
         return null;
     }
 
     @Override
     public T delMin() {
-        T min=pq[1];
-        exch(1=);
+        T min = pq[1];
+        exch(1, n);
+        pq[n--] = null;
+        if (n > 1 && n < 4) {
+
+        } else if (n >= 4) {
+
+        }
         return min;
     }
 

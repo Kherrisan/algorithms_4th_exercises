@@ -35,6 +35,12 @@ public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
 
     @Override
     public void insert(T t) {
+        if (n + 1 >= pq.length) {
+            int newLength = n + n / 2;
+            T[] npq = (T[]) new Comparable[newLength];
+            System.arraycopy(pq, 0, npq, 0, pq.length);
+            pq = npq;
+        }
         pq[++n] = t;
         swim(n);
     }
@@ -51,6 +57,11 @@ public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
         pq[n + 1] = null;
         sink(1);
         return min;
+    }
+
+    @Override
+    public T min() {
+        return pq[1];
     }
 
     /**

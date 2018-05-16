@@ -48,8 +48,12 @@ interface PQ<T> {
 
 interface IMaxPQ<T> extends PQ<T> {
     T delMax();
+
+    T max();
 }
 
 interface IMinPQ<T> extends PQ<T> {
     T delMin();
+
+    T min();
 }

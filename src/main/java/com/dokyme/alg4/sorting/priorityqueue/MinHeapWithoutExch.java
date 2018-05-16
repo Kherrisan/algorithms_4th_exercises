@@ -60,6 +60,11 @@ public class MinHeapWithoutExch<T extends Comparable<T>> extends MinHeap<T> {
         pq[dst] = e;
     }
 
+    @Override
+    public T min() {
+        return pq[1];
+    }
+
     public static void main(String[] args) {
         Comparable[] arrays = generateTestData(1, 100);
         MinHeapWithoutExch<Integer> heap = new MinHeapWithoutExch<>(100);

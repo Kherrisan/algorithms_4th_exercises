@@ -78,6 +78,11 @@ public class LinkedMaxHeap<T extends Comparable> implements PQ<T>, IMaxPQ<T> {
     }
 
     @Override
+    public T max() {
+        return root.val;
+    }
+
+    @Override
     public void insert(T t) {
         Node<T> node = new Node<>();
         node.val = t;

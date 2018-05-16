@@ -82,6 +82,11 @@ class OrderedLinkedList<T extends Comparable> implements IMaxPQ<T> {
     }
 
     @Override
+    public T max() {
+        return null;
+    }
+
+    @Override
     public T delMax() {
         size--;
         T max = first.val;
@@ -128,6 +133,11 @@ class UnOrderedLinkedList<T extends Comparable> implements IMaxPQ<T> {
     }
 
     @Override
+    public T max() {
+        return null;
+    }
+
+    @Override
     public T delMax() {
         size--;
         Node<T> max = first, cur = first, pre = first, preMax = first;
@@ -163,6 +173,11 @@ class UnOrderedArray<T extends Comparable> extends AbstractPriorityQueue<T> impl
     }
 
     @Override
+    public T max() {
+        return null;
+    }
+
+    @Override
     public T delMax() {
         int index = 0;
         for (int i = 1; i < n; i++) {
@@ -193,6 +208,11 @@ class OrderedArray<T extends Comparable> extends AbstractPriorityQueue<T> implem
         for (; i >= 1 && less(i - 1, i); i--) {
             exch(i, i - 1);
         }
+    }
+
+    @Override
+    public T max() {
+        return pq[1];
     }
 
     @Override
