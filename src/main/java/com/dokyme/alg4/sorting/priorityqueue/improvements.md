@@ -69,3 +69,35 @@
 
 [MinHeapWithoutExch.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/priorityqueue/MinHeapWithoutExch.java)
 
+## 2.4.27 找出最小元素
+
+```
+    public T delMin() {
+        int minIndex = n / 2 + 1;
+        for (int i = minIndex + 1; i <= n; i++) {
+            if (less(i, minIndex)) {
+                minIndex = i;
+            }
+        }
+        exch(n, minIndex);
+        swim(minIndex);
+        T min = pq[n];
+        pq[n--] = null;
+        return min;
+    }
+```
+
+这种实现需要线性时间。
+
+## 2.4.28 选择过滤
+
+需要构建一个大小为M的最小堆，输入数据长度为N。
+
+那么所需时间为：M+NlogM。
+
+## 2.4.29 同时面向最大元素和最小元素的优先队列
+
+题目要求insert、delMin、delMax使用对数级别时间，min、max需要常数级别时间。
+
+>最小最大堆（min-max heap）是支持两种操作 DeleteMin 和 DeleteMax 的数据结构，每个操作用时 O(log N)。该结构与二叉堆相同，不过，其堆序性质为：对于在偶数深度上的任意节点 X，存储于 X 上的关键字小于它的父亲但是大于它的祖父（这是有意义的），对于奇数深度上的任意节点 X，存储在 X 上的关键字大于它的父亲但是小于它的祖父。
+>以上内容节选自 “Data Structures and Algorithm Analysis in C” 一书，其中文译名为《数据结构与算法分析——C语言描述》。在实际应用中，最小最大堆一般作为双端优先队列使用。注意，在定义中，根节点的深度为 0。

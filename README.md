@@ -3,6 +3,10 @@
 
 书后的题目很多，很多题目不仅没有思路，而且网上还一点都找不到同类型的问题，只能希望能够在有限的时间里多做一些，多理解一些，多写一些。
 
+# 参考仓库
+
+[jimmysuncpt/Algorithms](https://github.com/jimmysuncpt/Algorithms)
+
 # 2.排序
 
 ## 2.1 初级排序算法

@@ -2,6 +2,7 @@ package com.dokyme.alg4.sorting.priorityqueue;
 
 import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
+import edu.princeton.cs.algs4.StdOut;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -37,6 +38,25 @@ public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
         }
         pq[++n] = t;
         swim(n);
+    }
+
+    /**
+     * 弹出最大堆中的的最小元素
+     *
+     * @return
+     */
+    public T delMin() {
+        int minIndex = n / 2 + 1;
+        for (int i = minIndex + 1; i <= n; i++) {
+            if (less(i, minIndex)) {
+                minIndex = i;
+            }
+        }
+        exch(n, minIndex);
+        swim(minIndex);
+        T min = pq[n];
+        pq[n--] = null;
+        return min;
     }
 
     @Override
@@ -99,10 +119,14 @@ public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
     }
 
     public static void main(String[] args) {
-        MaxHeap<Double> maxHeap = new MaxHeap<>(10);
+        MaxHeap<Double> maxHeap = new MaxHeap<>(100);
         for (Comparable d : generateTestData(new Double(1), 100)) {
             maxHeap.insert((Double) d);
         }
         assert test(maxHeap);
+        for (int i = 0; i < 90; i++) {
+            StdOut.println(maxHeap.delMin());
+            assert test(maxHeap);
+        }
     }
 }
