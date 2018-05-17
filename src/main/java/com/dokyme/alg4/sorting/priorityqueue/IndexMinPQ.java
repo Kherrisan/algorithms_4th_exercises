@@ -12,17 +12,19 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
     private int n;
 
     /**
-     *
+     * 直接索引数组，put(i,item)会导致items[i]=item
      */
     private Item[] items;
 
     /**
-     * pq[i]是第i小的元素在items中所在位置
+     * 二叉堆
+     * pq[i]是第i小的元素在items中所在位置，即该元素的索引
      */
     private int[] pq;
 
     /**
-     * qp[i]是items中第i个元素是队列中所处位次，即pq中下标。
+     * qp[i]是items中第i个元素在队列中所处位次，即pq中下标。
+     * qp[i]=-1表示items[i]不在优先队列中
      */
     private int[] qp;
 
@@ -44,6 +46,12 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
         swim(n);
     }
 
+    /**
+     * 随机访问堆中元素，修改元素并重新调整堆的结构。
+     *
+     * @param k
+     * @param item
+     */
     public void change(int k, Item item) {
         items[k] = item;
         swim(qp[k]);
@@ -55,11 +63,10 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
     }
 
     public void delete(int k) {
-        int delth = qp[k];
-        exch(n--, delth);
-        swim(delth);
-        sink(delth);
-
+        int posOfK = qp[k];
+        exch(n--, posOfK);
+        swim(posOfK);
+        sink(posOfK);
         //gc
         items[k] = null;
         qp[k] = -1;
@@ -74,13 +81,12 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
     }
 
     public int delMin() {
-        int min = pq[1];
+        int indexOfMin = pq[1];
         exch(1, n--);
         sink(1);
-//        pq[n + 1] = -1;
-        items[min] = null;
-        qp[min] = -1;
-        return min;
+        items[indexOfMin] = null;
+        qp[indexOfMin] = -1;
+        return indexOfMin;
     }
 
     public boolean isEmpty() {
@@ -92,7 +98,7 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
     }
 
     private void swim(int k) {
-        while (k > 1 && less(k / 2, k)) {
+        while (k > 1 && less(k, k / 2)) {
             exch(k, k / 2);
             k = k / 2;
         }
@@ -100,15 +106,15 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
 
     private void sink(int k) {
         while (2 * k <= n) {
-            int j = 2 * k;
-            if (j < n && less(j, j + 1)) {
-                j++;
+            int p = 2 * k;
+            if (p < n && less(p, p + 1)) {
+                p++;
             }
-            if (!less(k, j)) {
+            if (!less(k, p)) {
                 break;
             }
-            exch(k, j);
-            k = j;
+            exch(k, p);
+            k = p;
         }
     }
 

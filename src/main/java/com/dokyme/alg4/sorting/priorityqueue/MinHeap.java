@@ -70,18 +70,18 @@ public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
      * @param k
      */
     protected void sink(int k) {
-        while (2 * k + 1 <= n) {
-            int n = k * 2;
-            if (less(n + 1, n)) {
+        while (2 * k <= n) {
+            int p = k * 2;
+            if (p < n && less(p + 1, p)) {
                 //找到最小的子节点
-                n += 1;
+                p++;
             }
-            if (less(k, n)) {
+            if (less(k, p)) {
                 //如果k比最小的子节点小，说明下沉完毕
                 break;
             }
-            exch(k, n);
-            k = n;
+            exch(k, p);
+            k = p;
         }
     }
 

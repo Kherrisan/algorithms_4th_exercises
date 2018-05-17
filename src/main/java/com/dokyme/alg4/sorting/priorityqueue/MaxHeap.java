@@ -61,7 +61,7 @@ public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
 
     @Override
     public T max() {
-        return null;
+        return pq[1];
     }
 
     @Override

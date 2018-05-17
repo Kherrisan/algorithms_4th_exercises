@@ -101,3 +101,35 @@
 
 >最小最大堆（min-max heap）是支持两种操作 DeleteMin 和 DeleteMax 的数据结构，每个操作用时 O(log N)。该结构与二叉堆相同，不过，其堆序性质为：对于在偶数深度上的任意节点 X，存储于 X 上的关键字小于它的父亲但是大于它的祖父（这是有意义的），对于奇数深度上的任意节点 X，存储在 X 上的关键字大于它的父亲但是小于它的祖父。
 >以上内容节选自 “Data Structures and Algorithm Analysis in C” 一书，其中文译名为《数据结构与算法分析——C语言描述》。在实际应用中，最小最大堆一般作为双端优先队列使用。注意，在定义中，根节点的深度为 0。
+
+**暂留**
+
+## 2.4.30 动态中位数
+
+最小堆存放比中位数大的元素，最大堆存放比中位数小的元素。最大堆的大小大于或等于最小堆的大小，且二者大小相差不超过1。
+
+[DynamicMedian.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/priorityqueue/DynamicMedian.java)
+
+## 2.4.31 快速插入
+
+在swim和sink操作中，可以使用二分查找的方法来减少比较次数，但是如何将元素移动到正确位置的同时不浪费额外的时间，也是一个值得考虑的问题。
+
+比如我通过二分查找很快判断出该元素要上浮到堆顶，那么就需要把路径中所有元素下移，时间为logN。
+
+**暂留**
+
+## 2.4.32 下界
+
+**暂留**
+
+## 2.4.33 索引优先队列的实现
+
+[IndexMinPQ.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/priorityqueue/IndexMinPQ.java)
+
+## 2.4.34 索引优先队列的实现（附加操作）
+
+[IndexMinPQ.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/priorityqueue/IndexMinPQ.java)
+
+## 2.4.35 离散概率分布的取样
+
+以满二叉树的形式表达概率密度函数和分布函数的概率，每个节点的double值代表命中以这个节点为根的树中某个节点的概率之和。随机产生一个随机数，然后和树根的值对比，如果大于等于某个节点的值，

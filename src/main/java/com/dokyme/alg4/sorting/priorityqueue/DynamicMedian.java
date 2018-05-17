@@ -12,76 +12,77 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class DynamicMedian {
 
-    private MinHeap<Integer> minHeap;
-    private MaxHeap<Integer> maxHeap;
+    private MinHeap<Integer> highHeap;
+    private MaxHeap<Integer> lowHeap;
     private int n;
-    private int medianLow;
-    private int medianHigh;
 
     public DynamicMedian() {
-        minHeap = new MinHeap<>(10);
-        maxHeap = new MaxHeap<>(10);
+        n = 0;
+        highHeap = new MinHeap<>(10);
+        lowHeap = new MaxHeap<>(10);
     }
 
     /**
-     * logN
+     * O(logN)
      *
      * @param e
      */
     public void insert(Integer e) {
-        if (n % 2 != 0) {
-            //插入之前有奇数个元素
-            if (e < medianLow) {
-                maxHeap.insert(e);
-                medianHigh = medianLow;
-                medianLow = maxHeap.delMax();
+        n++;
+        if (highHeap.size() == lowHeap.size()) {
+            if (!highHeap.isEmpty() && e > highHeap.min()) {
+                //e比中位数大
+                lowHeap.insert(highHeap.delMin());
+                highHeap.insert(e);
             } else {
-                minHeap.insert(e);
-                medianHigh = minHeap.delMin();
+                //e比中位数小
+                lowHeap.insert(e);
             }
         } else {
-            //插入前有偶数个元素
-            if (e > medianHigh) {
-                minHeap.insert(e);
-                maxHeap.insert(medianLow);
-                medianLow = medianHigh;
-            } else if (e < medianLow) {
-                maxHeap.insert(e);
-                minHeap.insert(medianHigh);
-                medianHigh = medianLow;
+            //小半部分元素数量大于大半部分元素数量
+            if (e < lowHeap.max()) {
+                //e比中位数小
+                highHeap.insert(lowHeap.delMax());
+                lowHeap.insert(e);
             } else {
-                maxHeap.insert(medianLow);
-                minHeap.insert(medianHigh);
-                medianLow = medianHigh = e;
+                //e比中位数大
+                highHeap.insert(e);
             }
         }
-        n++;
     }
 
     /**
-     * N
+     * O(N)
      *
      * @return
      */
     public Double median() {
-        return (1.0 * medianLow + medianHigh) / 2;
+        if (lowHeap.isEmpty()) {
+            return 0d;
+        }
+        if (lowHeap.size() == highHeap.size()) {
+            return (lowHeap.max() * 1.0 + highHeap.min()) / 2;
+        } else {
+            return lowHeap.max() * 1.0;
+        }
     }
 
     /**
-     * logN
+     * O(logN)
+     * 这里定义“删除中位数”的语义为：如果总个数为偶数，那么删除最中间的两个元素。
      *
      * @return
      */
     public Double delMedian() {
-        Double m = median();
-        if (n % 2 == 0) {
-            medianLow = maxHeap.delMax();
-            medianHigh = minHeap.delMin();
+        if (lowHeap.size() == highHeap.size()) {
+            double mid = median();
+            lowHeap.delMax();
+            highHeap.delMin();
+            return mid;
         } else {
-            medianLow = maxHeap.delMax();
+            //最大堆比最小堆多一个元素。
+            return lowHeap.delMax() * 1.0;
         }
-        n--;
-        return m;
     }
 
     public static void main(String[] args) {
@@ -89,10 +90,10 @@ public class DynamicMedian {
         for (int i = 0; i < 10; i++) {
             median.insert(i);
         }
-        StdOut.println(median.delMedian());
+        StdOut.println(median.median());
         median.insert(1);
-        StdOut.println(median.delMedian());
+        StdOut.println(median.median());
         median.insert(2);
-        StdOut.println(median.delMedian());
+        StdOut.println(median.median());
     }
 }
