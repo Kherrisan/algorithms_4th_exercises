@@ -173,9 +173,11 @@ public class NaturalMerge implements Sorting {
 2. 如果界定子序列的边界：也不能用下标访问。
 2. 如何归并两个子序列。
 
-但是考虑到LinkedListNode是private，我访问不到。emmmmmm。只能字节写一个简单的LinkedList了。
+然而第1和第2点对于“自然排序”而言都是不存在的。
 
-**暂留**
+基本思路是这样的：和对数组的自然归并排序一样，每层级的归并前先扫描一遍整个数组，记录每个有序子序列的最后一个节点，存放到一个数组p中，归并时，取数组中的节点作为归并的子序列的起点、中点和终点。
+
+我在链表头部额外添加了一个值为null的节点作为哨兵，因为发现如果没有哨兵的话，链表的头部不太好处理。
 
 [LinkedListNaturalMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/LinkedListNaturalMerge.java)
 
@@ -183,19 +185,17 @@ public class NaturalMerge implements Sorting {
 
 我不知题目所说的打乱要打乱到何种程度。
 
-链表和数组的区别在于，数组可以通过随机取索引来做shuffle，但是链表不能够通过索引访问（效率太低）。
-
-题目要求对数级别的额外空间，那么可以理解成一个树状的结构，每层分配一个空间。
+链表和数组的区别在于，数组可以通过随机取索引来做shuffle，但是链表不能够通过索引访问（效率太低）。题目要求对数级别的额外空间，那么可以理解成一个树状的结构，每层分配一个空间。
 
 在Stack Overflow上找到了这道题的答案，logn空间复杂度的意思就是这是要递归的所以你栈至少要有logn吧。。。。。。
 
-**暂留**
+基本思路：形如归并排序，先递归划分，再合并，合并的时候随机选择左子序列的下一个或者右子序列的下一个。
 
 [DisorderLinkedList.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/DisorderLinkedList.java)
 
 ## 2.2.19 倒置
 
-可以调整归并排序的算法，应该统计倒置本身就是一个规模逐步扩大的问题。一边统计一边修正逆序对，局部的修正可以保证每次只修正一个逆序对，不会影响局部内外元素的逆序关系。
+可以调整归并排序的算法，统计倒置本身应该就是一个规模逐步扩大的问题。一边统计一边修正逆序对，局部的修正可以保证每次只修正一个逆序对，不会影响局部内外元素的逆序关系。
 
 ```java_holder_method_tree
 

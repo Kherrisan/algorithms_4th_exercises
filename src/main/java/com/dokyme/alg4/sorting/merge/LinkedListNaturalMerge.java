@@ -3,7 +3,12 @@ package com.dokyme.alg4.sorting.merge;
 import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -28,8 +33,12 @@ public class LinkedListNaturalMerge implements Sorting {
         }
 
         public T poll() {
+            size--;
             Node t = first;
             first = first.next;
+            if (first == null) {
+                last = null;
+            }
             return t.data;
         }
 
@@ -60,16 +69,19 @@ public class LinkedListNaturalMerge implements Sorting {
                 return data.toString();
             }
         }
-
     }
 
     @Override
     public void sort(Comparable[] a) {
         LinkedList<Comparable> list = new LinkedList<>();
+        //在队首存放一个哨兵节点，减少p数组以及merge的代码复杂性
+        list.add(null);
         for (Comparable ae : a) {
             list.add(ae);
         }
         sort(list);
+        //删除null哨兵节点
+        list.poll();
         LinkedList.Node cur = list.first;
         for (int i = 0; i < a.length; i++) {
             a[i] = cur.data;
@@ -80,16 +92,16 @@ public class LinkedListNaturalMerge implements Sorting {
     private int pass(LinkedList a, LinkedList.Node[] p) {
         //p数组存放有序段的最后一个节点
         int pi = 0;
-        LinkedList.Node cur = a.first;
-        LinkedList.Node last = a.first;
-        p[pi++] = cur;
+        LinkedList.Node cur = a.first.next;
+        LinkedList.Node last = cur;
+        p[pi++] = a.first;
         while ((cur = cur.next) != null) {
             if (Example.less(cur.data, last.data)) {
                 p[pi++] = last;
             }
             last = cur;
         }
-        p[pi++] = a.last;
+        p[pi++] = last;
         return pi;
     }
 
@@ -99,62 +111,57 @@ public class LinkedListNaturalMerge implements Sorting {
         int psize = pass(a, p);
         while (psize != 2) {
             for (int i = 0; i < psize; i += 2) {
-                merge(p[i], p[Math.min(i + 1, psize - 1)], p[Math.min(i + 2, psize - 1)]);
+                merge(a, p[i], p[Math.min(i + 1, psize - 1)], p[Math.min(i + 2, psize - 1)]);
             }
             psize = pass(a, p);
         }
     }
 
-    private void merge(LinkedList.Node lo, LinkedList.Node mi, LinkedList.Node hi) {
+    private void merge(LinkedList a, LinkedList.Node lo, LinkedList.Node mi, LinkedList.Node hi) {
         //归并a[lo+1...mi]和a[mi+1...hi]
-        try {
-            LinkedList.Node i = lo.next;
-            LinkedList.Node j = mi.next;
-            final LinkedList.Node midNext = mi.next;
-            final LinkedList.Node hiNext = hi.next;
-            while (i != midNext || j != hiNext) {
-                if (i == midNext) {
-                    lo.next = j;
-                    j = j.next;
-                } else if (j == hiNext) {
-                    lo.next = i;
-                    i = i.next;
-                } else if (Example.less(i.data, j.data)) {
-                    lo.next = i;
-                    i = i.next;
-                } else {
-                    lo.next = j;
-                    j = j.next;
-                }
-                lo = lo.next;
+        //lo指向修正过后链表的最后一个节点
+        LinkedList.Node i = lo.next, j = mi.next;
+        //用于标记指针移动到子序列终点
+        final LinkedList.Node midNext = mi.next, hiNext = hi.next;
+        while (i != midNext || j != hiNext) {
+            if (i == midNext) {
+                lo.next = j;
+                j = j.next;
+            } else if (j == hiNext) {
+                lo.next = i;
+                i = i.next;
+            } else if (Example.less(i.data, j.data)) {
+                lo.next = i;
+                i = i.next;
+            } else {
+                lo.next = j;
+                j = j.next;
             }
-            lo.next = hiNext;
-        } catch (Exception e) {
-            e.printStackTrace();
+            lo = lo.next;
         }
-    }
-
-    public static void testMergeLinkedList() {
-        LinkedList<Integer> l1 = new LinkedList<>();
-        LinkedList<Integer> l2 = new LinkedList<>();
-        for (int i = 0; i < 10; i += 2) {
-            l1.add(i);
-            l2.add(i + 1);
-        }
-        l1.add(10);
-        l1.add(12);
-        l1.last.next = l2.first;
-        new LinkedListNaturalMerge().merge(l1.first, l1.last, l2.last);
-        LinkedList.Node cur = l1.first;
-        while (cur != null) {
-            StdOut.print(cur.data);
-            cur = cur.next;
-        }
+        //此时lo指向hi的位置
+        lo.next = hiNext;
     }
 
     public static void main(String[] args) {
-        Integer[] array = new Integer[]{1, 2, 5, 3, 9, 7, 8, 4};
-        new LinkedListNaturalMerge().sort(array);
-        assert Example.isSorted(array);
+//        Double[] array = new Double[]{0.866, 0.201, 0.326, 0.350, 0.375, 0.670, 0.507, 0.488, 0.509, 0.055};
+//        new LinkedListNaturalMerge().sort(array);
+//        assert isSorted(array);
+        for (int j = 0; j < 100; j++) {
+            Double[] array = new Double[10];
+            Double[] copy=null;
+            try {
+                for (int i = 0; i < 10; i++) {
+                    array[i] = StdRandom.uniform();
+                }
+                copy = Arrays.copyOf(array, array.length);
+                new LinkedListNaturalMerge().sort(array);
+                assert isSorted(array);
+                StdOut.println(String.format("%dth test finished.", j));
+            } catch (NullPointerException e) {
+                StdOut.println(Arrays.toString(copy));
+                break;
+            }
+        }
     }
 }

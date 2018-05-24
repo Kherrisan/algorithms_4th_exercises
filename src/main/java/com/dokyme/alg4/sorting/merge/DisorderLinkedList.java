@@ -16,7 +16,7 @@ import static com.dokyme.alg4.sorting.merge.LinkedListNaturalMerge.LinkedList;
 public class DisorderLinkedList {
 
     private LinkedList.Node middleNode(LinkedList.Node start, LinkedList.Node end) {
-        //快慢指针查找链表中点
+        //快慢指针查找链表中点（中点或中间靠前的一个节点）
         LinkedList.Node fast = start, slow = start;
         while (fast != end && fast.next != end) {
             fast = fast.next.next;
@@ -46,7 +46,7 @@ public class DisorderLinkedList {
             }
             lo = lo.next;
         }
-        lo.next = hi.next;
+        lo.next = rightEnd;
     }
 
     public void shuffle(LinkedList a) {
