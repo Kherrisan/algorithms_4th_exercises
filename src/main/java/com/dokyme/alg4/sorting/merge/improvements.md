@@ -173,9 +173,11 @@ public class NaturalMerge implements Sorting {
 2. 如果界定子序列的边界：也不能用下标访问。
 2. 如何归并两个子序列。
 
-但是考虑到LinkedListNode是private，我访问不到。emmmmmm。只能字节写一个简单的LinkedList了。
+然而第1和第2点对于“自然排序”而言都是不存在的。
 
-**暂留**
+基本思路是这样的：和对数组的自然归并排序一样，每层级的归并前先扫描一遍整个数组，记录每个有序子序列的最后一个节点，存放到一个数组p中，归并时，取数组中的节点作为归并的子序列的起点、中点和终点。
+
+我在链表头部额外添加了一个值为null的节点作为哨兵，因为发现如果没有哨兵的话，链表的头部不太好处理。
 
 [LinkedListNaturalMerge.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/merge/LinkedListNaturalMerge.java)
 

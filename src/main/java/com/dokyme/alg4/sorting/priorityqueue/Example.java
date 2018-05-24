@@ -38,6 +38,7 @@ public class Example {
         while (k < p.length) {
 
         }
+        return 1;
     }
 
     public void change(int k, double value) {

@@ -21,8 +21,10 @@ public class NaturalMerge implements Sorting {
         int psize = pass(a, p);
         while (psize != 2) {
             for (int i = 0; i < psize; i += 2) {
-                //待考虑
-                Merge.merge(a, p[i], p[i + 1], p[Math.min(i + 2, psize - 1)], aux);
+                //最后一次迭代的情况
+                //  i = psize-1
+                //  i = psize-2:merge(a,psize-2,psize-1,psize)
+                Merge.merge(a, p[i], p[Math.min(i + 1, psize - 1)], p[Math.min(i + 2, psize - 1)], aux);
             }
             psize = pass(a, p);
         }
