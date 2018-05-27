@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import java.lang.reflect.Array;
+
 import static com.dokyme.alg4.sorting.basic.SortCompare.*;
 
 /**
@@ -83,8 +85,8 @@ public class Example {
         T mock(int i);
     }
 
-    public static <T extends Comparable<T>> T[] generate(int length, DataMocker<T> generator) {
-        T[] a = (T[]) new Object[length];
+    public static <T extends Comparable<T>> T[] generate(Class<T> cls, int length, DataMocker<T> generator) {
+        T[] a = (T[]) Array.newInstance(cls, length);
         for (int i = 0; i < length; i++) {
             a[i] = generator.mock(i);
         }
