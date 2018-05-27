@@ -1,13 +1,9 @@
 package com.dokyme.alg4.sorting.basic;
 
 import com.dokyme.alg4.sorting.Sorting;
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 import static com.dokyme.alg4.sorting.basic.SortCompare.*;
 
@@ -19,6 +15,7 @@ import static com.dokyme.alg4.sorting.basic.SortCompare.*;
  * Description:
  */
 public class Example {
+
     public static void sort(Comparable[] a) {
     }
 
@@ -80,6 +77,18 @@ public class Example {
             }
         }
         return true;
+    }
+
+    public interface DataMocker<T extends Comparable<T>> {
+        T mock(int i);
+    }
+
+    public static <T extends Comparable<T>> T[] generate(int length, DataMocker<T> generator) {
+        T[] a = (T[]) new Object[length];
+        for (int i = 0; i < length; i++) {
+            a[i] = generator.mock(i);
+        }
+        return a;
     }
 
     public static Comparable[] generateTestData(Object cls, int length) {

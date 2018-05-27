@@ -38,6 +38,10 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
         }
     }
 
+    public Item get(int k) {
+        return items[k];
+    }
+
     public void insert(int k, Item item) {
         n++;
         pq[n] = k;
@@ -107,10 +111,10 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
     private void sink(int k) {
         while (2 * k <= n) {
             int p = 2 * k;
-            if (p < n && less(p, p + 1)) {
+            if (p < n && less(p + 1, p)) {
                 p++;
             }
-            if (!less(k, p)) {
+            if (less(k, p)) {
                 break;
             }
             exch(k, p);

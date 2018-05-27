@@ -24,6 +24,7 @@ public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
     @SuppressWarnings("unchecked")
     public MaxHeap(T[] array) {
         pq = (T[]) new Comparable[array.length + 1];
+        n = array.length;
         System.arraycopy(array, 0, pq, 1, array.length);
         adjustHeap();
     }
