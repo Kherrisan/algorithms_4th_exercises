@@ -30,4 +30,4 @@
 
 [StabilityChecker.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/StabilityChecker.java)
 
-p
+pp
