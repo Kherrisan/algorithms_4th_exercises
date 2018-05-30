@@ -7,6 +7,7 @@ import edu.princeton.cs.algs4.StdRandom;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -69,6 +70,11 @@ public class LinkedListNaturalMerge implements Sorting {
                 return data.toString();
             }
         }
+    }
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
     }
 
     @Override

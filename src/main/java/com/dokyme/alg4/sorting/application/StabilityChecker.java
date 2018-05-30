@@ -1,11 +1,12 @@
 package com.dokyme.alg4.sorting.application;
 
 import com.dokyme.alg4.sorting.Sorting;
+import com.dokyme.alg4.sorting.basic.Shell;
+import com.dokyme.alg4.sorting.merge.Merge;
+import com.dokyme.alg4.sorting.priorityqueue.MaxHeap;
 import com.dokyme.alg4.sorting.quick.Quick;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
-
-import java.util.Arrays;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -19,7 +20,7 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
 public class StabilityChecker {
 
     public static class Element implements Comparable<Element> {
-        private int val;
+        public int val;
 
         public int index;
 
@@ -39,11 +40,11 @@ public class StabilityChecker {
         }
     }
 
-    public static boolean checkStability(Sorting sorting) {
-        Element[] a = generate(Element.class, 1000, new DataMocker<Element>() {
+    public static boolean check(Sorting sorting) {
+        Element[] a = generate(Element.class, 10, new DataMocker<Element>() {
             @Override
             public Element mock(int i) {
-                return new Element(StdRandom.uniform(10), i);
+                return new Element(StdRandom.uniform(3), i);
             }
         });
         sorting.sort(a);
@@ -58,6 +59,8 @@ public class StabilityChecker {
     }
 
     public static void main(String[] args) {
-        StdOut.println(checkStability(new Quick()));
+        StdOut.println(check(new Quick()));
+        StdOut.println(check(new Merge()));
+        StdOut.println(check(new Shell()));
     }
 }

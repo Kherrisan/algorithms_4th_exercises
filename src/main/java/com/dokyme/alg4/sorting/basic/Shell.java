@@ -17,6 +17,11 @@ import java.util.*;
  */
 public class Shell implements Sorting {
 
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
+
     public static boolean compare(Comparable[] a, Comparable[] b) {
         for (int i = 0; i < a.length; i++) {
             if (a[i] != b[i]) {

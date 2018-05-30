@@ -3,6 +3,8 @@ package com.dokyme.alg4.sorting.priorityqueue;
 import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
 
+import java.util.Comparator;
+
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
@@ -14,6 +16,11 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * Description:
  */
 public class MinHeap<T extends Comparable> extends AbstractPriorityQueue<T> implements Sorting, IMinPQ<T> {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {

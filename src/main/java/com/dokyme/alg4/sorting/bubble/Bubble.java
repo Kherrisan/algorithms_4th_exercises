@@ -1,6 +1,9 @@
 package com.dokyme.alg4.sorting.bubble;
 
+import com.dokyme.alg4.sorting.DefaultComparator;
 import com.dokyme.alg4.sorting.Sorting;
+
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -13,6 +16,20 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * Description:
  */
 public class Bubble implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        boolean swp = true;
+        while (swp) {
+            swp = false;
+            for (int i = 1; i < a.length; i++) {
+                if (less(a[i], a[i - 1], c)) {
+                    exch(a, i, i - 1);
+                    swp = true;
+                }
+            }
+        }
+    }
 
     @Override
     public void sort(Comparable[] a) {

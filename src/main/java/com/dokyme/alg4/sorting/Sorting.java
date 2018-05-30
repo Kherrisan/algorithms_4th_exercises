@@ -1,5 +1,7 @@
 package com.dokyme.alg4.sorting;
 
+import java.util.Comparator;
+
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  *
@@ -9,4 +11,6 @@ package com.dokyme.alg4.sorting;
  */
 public interface Sorting {
     void sort(Comparable[] a);
+
+    void sort(Comparable[] a, Comparator c);
 }

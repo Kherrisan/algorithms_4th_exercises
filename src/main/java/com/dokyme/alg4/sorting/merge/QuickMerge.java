@@ -4,6 +4,7 @@ import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 import static com.dokyme.alg4.sorting.basic.SortCompare.*;
@@ -40,6 +41,11 @@ public class QuickMerge implements Sorting {
     public void sort(Comparable[] a) {
         Comparable[] aux = new Comparable[a.length];
         sort(a, 0, a.length - 1, aux);
+    }
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
     }
 
     private static void sort(Comparable[] a, int lo, int hi, Comparable[] aux) {

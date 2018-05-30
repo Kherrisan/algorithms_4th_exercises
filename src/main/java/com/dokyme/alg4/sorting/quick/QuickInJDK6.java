@@ -6,6 +6,8 @@ import com.dokyme.alg4.sorting.basic.SortCompare;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Comparator;
+
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
@@ -20,6 +22,11 @@ public class QuickInJDK6 implements Sorting {
 
     public static final int INSERTION_SORT_THRESHOLD = 8;
     public static final int MEDIAN_THREE_THRESHOLD = 40;
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {

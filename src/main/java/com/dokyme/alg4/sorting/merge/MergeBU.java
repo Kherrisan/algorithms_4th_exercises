@@ -3,6 +3,7 @@ package com.dokyme.alg4.sorting.merge;
 import com.dokyme.alg4.sorting.Sorting;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ public class MergeBU implements Sorting {
     private static Comparable[] aux;
     private static List<Integer> accessCounts;
 
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {

@@ -3,6 +3,8 @@ package com.dokyme.alg4.sorting.quick;
 import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Comparator;
+
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
@@ -14,6 +16,11 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * Description:
  */
 public class QuickSentinels implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {

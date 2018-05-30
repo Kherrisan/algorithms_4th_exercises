@@ -67,6 +67,11 @@ public class Merge implements Sorting {
     }
 
     @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
+
+    @Override
     public void sort(Comparable[] a) {
         aux = new Comparable[a.length];
         sort(a, 0, a.length - 1);

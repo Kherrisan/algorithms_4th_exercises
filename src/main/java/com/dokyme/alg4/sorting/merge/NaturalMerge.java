@@ -3,6 +3,8 @@ package com.dokyme.alg4.sorting.merge;
 import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
 
+import java.util.Comparator;
+
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  * 2.2.16
@@ -12,6 +14,11 @@ import com.dokyme.alg4.sorting.basic.Example;
  * Description:
  */
 public class NaturalMerge implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {

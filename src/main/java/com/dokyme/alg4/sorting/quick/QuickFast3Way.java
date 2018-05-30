@@ -7,6 +7,7 @@ import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -19,6 +20,12 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * Description:
  */
 public class QuickFast3Way implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
+
     @Override
     public void sort(Comparable[] a) {
         StdRandom.shuffle(a);
