@@ -2,6 +2,8 @@ package com.dokyme.alg4.sorting.quick;
 
 import com.dokyme.alg4.sorting.Sorting;
 
+import java.util.Comparator;
+
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  * 2.3.24
@@ -11,6 +13,11 @@ import com.dokyme.alg4.sorting.Sorting;
  * Description:
  */
 public class QuickSampling implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {

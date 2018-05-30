@@ -6,6 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
 import java.lang.reflect.Array;
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.SortCompare.*;
 
@@ -21,8 +22,16 @@ public class Example {
     public static void sort(Comparable[] a) {
     }
 
+    public static boolean eq(Object v, Object w, Comparator c) {
+        return c.compare(v, w) == 0;
+    }
+
     public static boolean eq(Comparable v, Comparable w) {
         return v.compareTo(w) == 0;
+    }
+
+    public static boolean less(Object v, Object w, Comparator c) {
+        return c.compare(v, w) < 0;
     }
 
     public static boolean less(Comparable v, Comparable w) {

@@ -4,6 +4,8 @@ import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.Comparator;
+
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
 /**
@@ -99,6 +101,11 @@ public class MaxHeap<T extends Comparable> extends AbstractPriorityQueue<T> impl
         for (int i = n / 2; i > 0; i--) {
             sink(i);
         }
+    }
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
     }
 
     @Override

@@ -1,10 +1,13 @@
 package com.dokyme.alg4.sorting.quick;
 
 import com.dokyme.alg4.sorting.CompareUtil;
+import com.dokyme.alg4.sorting.DefaultComparator;
 import com.dokyme.alg4.sorting.Sorting;
 import com.dokyme.alg4.sorting.basic.Example;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -18,30 +21,35 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
 public class Quick implements Sorting {
 
     @Override
-    public void sort(Comparable[] a) {
-        StdRandom.shuffle(a);
-        sort(a, 0, a.length - 1);
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
     }
 
-    private static void sort(Comparable[] a, int lo, int hi) {
+    @Override
+    public void sort(Comparable[] a) {
+        StdRandom.shuffle(a);
+        sort(a, 0, a.length - 1, new DefaultComparator());
+    }
+
+    public static void sort(Comparable[] a, int lo, int hi, Comparator c) {
         if (hi <= lo) {
             return;
         }
-        int j = partion(a, lo, hi);
-        sort(a, lo, j - 1);
-        sort(a, j + 1, hi);
+        int j = partion(a, lo, hi, c);
+        sort(a, lo, j - 1, c);
+        sort(a, j + 1, hi, c);
     }
 
-    private static int partion(Comparable[] a, int lo, int hi) {
+    private static int partion(Comparable[] a, int lo, int hi, Comparator c) {
         int i = lo, j = hi + 1;
         Comparable v = a[lo];
         while (true) {
-            while (less(a[++i], v)) {
+            while (less(a[++i], v, c)) {
                 if (i == hi) {
                     break;
                 }
             }
-            while (less(v, a[--j])) {
+            while (less(v, a[--j], c)) {
                 if (j == lo) {
                     break;
                 }
@@ -56,15 +64,6 @@ public class Quick implements Sorting {
     }
 
     public static void main(String[] args) {
-//        for (int N = 100; N < 100000000; N *= 10) {
-//            Integer[] array = new Integer[N];
-//            for (int i = 0; i < array.length; i++) {
-//                array[i] = 1;
-//            }
-//            CompareUtil.count = 0;
-//            new Quick().sort(array);
-//            StdOut.printf("N:%d\tC:%d\tNlogN:%d\n", N, CompareUtil.count, new Double(N * Math.log(N * 1.0) / Math.log(2)).intValue());
-//        }
         testSorting(new Quick());
     }
 }

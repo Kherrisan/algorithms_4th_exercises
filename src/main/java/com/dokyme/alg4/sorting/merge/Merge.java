@@ -66,6 +66,45 @@ public class Merge implements Sorting {
         }
     }
 
+    public static void merge(Comparable[] a, int lo, int mid, int hi, Comparable[] aux, Comparator c) {
+        //把a[lo...mid]和a[mid+1...hi]归并
+        int i = lo, j = mid + 1;
+        for (int k = lo; k <= hi; k++) {
+            aux[k] = a[k];
+        }
+        for (int k = lo; k <= hi; k++) {
+            if (i > mid) {
+                //左半边用尽
+                a[k] = aux[j++];
+            } else if (j > hi) {
+                //右半边用尽
+                a[k] = aux[i++];
+            } else if (Example.less(aux[j], aux[i], c)) {
+                //右半边当前元素小于左半边当前元素
+                a[k] = aux[j++];
+            } else {
+                //左半边当前元素小于右半边当前元素
+                a[k] = aux[i++];
+            }
+        }
+    }
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        aux = new Comparable[a.length];
+        sort(a, 0, a.length - 1, c);
+    }
+
+    public void sort(Comparable[] a, int lo, int hi, Comparator c) {
+        if (hi <= lo) {
+            return;
+        }
+        int mid = lo + (hi - lo) / 2;
+        sort(a, lo, mid, c);
+        sort(a, mid + 1, hi, c);
+        merge(a, lo, mid, hi, aux, c);
+    }
+
     @Override
     public void sort(Comparable[] a) {
         aux = new Comparable[a.length];

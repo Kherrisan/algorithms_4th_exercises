@@ -5,6 +5,7 @@ import com.dokyme.alg4.sorting.basic.Example;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,6 +20,11 @@ import static com.dokyme.alg4.sorting.merge.Merge.merge;
  * Description:
  */
 public class OrderedQueueMerge implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {

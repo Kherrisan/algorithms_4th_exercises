@@ -2,8 +2,10 @@ package com.dokyme.alg4.sorting.merge;
 
 import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.StdOut;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 import static com.dokyme.alg4.sorting.basic.SortCompare.*;
@@ -19,6 +21,11 @@ import static com.dokyme.alg4.sorting.basic.SortCompare.*;
 public class ImprovedMerge implements Sorting {
 
     private static final int INSERT_THRESHOLD = 20;
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        throw new RuntimeException();
+    }
 
     @Override
     public void sort(Comparable[] a) {
