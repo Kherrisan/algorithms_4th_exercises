@@ -81,7 +81,7 @@ public class Point2D implements Comparable<Point2D> {
         public int compare(Point2D o1, Point2D o2) {
             double theta1 = Math.acos((o1.x - x) / distanceTo(o1));
             double theta2 = Math.acos((o2.x - x) / distanceTo(o2));
-            return (int) (theta1 - theta2);
+            return theta1 - theta2 < 0 ? -1 : 1;
         }
     }
 

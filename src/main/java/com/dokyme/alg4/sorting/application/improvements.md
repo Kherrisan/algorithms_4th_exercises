@@ -60,6 +60,28 @@ Kendall tau距离：两个序列之间的逆序个数，显然不能分别求两
 
 **暂留**
 
-## 2.5.24 平面上的点
+## 2.5.24 稳定的优先队列
 
-## 2.5.25 简单多边形
+## 2.5.25 平面上的点
+
+[Point2D.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/Point2D.java)
+
+## 2.5.26 简单多边形
+
+[Polygon.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/Polygon.java)
+
+## 2.5.27 平行数组的排序
+
+[Index.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/Index.java)
+
+## 2.5.28 按文件名排序
+
+[FileSorter.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/FileSorter.java)
+
+## 2.5.29 按大小和最后修改日期将文件排序
+
+[FileSorter.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/FileSorter.java)
+
+## 2.5.30 Boerner定理
+
+从直觉上看应该是有问题的，但是举不出反例。CSDN上有一个人写了程序验证了这个定理是正确的。

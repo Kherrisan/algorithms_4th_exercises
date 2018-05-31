@@ -64,6 +64,6 @@ public class Quick implements Sorting {
     }
 
     public static void main(String[] args) {
-        testSorting(new Quick());
+
     }
 }
