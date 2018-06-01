@@ -28,7 +28,11 @@ public class Stablize implements Sorting {
 
         @Override
         public int compareTo(Element o) {
-            return val.compareTo(o.val);
+            int cmp = val.compareTo(o.val);
+            if (cmp != 0) {
+                return cmp;
+            }
+            return index - o.index;
         }
     }
 
@@ -50,20 +54,6 @@ public class Stablize implements Sorting {
             wrapper[i] = new Element(a[i], i);
         }
         sorting.sort(wrapper);
-        for (int i = 0; i < wrapper.length; ) {
-            int j = i;
-            while (i < wrapper.length && wrapper[j].val.equals(wrapper[i].val)) {
-                i++;
-            }
-            Quick.sort(wrapper, j, i - 1, new Comparator() {
-                @Override
-                public int compare(Object o1, Object o2) {
-                    Element c1 = (Element) o1;
-                    Element c2 = (Element) o2;
-                    return c1.index - c2.index;
-                }
-            });
-        }
         for (int i = 0; i < wrapper.length; i++) {
             a[i] = wrapper[i].val;
         }

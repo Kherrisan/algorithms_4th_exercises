@@ -46,3 +46,9 @@
 [练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/exercises.md)
 
 [提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/application/improvements.md)
+
+# 3.查找
+
+## 3.1 符号表
+
+[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/exercises.md)
