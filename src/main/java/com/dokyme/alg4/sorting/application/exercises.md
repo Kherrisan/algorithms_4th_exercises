@@ -10,7 +10,11 @@
 
 ## 2.5.3
 
-**暂留**
+> The compareTo() is a flawed implementation of the Comparable interface because it violates the Comparable contract.
+
+根据compare操作的传递性很容易发现这种实现存在问题，如1.0,1.004,1.008。
+
+如何修改：直接比amout的值即可。
 
 ## 2.5.4
 
