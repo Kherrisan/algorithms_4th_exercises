@@ -11,6 +11,8 @@ import java.util.LinkedList;
  */
 public class SequentialSearchST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
 
+    private Node cached;
+
     private class Node {
         Key key;
         Value val;
@@ -29,8 +31,12 @@ public class SequentialSearchST<Key extends Comparable<Key>, Value> extends ST<K
 
     @Override
     public Value get(Key key) {
+        if (cached != null && key.compareTo(cached.key) == 0) {
+            return cached.val;
+        }
         for (Node x = first; x != null; x = x.next) {
             if (key.equals(x.key)) {
+                cached = x;
                 return x.val;
             }
         }
@@ -39,9 +45,14 @@ public class SequentialSearchST<Key extends Comparable<Key>, Value> extends ST<K
 
     @Override
     public void put(Key key, Value val) {
+        if (cached != null && key.compareTo(cached.key) == 0) {
+            cached.val = val;
+            return;
+        }
         for (Node x = first; x != null; x = x.next) {
             if (key.equals(x.key)) {
                 x.val = val;
+                cached = x;
                 return;
             }
         }
@@ -68,7 +79,7 @@ public class SequentialSearchST<Key extends Comparable<Key>, Value> extends ST<K
 
     @Override
     public boolean contains(Key key) {
-        return false;
+        return get(key) != null;
     }
 
     @Override

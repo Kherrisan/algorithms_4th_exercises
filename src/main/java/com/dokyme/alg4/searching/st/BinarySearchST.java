@@ -14,9 +14,11 @@ import java.util.Queue;
  */
 public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
 
-    private Item<Key, Value>[] items;
+    protected Item<Key, Value>[] items;
 
-    private class Item<K extends Comparable<K>, V> implements Comparable<Item<K, V>> {
+    private int cached;
+
+    protected class Item<K extends Comparable<K>, V> implements Comparable<Item<K, V>> {
         K key;
         V val;
 
@@ -31,7 +33,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
         }
     }
 
-    private int size;
+    protected int size;
 
     public BinarySearchST(int capacity) {
         items = new Item[capacity];
@@ -59,6 +61,9 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
         if (isEmpty()) {
             return null;
         }
+        if (items[cached] != null && items[cached].key.compareTo(key) == 0) {
+            return items[cached].val;
+        }
         int i = rank(key);
         if (i < size && items[i].key.compareTo(key) == 0) {
             return items[i].val;
@@ -85,6 +90,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
             } else if (cmp > 0) {
                 lo = mid + 1;
             } else {
+                cached = mid;
                 return mid;
             }
         }
@@ -93,11 +99,17 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 
     @Override
     public Key min() {
+        if (size == 0) {
+            return null;
+        }
         return items[0].key;
     }
 
     @Override
     public Key max() {
+        if (size == 0) {
+            return null;
+        }
         return items[size - 1].key;
     }
 
@@ -117,6 +129,8 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
         int i = rank(key);
         if (key.compareTo(items[i].key) == 0) {
             return key;
+        } else if (i == 0) {
+            return null;
         } else {
             return items[i - 1].key;
         }
@@ -131,6 +145,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
             }
             items[size--] = null;
         }
+        assert isValid();
     }
 
     @Override
@@ -162,6 +177,17 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 
     @Override
     public void put(Key key, Value val) {
+        if (size == items.length - 1) {
+            resize(size * 2);
+        }
+        if (items[cached] != null && items[cached].key.compareTo(key) == 0) {
+            items[cached].val = val;
+            return;
+        }
+        if (size != 0 && key.compareTo(max()) > 0) {
+            items[size++] = new Item<>(key, val);
+            return;
+        }
         int i = rank(key);
         if (i < size && items[i].key.compareTo(key) == 0) {
             items[i].val = val;
@@ -172,15 +198,12 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
         }
         items[i] = new Item<>(key, val);
         size++;
-        if (size == items.length) {
-            resize(size * 2);
-        }
+        assert isValid();
     }
 
     @Override
     public boolean contains(Key key) {
-        int i = rank(key);
-        return i < size && key.compareTo(items[i].key) == 0;
+        return get(key) != null;
     }
 
     @Override
@@ -206,6 +229,18 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
     @Override
     public Iterable<Key> keys() {
         return keys(min(), max());
+    }
+
+    private boolean isValid() {
+        for (int i = 0; i < size; i++) {
+            if (!select(rank(items[i].key)).equals(items[i].key)) {
+                return false;
+            }
+            if (i > 0 && items[i].key.compareTo(items[i - 1].key) < 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {

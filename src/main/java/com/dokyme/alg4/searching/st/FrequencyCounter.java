@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.io.*;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,29 @@ import java.util.Scanner;
  * Description:
  */
 public class FrequencyCounter {
+
+    private static void count(ST<String, Integer> st, int threshold, String filename, int count) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split(" ");
+                for (String tok : tokens) {
+                    if (tok.length() < threshold) {
+                        continue;
+                    }
+                    if (st.contains(tok)) {
+                        st.put(tok, st.get(tok) + 1);
+                    } else {
+                        st.put(tok, 1);
+                    }
+                }
+            }
+            
+        } catch (IOException e) {
+
+        }
+    }
 
     public static void count(ST<String, Integer> st, int threshold, String filename) {
         try {

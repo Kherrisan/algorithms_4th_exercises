@@ -54,12 +54,20 @@ public class ArrayST<Key extends Comparable<Key>, Value> extends ST<Key, Value> 
 
     @Override
     public Value get(Key key) {
+        Value val = null;
         for (int i = 0; i < size; i++) {
             if (key.compareTo(keys[i]) == 0) {
-                return vals[i];
+                val = vals[i];
+                //前移编码
+                for (int j = i; j > 0; j--) {
+                    keys[j] = keys[j - 1];
+                    vals[j] = vals[j - 1];
+                }
+                keys[0] = key;
+                vals[0] = val;
             }
         }
-        return null;
+        return val;
     }
 
     @Override
