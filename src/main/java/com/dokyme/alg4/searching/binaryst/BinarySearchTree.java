@@ -23,6 +23,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         private Value val;
         private Node left, right;
         private int N;
+        private int h;
 
         private double x;
         private double y;
@@ -110,7 +111,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
      */
     private Node put(Node x, Key key, Value val) {
         if (x == null) {
-            return new Node(key, val);
+            return new Node(key, val, 1);
         }
         int cmp = key.compareTo(x.key);
         if (cmp < 0) {
@@ -121,7 +122,37 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
             x.val = val;
         }
         x.N = size(x.left) + size(x.right) + 1;
+        x.h = Math.max(height(x.left), height(x.right)) + 1;
         return x;
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+    /**
+     * 计算子树x的高度
+     * 规定：叶子节点高度为1
+     *
+     * @param x
+     * @return
+     */
+    private int height(Node x) {
+        if (x == null) {
+            return 0;
+        }
+        return x.h;
+    }
+
+    private double avgCompares() {
+        return avgCompares(root) * 1.0 / size() + 1;
+    }
+
+    private int avgCompares(Node x) {
+        if (x == null) {
+            return -1;
+        }
+        return avgCompares(x.left) + avgCompares(x.right) + 2;
     }
 
     public Key min() {
@@ -278,6 +309,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
             x.left = t.left;
         }
         x.N = size(x.left) + size(x.right) + 1;
+        x.h = Math.max(height(x.left), height(x.right)) + 1;
         return x;
     }
 
@@ -291,6 +323,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
         x.right = deleteMax(x.right);
         x.N = size(x.left) + size(x.right) + 1;
+        x.h = Math.max(height(x.left), height(x.right)) + 1;
         return x;
     }
 
@@ -304,6 +337,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
         x.left = deleteMin(x.left);
         x.N = size(x.left) + size(x.right) + 1;
+        x.h = Math.max(height(x.left), height(x.right)) + 1;
         return x;
     }
 
@@ -313,7 +347,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return list;
     }
 
-    private void keys(List<String> list, Node x, Key lo, Key hi) {
+    private void keys(List<Key> list, Node x, Key lo, Key hi) {
         if (x == null) {
             return;
         }
@@ -330,8 +364,8 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
-    private void adjustPosition(){
-        
+    private void adjustPosition() {
+
     }
 
     public void draw() {

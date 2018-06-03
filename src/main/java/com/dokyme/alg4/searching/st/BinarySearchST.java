@@ -120,20 +120,26 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 
     @Override
     public Key ceiling(Key key) {
+        if (contains(key)) {
+            return key;
+        }
         int i = rank(key);
+        if (i == size) {
+            return null;
+        }
         return items[i].key;
     }
 
     @Override
     public Key floor(Key key) {
-        int i = rank(key);
-        if (key.compareTo(items[i].key) == 0) {
+        if (contains(key)) {
             return key;
-        } else if (i == 0) {
-            return null;
-        } else {
-            return items[i - 1].key;
         }
+        int i = rank(key);
+        if (i == 0) {
+            return null;
+        }
+        return items[i - 1].key;
     }
 
     @Override

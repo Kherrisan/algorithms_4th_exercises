@@ -16,11 +16,9 @@ import java.util.List;
 public class TestBinarySearch {
 
     public static boolean test() {
-        int counter = 0;
         List<String> list = new ArrayList<>();
         BinarySearchST<String, Integer> st = new BinarySearchST<String, Integer>(10);
         for (int i = 0; !StdIn.isEmpty(); i++) {
-            counter++;
             st.put(StdIn.readString(), i);
         }
         StdOut.println("Min:" + st.min());
@@ -35,14 +33,15 @@ public class TestBinarySearch {
         StdOut.println();
 
         StdOut.println(">>Testing deleteMin()");
-        for (int i = 0; i < counter / 2; i++) {
+        int size = st.size();
+        for (int i = 0; i < size / 2; i++) {
             StdOut.print(st.min());
             st.deleteMin();
         }
         StdOut.println();
 
         StdOut.println(">>Testing deleteMax()");
-        for (int i = 0; i < counter / 2; i++) {
+        for (int i = 0; i < size / 2; i++) {
             StdOut.print(st.max());
             st.deleteMax();
         }
