@@ -5,7 +5,8 @@
 
 # 参考仓库
 
-[jimmysuncpt/Algorithms](https://github.com/jimmysuncpt/Algorithms)
+- [jimmysuncpt/Algorithms](https://github.com/jimmysuncpt/Algorithms)
+- [reneargento/algorithms-sedgewick-wayne](https://github.com/reneargento/algorithms-sedgewick-wayne)
 
 # 2.排序
 
