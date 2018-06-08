@@ -1,6 +1,7 @@
 package com.dokyme.alg4.searching.binaryst;
 
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @date 2018/6/3-17:58
  * Description:
  */
-public class BinarySearchTree<Key extends Comparable<Key>, Value> {
+public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BinaryTree<Key, Value> {
 
     public Node root;
 
@@ -56,10 +57,19 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
+    public BinarySearchTree() {
+    }
+
     public BinarySearchTree(boolean draw) {
         this.draw = draw;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    @Override
     public int size() {
         return size(root);
     }
@@ -72,6 +82,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
+    @Override
     public Value get(Key key) {
         return get(root, key);
     }
@@ -97,8 +108,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
+    @Override
     public void put(Key key, Value val) {
-        put(root, key, val);
+        root = put(root, key, val);
     }
 
     /**
@@ -144,17 +156,29 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return x.h;
     }
 
-    private double avgCompares() {
-        return avgCompares(root) * 1.0 / size() + 1;
+    /**
+     * 查找的平均比较次数
+     *
+     * @return
+     */
+    private double average() {
+        return innerPath(root) * 1.0 / size() + 1;
     }
 
-    private int avgCompares(Node x) {
+    /**
+     * 计算以x为树根的子树的内部路径长度
+     *
+     * @param x
+     * @return
+     */
+    private int innerPath(Node x) {
         if (x == null) {
-            return -1;
+            return 0;
         }
-        return avgCompares(x.left) + avgCompares(x.right) + 2;
+        return height(x) + innerPath(x.left) + innerPath(x.right);
     }
 
+    @Override
     public Key min() {
         return min(root).key;
     }
@@ -167,6 +191,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
+    @Override
     public Key max() {
         return max(root).key;
     }
@@ -281,6 +306,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
+    @Override
     public void delete(Key key) {
         root = delete(root, key);
     }
@@ -313,6 +339,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return x;
     }
 
+    @Override
     public void deleteMax() {
         root = deleteMax(root);
     }
@@ -327,6 +354,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return x;
     }
 
+    @Override
     public void deleteMin() {
         root = deleteMin(root);
     }
@@ -379,7 +407,25 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return keys(min(), max());
     }
 
-    public static void main(String[] args) {
+    public static double optCompares(int n) {
+        return 0d;
+    }
 
+    public static int shapes(int n) {
+        if (n <= 1) {
+            return 1;
+        } else {
+            int t = 0;
+            for (int i = 0; i < n; i++) {
+                t += shapes(i) * shapes(n - 1 - i);
+            }
+            return t;
+        }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 2; i < 7; i++) {
+            StdOut.println(i + "\t" + shapes(i));
+        }
     }
 }

@@ -2,6 +2,8 @@
 
 ## 3.2.1 
 
+
+
 ## 3.2.2
 
 A C E H R S X 构造最坏的二叉树，可以采用以下几种顺序：
@@ -55,10 +57,74 @@ d.不可能，8不可能在7的左子树里
 ## 3.2.7
 
 ```java
-    private double avgCompares() {
-        return avgCompares(root) * 1.0 / size() + 1;
+    /**
+     * 查找的平均比较次数
+     *
+     * @return
+     */
+    private double average() {
+        return innerPath(root) * 1.0 / size() + 1;
     }
 
-
+    /**
+     * 计算以x为树根的子树的内部路径长度
+     *
+     * @param x
+     * @return
+     */
+    private int innerPath(Node x) {
+        if (x == null) {
+            return 0;
+        }
+        return height(x) + innerPath(x.left) + innerPath(x.right);
+    }
 ```
+
+## 3.2.8
+
+题目中的N是什么意思有些不太明白。
+
+## 3.2.9
+
+对于有N个键构成的二叉树有多少种不同的形状，我写了个程序来计算这个个数，就不画出来了。
+
+```java
+    public static int shapes(int n) {
+        if (n <= 1) {
+            return 1;
+        } else {
+            int t = 0;
+            for (int i = 0; i < n; i++) {
+                t += shapes(i) * shapes(n - 1 - i);
+            }
+            return t;
+        }
+    }
+```
+
+## 3.2.10
+
+[TestBST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/binaryst/TestBST.java)
+
+## 3.2.11
+
+高度和节点个数相等的二叉树即为退化为单链表的二叉树结构，每个节点都只有一个子节点（除了末端的节点之外），因此高度为N且有N个节点的二叉树有2^(N-1)种不同的形状。
+
+满足这种条件的插入序列有下面几种情况：
+
+1. 降序序列
+2. 升序序列
+3. 在一个范围内，按照最大元素、最小元素、第二大元素、第二小元素。。。这样的顺序排列
+4. 和3对称的方式排列
+
+除了以上4种，还可以将1、3组合，即先降序排列，然后以最大元素和次大元素为范围进行蛇形排列。
+
+3、4构造出来的二叉树是完全蛇形（一左一右）的二叉树，1、2构造出来的是向一边偏的二叉树，组合构造出来的是不规则的二叉树。
+
+## 3.2.12
+
+[BinarySearchTreeWithoutRank.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/binaryst/BinarySearchTreeWithoutRank.java)
+
+## 3.2.13
+
 
