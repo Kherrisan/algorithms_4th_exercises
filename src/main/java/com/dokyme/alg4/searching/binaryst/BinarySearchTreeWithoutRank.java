@@ -45,6 +45,31 @@ public class BinarySearchTreeWithoutRank<Key extends Comparable<Key>, Value> imp
     }
 
     @Override
+    public Iterable<Key> keys() {
+        return null;
+    }
+
+    @Override
+    public Key floor(Key key) {
+        return null;
+    }
+
+    @Override
+    public Key ceiling(Key key) {
+        return null;
+    }
+
+    @Override
+    public Key select(int n) {
+        return null;
+    }
+
+    @Override
+    public int rank(Key key) {
+        return 0;
+    }
+
+    @Override
     public void put(Key key, Value value) {
         root = put(root, key, value);
     }

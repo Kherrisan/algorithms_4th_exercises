@@ -2,7 +2,7 @@
 
 ## 3.2.1 
 
-
+好像是29次比较。
 
 ## 3.2.2
 
@@ -84,6 +84,8 @@ d.不可能，8不可能在7的左子树里
 
 题目中的N是什么意思有些不太明白。
 
+**暂留**
+
 ## 3.2.9
 
 对于有N个键构成的二叉树有多少种不同的形状，我写了个程序来计算这个个数，就不画出来了。
@@ -127,4 +129,100 @@ d.不可能，8不可能在7的左子树里
 
 ## 3.2.13
 
+[BinarySearchTreeNonRecursive.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/binaryst/BinarySearchTreeNonRecursive.java)
 
+## 3.2.14
+
+[BinarySearchTreeNonRecursive.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/binaryst/BinarySearchTreeNonRecursive.java)
+
+## 3.2.15
+
+a:E Q
+
+b:E Q J M
+
+c:E Q
+
+d:E(3) Q(3) J(4)
+
+e:E(8) D(7) Q() J M T S
+
+f:E D Q J M T S
+
+## 3.2.16
+
+内部路径长度：所有节点的深度之和。
+
+外部路径长度：从根节点到空链接的所有路径上的节点总数。
+
+一颗二叉树每插入一个新的节点，假设内部路径变大e，即这个节点是路径上的第e个节点，那么外部路径变大了2*(e+1)-e=e+2，因此，连续插入N个节点，则外部路径长度总是比内部路径长度多2N。
+
+## 3.2.17
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-2-17-1.jpg)
+
+## 3.2.18
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-2-18-1.jpg)
+
+## 3.2.19
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-2-19-1.jpg)
+
+## 3.2.20
+
+keys范围操作可以分为三个步骤：
+
+1. 先不停地向右子树试探，直到找到比lo小的节点，说明这个节点为根的子树可以被排除掉。
+2. 回溯，将范围内的所有节点加入到列表中。
+3. 再回溯的过程中判断节点是否比hi大，如果大，则该节点为根节点的子树被排除。
+
+其中步骤1需要O(logN)的时间，步骤2和步骤3合起来需要范围内元素个数成正比的时间。
+
+最坏情况是，步骤1花费了logN时间到了底层，步骤2和步骤3合起来将所有节点都纳入列表中。
+
+## 3.2.21
+
+```java
+    public Key randomKey() {
+        if (root == null) {
+            return null;
+        }
+        Node x = root;
+        while (x != null) {
+            int move = StdRandom.uniform(3);
+            if (move == 0) {
+                if (x.left != null) {
+                    x = x.left;
+                } else {
+                    return x.key;
+
+                }
+            } else if (move == 1) {
+                if (x.right != null) {
+                    x = x.right;
+                } else {
+                    return x.key;
+                }
+            } else {
+                return x.key;
+            }
+        }
+
+        return null;
+    }
+```
+
+## 3.2.22
+
+如果其后继节点有左子节点，那么这个左子节点肯定比其后继节点小，那么左子节点才应该是真正的后继节点。
+
+反之亦然。
+
+## 3.2.23
+
+不满足交换律，因为如果删除某个节点使的一个节点由原来的有两个子节点变为只有一个子节点，那么删除的策略就会不一样，即删除操作是否涉及到后继节点的情况是不同的。在这种情况下，先删谁后删谁的顺序是会产生影响的。
+
+## 3.2.24
+
+**暂留**

@@ -2,6 +2,7 @@ package com.dokyme.alg4.searching.binaryst;
 
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -304,6 +305,34 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
         } else {
             return size(x.left);
         }
+    }
+
+    public Key randomKey() {
+        if (root == null) {
+            return null;
+        }
+        Node x = root;
+        while (x != null) {
+            int move = StdRandom.uniform(3);
+            if (move == 0) {
+                if (x.left != null) {
+                    x = x.left;
+                } else {
+                    return x.key;
+
+                }
+            } else if (move == 1) {
+                if (x.right != null) {
+                    x = x.right;
+                } else {
+                    return x.key;
+                }
+            } else {
+                return x.key;
+            }
+        }
+
+        return null;
     }
 
     @Override

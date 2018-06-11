@@ -20,7 +20,7 @@ public class TestBST {
 
     public void test() {
         List<String> records = new ArrayList<>();
-        BinarySearchTree<String, Integer> bst = new BinarySearchTree<>();
+        BinaryTree<String, Integer> bst = new BinarySearchTreeNonRecursive<>();
         int sz = StdIn.readInt();
         String line;
         for (int i = 0; i < sz; i++) {
@@ -70,7 +70,7 @@ public class TestBST {
         }
         printSeperation();
 
-        StdOut.println("Test deleteMin()");
+        StdOut.println("Test deleteMax()");
         for (int i = 0; i < size / 2; i++) {
             StdOut.println("Delete max: " + bst.max());
             bst.deleteMax();

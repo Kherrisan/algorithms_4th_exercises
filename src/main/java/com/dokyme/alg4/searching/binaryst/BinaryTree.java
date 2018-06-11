@@ -26,4 +26,14 @@ public interface BinaryTree<Key extends Comparable<Key>, Value> {
     Key min();
 
     Key max();
+
+    Key floor(Key key);
+
+    Key ceiling(Key key);
+
+    Key select(int n);
+
+    int rank(Key key);
+
+    Iterable<Key> keys();
 }
