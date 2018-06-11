@@ -114,9 +114,10 @@
 
 在swim和sink操作中，可以使用二分查找的方法来减少比较次数，但是如何将元素移动到正确位置的同时不浪费额外的时间，也是一个值得考虑的问题。
 
-比如我通过二分查找很快判断出该元素要上浮到堆顶，那么就需要把路径中所有元素下移，时间为logN。
+快速插入应该仅仅是减少了比较次数，而没有显著降低访存次数。
 
-**暂留**
+[FastInsertPQ.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/priorityqueue/FastInsertPQ.java)
+
 
 ## 2.4.32 下界
 
@@ -133,3 +134,5 @@
 ## 2.4.35 离散概率分布的取样
 
 以满二叉树的形式表达概率密度函数和分布函数的概率，每个节点的double值代表命中以这个节点为根的树中某个节点的概率之和。随机产生一个随机数，然后和树根的值对比，如果大于等于某个节点的值，
+
+**暂留**
