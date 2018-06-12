@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import static com.dokyme.alg4.sorting.basic.Example.*;
+
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  *
@@ -12,6 +14,21 @@ import edu.princeton.cs.algs4.StdRandom;
  * Description:
  */
 public class Selection {
+
+    public static void sort(int[] a) {
+        int N = a.length;
+        for (int i = 0; i < N; i++) {
+            int min = i;
+            for (int j = i + 1; j < N; j++) {
+                if (a[j] < a[min]) {
+                    min = j;
+                }
+            }
+            int temp = a[i];
+            a[i] = a[min];
+            a[min] = temp;
+        }
+    }
 
     /**
      * 数据移动N次，这个次数是最少的。
@@ -65,11 +82,21 @@ public class Selection {
         return true;
     }
 
+    public static boolean isSorted(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] < a[i - 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        Double[] array = new Double[100];
-        for (int j = 0; j < array.length; j++) {
-            array[j] = StdRandom.uniform();
+        int[] array = new int[1000];
+        for (int i = 0; i < 1000; i++) {
+            array[i] = StdRandom.uniform(1000);
         }
         sort(array);
+        assert isSorted(array);
     }
 }

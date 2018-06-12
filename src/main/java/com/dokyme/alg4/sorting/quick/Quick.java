@@ -20,6 +20,40 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  */
 public class Quick implements Sorting {
 
+    public void sort(int[] a) {
+        StdRandom.shuffle(a);
+        sort(a, 0, a.length - 1);
+    }
+
+    private void sort(int[] a, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int mid = partion(a, lo, hi);
+        sort(a, lo, mid - 1);
+        sort(a, mid + 1, hi);
+    }
+
+    private int partion(int[] a, int lo, int hi) {
+        int v = a[lo];
+        int i = lo, j = hi + 1;
+        while (true) {
+            while (a[++i] < v) {
+                if (i == hi) {
+                    break;
+                }
+            }
+            while (a[--j] > v) ;
+            if (i >= j) {
+                break;
+            }
+            exch(a, i, j);
+        }
+        exch(a, lo, j);
+        return j;
+    }
+
+
     @Override
     public void sort(Comparable[] a, Comparator c) {
         throw new RuntimeException();

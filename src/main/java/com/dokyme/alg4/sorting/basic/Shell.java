@@ -6,6 +6,8 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import static com.dokyme.alg4.sorting.basic.Example.*;
+
 import java.util.*;
 
 /**
@@ -47,6 +49,23 @@ public class Shell implements Sorting {
         return true;
     }
 
+    public static void sort(double[] a) {
+        int si = 0;
+        while (hArray[si + 1] < a.length) {
+            si++;
+        }
+        while (si >= 0) {
+            for (int i = 0; i < a.length; i++) {
+                for (int j = i; j >= hArray[si] && a[j] < a[j - hArray[si]]; j -= hArray[si]) {
+                    double d = a[j];
+                    a[j] = a[j - hArray[si]];
+                    a[j - hArray[si]] = d;
+                }
+            }
+            si--;
+        }
+    }
+
     @Override
     public void sort(Comparable[] a) {
         int N = a.length;
@@ -59,6 +78,15 @@ public class Shell implements Sorting {
             }
             h = h / 3;
         }
+    }
+
+    public static int[] geometric(int g) {
+        int[] seq = new int[1 << 10];
+        seq[0] = 1;
+        for (int i = 1; i < seq.length; i++) {
+            seq[i] = seq[i - 1] * g;
+        }
+        return seq;
     }
 
     public static int[] sedgewick() {
@@ -196,7 +224,12 @@ public class Shell implements Sorting {
     }
 
     public static void main(String[] args) {
-
+        double[] a = new double[1000];
+        for (int i = 0; i < 1000; i++) {
+            a[i] = StdRandom.uniform();
+        }
+        sort(a);
+        assert isSorted(a);
     }
 
     public static int[] hArray;
