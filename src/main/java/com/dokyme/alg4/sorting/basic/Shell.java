@@ -236,7 +236,7 @@ public class Shell implements Sorting {
 
     static {
         int i = 1, h = 1;
-        hArray = new int[1 << 20];
+        hArray = new int[1 << 25];
         while (i < hArray.length) {
             while (i < (h + 1) * 3 && i < hArray.length) {
                 hArray[i] = h;

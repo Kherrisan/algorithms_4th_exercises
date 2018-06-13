@@ -1,10 +1,12 @@
 package com.dokyme.alg4.sorting.basic;
 
+import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -13,7 +15,12 @@ import java.util.Arrays;
  * @date 2018/3/10-13:45
  * Description:
  */
-public class Insertion {
+public class Insertion implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        sort(a);
+    }
 
     public static void sort(Comparable[] a, int lo, int hi) {
         for (int i = lo + 1; i <= hi; i++) {
@@ -30,7 +37,8 @@ public class Insertion {
      *
      * @param a
      */
-    public static void sort(Comparable[] a) {
+    @Override
+    public void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {
             //将a[i]插入到a[0],pq[1],...,pq[i-1]中去

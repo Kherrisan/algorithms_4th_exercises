@@ -27,9 +27,9 @@ public class SortCompare {
     public static double time(String alg, Double[] a) {
         Stopwatch timer = new Stopwatch();
         if (INSERTION.equals(alg.toLowerCase())) {
-            Insertion.sort(a);
+            new Insertion().sort(a);
         } else if (SELECTION.equals(alg.toLowerCase())) {
-            Selection.sort(a);
+            new Selection().sort(a);
         } else if (SHELL.equals(alg.toLowerCase())) {
             new Shell().sort(a);
         } else if (INSERTION_WITHOUT_EXCH.equals(alg.toLowerCase())) {
@@ -80,7 +80,7 @@ public class SortCompare {
                 array[i] = StdRandom.uniform(length);
             }
             Stopwatch stopwatch = new Stopwatch();
-            Insertion.sort(array);
+            new Insertion().sort(array);
             total1 += stopwatch.elapsedTime();
         }
         double total2 = 0.0;
@@ -89,7 +89,7 @@ public class SortCompare {
                 array[i] = StdRandom.uniform(length);
             }
             Stopwatch stopwatch = new Stopwatch();
-            Insertion.sortWithAutoBoxing(array);
+            new Insertion().sortWithAutoBoxing(array);
             total2 += stopwatch.elapsedTime();
         }
         StdOut.printf("For %d random Integers\n  %s is", length, INSERTION);

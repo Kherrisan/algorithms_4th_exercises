@@ -1,8 +1,11 @@
 package com.dokyme.alg4.sorting.basic;
 
+import com.dokyme.alg4.sorting.Sorting;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+
+import java.util.Comparator;
 
 import static com.dokyme.alg4.sorting.basic.Example.*;
 
@@ -13,7 +16,12 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * @date 2018/3/10-13:34
  * Description:
  */
-public class Selection {
+public class Selection implements Sorting {
+
+    @Override
+    public void sort(Comparable[] a, Comparator c) {
+        sort(a);
+    }
 
     public static void sort(int[] a) {
         int N = a.length;
@@ -36,7 +44,8 @@ public class Selection {
      *
      * @param a
      */
-    public static void sort(Comparable[] a) {
+    @Override
+    public void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {
             //i记录了当前待定的是数组第i小的元素。

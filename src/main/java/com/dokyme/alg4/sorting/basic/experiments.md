@@ -86,6 +86,8 @@ Insertion: 1.8760000000000001
 
 最后在测试的排序算法中加入了快排，快排一骑红尘。
 
+[Duplication.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/Duplication.java)
+
 ## 2.1.29 希尔排序的递增序列
 
 以下是生成该序列（Sedgewick）的代码。
@@ -229,4 +231,64 @@ Shell:14.3
 
 测试结果是，3和6的几何级数的序列较快。
 
-## 
+[GeometricSeries.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/GeometricSeries.java)
+
+## 2.1.31 倍率测试
+
+插入排序：
+
+```java
+N:1000	abs_predict:0.011000	rel_predict:4.000000	real:0.011000	ratio:0.011000
+N:2000	abs_predict:0.044000	rel_predict:0.044000	real:0.016000	ratio:1.454545
+N:4000	abs_predict:0.176000	rel_predict:0.064000	real:0.014000	ratio:0.875000
+N:8000	abs_predict:0.704000	rel_predict:0.056000	real:0.085000	ratio:6.071429
+N:16000	abs_predict:2.816000	rel_predict:0.340000	real:0.294000	ratio:3.458824
+N:32000	abs_predict:11.264000	rel_predict:1.176000	real:1.561000	ratio:5.309524
+N:64000	abs_predict:45.056000	rel_predict:6.244000	real:4.124000	ratio:2.641896
+N:128000	abs_predict:180.224000	rel_predict:16.496000	real:18.282000	ratio:4.433075
+```
+
+选择排序：
+
+```java
+N:1000	abs_predict:0.008000	rel_predict:4.000000	real:0.008000	ratio:0.008000
+N:2000	abs_predict:0.032000	rel_predict:0.032000	real:0.007000	ratio:0.875000
+N:4000	abs_predict:0.128000	rel_predict:0.028000	real:0.025000	ratio:3.571429
+N:8000	abs_predict:0.512000	rel_predict:0.100000	real:0.110000	ratio:4.400000
+N:16000	abs_predict:2.048000	rel_predict:0.440000	real:0.406000	ratio:3.690909
+N:32000	abs_predict:8.192000	rel_predict:1.624000	real:1.884000	ratio:4.640394
+N:64000	abs_predict:32.768000	rel_predict:7.536000	real:5.170000	ratio:2.744161
+N:128000	abs_predict:131.072000	rel_predict:20.680000	real:25.257000	ratio:4.885300
+```
+
+希尔排序：
+
+```java
+N:1000	abs_predict:0.003000	rel_predict:2.462289	real:0.003000	ratio:0.003000
+N:2000	abs_predict:0.007387	rel_predict:0.007387	real:0.002000	ratio:0.666667
+N:4000	abs_predict:0.018189	rel_predict:0.004925	real:0.002000	ratio:1.000000
+N:8000	abs_predict:0.044786	rel_predict:0.004925	real:0.005000	ratio:2.500000
+N:16000	abs_predict:0.110275	rel_predict:0.012311	real:0.007000	ratio:1.400000
+N:32000	abs_predict:0.271529	rel_predict:0.017236	real:0.011000	ratio:1.571429
+N:64000	abs_predict:0.668583	rel_predict:0.027085	real:0.032000	ratio:2.909091
+N:128000	abs_predict:1.646244	rel_predict:0.078793	real:0.079000	ratio:2.468750
+N:256000	abs_predict:4.053528	rel_predict:0.194521	real:0.263000	ratio:3.329114
+N:512000	abs_predict:9.980957	rel_predict:0.647582	real:0.975000	ratio:3.707224
+N:1024000	abs_predict:24.576000	rel_predict:2.400732	real:1.275000	ratio:1.307692
+N:2048000	abs_predict:60.513210	rel_predict:3.139418	real:2.792000	ratio:2.189804
+N:4096000	abs_predict:149.001001	rel_predict:6.874710	real:6.942000	ratio:2.486390
+```
+
+希尔排序的增长量级大约为1.2到1.3，插入排序和选择排序的增长量级都是2。
+
+[DoubleTest.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/DoubleTest.java)
+
+## 2.1.32 运行时间曲线图
+
+曲线图绘制类：
+
+[CurveGraphDrawer.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/CurveGraphDrawer.java)
+
+同时我把这个类嵌入到了上一个倍率测试的类中。
+
+[DoubleTest.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/DoubleTest.java)
