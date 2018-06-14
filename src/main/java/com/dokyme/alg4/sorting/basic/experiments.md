@@ -292,3 +292,113 @@ N:4096000	abs_predict:149.001001	rel_predict:6.874710	real:6.942000	ratio:2.4863
 同时我把这个类嵌入到了上一个倍率测试的类中。
 
 [DoubleTest.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/DoubleTest.java)
+
+## 2.1.33 分布图
+
+这道题和上一道题的区别在于画图并求平均是实时的。
+
+[DistributionGraph.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/DistributionGraph.java)
+
+## 2.1.34 罕见情况
+
+[ExtremeTest.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/ExtremeTest.java)
+
+## 2.1.35 不均匀的概率分布
+
+[UnuniformDistribution.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/UnuniformDistribution.java)
+
+```java
+Quick	GUASSIAN	1000	0.08200000000000003
+Quick	POISSION	1000	0.02300000000000001
+Quick	GEOMETRIC	1000	0.014000000000000005
+Insertion	GUASSIAN	1000	0.16300000000000012
+Insertion	POISSION	1000	0.03100000000000002
+Insertion	GEOMETRIC	1000	0.1210000000000001
+Selection	GUASSIAN	1000	0.1320000000000001
+Selection	POISSION	1000	0.35500000000000026
+Selection	GEOMETRIC	1000	0.21600000000000016
+Shell	GUASSIAN	1000	0.025000000000000012
+Shell	POISSION	1000	0.003
+Shell	GEOMETRIC	1000	0.013000000000000005
+Merge	GUASSIAN	1000	0.09100000000000003
+Merge	POISSION	1000	0.009000000000000001
+Merge	GEOMETRIC	1000	0.007
+Quick	GUASSIAN	2000	0.016000000000000007
+Quick	POISSION	2000	0.02100000000000001
+Quick	GEOMETRIC	2000	0.022000000000000013
+Insertion	GUASSIAN	2000	0.4200000000000003
+Insertion	POISSION	2000	0.06700000000000005
+Insertion	GEOMETRIC	2000	0.32200000000000023
+Selection	GUASSIAN	2000	0.32800000000000024
+Selection	POISSION	2000	0.7640000000000006
+Selection	GEOMETRIC	2000	0.3990000000000003
+Shell	GUASSIAN	2000	0.02900000000000002
+Shell	POISSION	2000	0.004
+Shell	GEOMETRIC	2000	0.016
+Merge	GUASSIAN	2000	0.024000000000000014
+Merge	POISSION	2000	0.014000000000000005
+Merge	GEOMETRIC	2000	0.02100000000000001
+Quick	GUASSIAN	4000	0.04200000000000003
+Quick	POISSION	4000	0.03000000000000002
+Quick	GEOMETRIC	4000	0.04200000000000003
+Insertion	GUASSIAN	4000	1.3739999999999992
+Insertion	POISSION	4000	0.2420000000000002
+Insertion	GEOMETRIC	4000	1.3719999999999988
+Selection	GUASSIAN	4000	1.3789999999999993
+Selection	POISSION	4000	4.520999999999999
+Selection	GEOMETRIC	4000	2.4850000000000008
+Shell	GUASSIAN	4000	0.06600000000000004
+Shell	POISSION	4000	0.012000000000000004
+Shell	GEOMETRIC	4000	0.04400000000000003
+Merge	GUASSIAN	4000	0.048000000000000036
+Merge	POISSION	4000	0.03300000000000002
+Merge	GEOMETRIC	4000	0.04900000000000004
+Quick	GUASSIAN	8000	0.09600000000000007
+Quick	POISSION	8000	0.06900000000000005
+Quick	GEOMETRIC	8000	0.08900000000000007
+Insertion	GUASSIAN	8000	5.853
+Insertion	POISSION	8000	1.6339999999999983
+Insertion	GEOMETRIC	8000	9.065999999999999
+Selection	GUASSIAN	8000	7.077000000000002
+Selection	POISSION	8000	17.322
+Selection	GEOMETRIC	8000	9.056000000000001
+Shell	GUASSIAN	8000	0.12500000000000008
+Shell	POISSION	8000	0.026000000000000016
+Shell	GEOMETRIC	8000	0.09000000000000007
+Merge	GUASSIAN	8000	0.10300000000000008
+Merge	POISSION	8000	0.06700000000000005
+Merge	GEOMETRIC	8000	0.09400000000000007
+```
+
+初步只测试了较短的数组长度，初步结论为：
+
+- 归并排序：泊松分布的数组的排序时间更短，高斯和几何分布相近。
+- 快速排序：在数据量较大的情况下，同样是泊松分布的数据排序时间更短。
+- 插入排序：泊松分布的数据的优势极为明显。
+- 选择排序：始终是高斯分布的数据排序所需时间更短。
+- 希尔排序：泊松分布的数据排序时间更短。
+
+看来，泊松分布对于排序的优势十分明显。
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/2-1-35-1.jpg)
+
+## 2.1.36 不均匀的数据
+
+猜想：shell排序始终是最快的，当存在大量相同元素时，选择排序更快一些。
+
+[UnuniformData.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/UnuniformData.java)
+
+## 2.1.37 部分有序
+
+猜想：shell排序始终是最快的，插入排序比选择排序快很多很多，接近于shell排序。
+
+[PartialOrdered.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/PartialOrdered.java)
+
+## 2.1.38 不同类型的元素
+
+猜想：鉴于Java使用引用来表示对象，那么不论是int[]还是String[]都不会对排序过程中交换元素顺序所需时间产生较大的影响，倒是比较元素大小所需的时间显得更为重要。
+shell排序在各种情况下都是最快的，插入排序需要更少的比较元素的次数，因此比选择排序更快一些。
+
+[DifferentTypeElements.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/DifferentTypeElements.java)
+
+

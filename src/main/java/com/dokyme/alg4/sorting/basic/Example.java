@@ -102,6 +102,14 @@ public class Example {
         return a;
     }
 
+    public static <T extends Comparable<T>> T[] generate(int length, DataMocker<T> generator) {
+        T[] a = (T[]) new Object[length];
+        for (int i = 0; i < length; i++) {
+            a[i] = generator.mock(i);
+        }
+        return a;
+    }
+
     public static Comparable[] generateTestData(Object cls, int length) {
         if (cls.getClass().equals(Double.class)) {
             Double[] a = new Double[length];
@@ -162,6 +170,42 @@ public class Example {
         }
     }
 
+    public static <T extends Comparable<T>> boolean test(Sorting sorting, DataMocker<T> mocker, int length) {
+        T[] a = (T[]) generate(length, mocker);
+        sorting.sort(a);
+        return isSorted(a);
+    }
+
+    public static <T extends Comparable<T>> double test(Sorting sorting, DataMocker<T> mocker, int length, int times) {
+        return test(sorting, mocker, length, times, false);
+    }
+
+    public static <T extends Comparable<T>> double test(Sorting sorting, DataMocker<T> mocker, int length, int times, boolean shuffle) {
+        double total = 0d;
+        for (int t = 0; t < times; t++) {
+            T[] a = (T[]) generate(length, mocker);
+            if (shuffle) {
+                StdRandom.shuffle(a);
+            }
+            Stopwatch stopwatch = new Stopwatch();
+            sorting.sort(a);
+            total += stopwatch.elapsedTime();
+        }
+        return total;
+    }
+
+    public interface EachSortingAction {
+        void run(Sorting sorting, int length, int times);
+    }
+
+    public static void test(Sorting[] sortings, int minLength, int maxLength, int times, EachSortingAction action) {
+        for (Sorting sorting : sortings) {
+            for (int length = minLength; length <= maxLength; length *= 2) {
+                action.run(sorting, length, times);
+            }
+        }
+    }
+
     public static boolean isSorted(int[] a) {
         for (int i = 1; i < a.length; i++) {
             if (a[i] < a[i - 1]) {
@@ -171,7 +215,7 @@ public class Example {
         return true;
     }
 
-    public static boolean isSorted(double[] a){
+    public static boolean isSorted(double[] a) {
         for (int i = 1; i < a.length; i++) {
             if (a[i] < a[i - 1]) {
                 return false;

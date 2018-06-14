@@ -46,29 +46,7 @@ public class CurveGraphDrawer<T extends Comparable> {
             return;
         }
         StdDraw.setCanvasSize(960, 640);
-        T max = null;
-        Integer width = null;
-        for (List<T> dataset : setCollections.values()) {
-            if (width == null) {
-                width = dataset.size();
-            }
-            for (T data : dataset) {
-                if (max == null) {
-                    max = data;
-                } else if (max.compareTo(data) < 0) {
-                    max = data;
-                }
-            }
-        }
-
-        //默认每个dataset的长度是一致的，即横向的跨度相等。
-        xMargin = width / 20;
-        double y = Double.valueOf(max.toString());
-        yMargin = y / 20;
-        scaleX = width + xMargin * 2;
-        scaleY = y + yMargin * 2;
-        StdDraw.setXscale(0, scaleX);
-        StdDraw.setYscale(0, scaleY);
+        resetArgs();
         StdDraw.setPenColor(177, 177, 177);
         StdDraw.setPenRadius(0.01);
         initialized = true;
@@ -95,6 +73,56 @@ public class CurveGraphDrawer<T extends Comparable> {
                 StdDraw.line(x0, y0, x1, y1);
             }
         }
+    }
+
+    public void update() {
+        StdDraw.clear();
+        resetArgs();
+        Double y0, y1;
+        Double x0, x1;
+        int ci = 0;
+        for (String name : setCollections.keySet()) {
+            List<T> dataset = setCollections.get(name);
+            StdDraw.setPenColor(colorList.get(ci++));
+            for (int i = 0; i < dataset.size() - 1; i++) {
+                x0 = i * 1.0 + xMargin;
+                x1 = (i + 1) * 1.0 + xMargin;
+                y0 = Double.valueOf(dataset.get(i).toString()) + yMargin;
+                y1 = Double.valueOf(dataset.get(i + 1).toString()) + yMargin;
+                StdDraw.line(x0, y0, x1, y1);
+            }
+        }
+    }
+
+    private void resetArgs(){
+        if(setCollections.isEmpty()){
+            return;
+        }
+        T max = null;
+        Integer width = null;
+        for (List<T> dataset : setCollections.values()) {
+            if (width == null) {
+                width = dataset.size();
+            }
+            for (T data : dataset) {
+                if (max == null) {
+                    max = data;
+                } else if (max.compareTo(data) < 0) {
+                    max = data;
+                }
+            }
+        }
+        //默认每个dataset的长度是一致的，即横向的跨度相等。
+        xMargin = width / 20;
+        if(max==null){
+            return;
+        }
+        double y = Double.valueOf(max.toString());
+        yMargin = y / 20;
+        scaleX = width + xMargin * 2;
+        scaleY = y + yMargin * 2;
+        StdDraw.setXscale(0, scaleX);
+        StdDraw.setYscale(0, scaleY);
     }
 
     public static void main(String[] args) {
