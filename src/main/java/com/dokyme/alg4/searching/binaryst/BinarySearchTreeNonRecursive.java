@@ -3,6 +3,7 @@ package com.dokyme.alg4.searching.binaryst;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Stack;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -26,6 +27,11 @@ public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> im
             this.key = key;
             this.val = val;
             this.count = count;
+        }
+
+        @Override
+        public String toString() {
+            return key.toString();
         }
     }
 
@@ -142,6 +148,7 @@ public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> im
                 }
                 leftMin.left = x.left;
                 leftMin.right = x.right;
+                leftMin.count = x.count - 1;
                 break;
             }
             up = x;
@@ -324,9 +331,18 @@ public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> im
 
     @Override
     public Iterable<Key> keys() {
-        List<Key> list = new LinkedList<>();
+        return keys(root, min(), max());
+    }
 
-        return list;
+    public Iterable<Key> keys(Key lo, Key hi) {
+        return keys(root, lo, hi);
+    }
+
+    public Iterable<Key> keys(Node x, Key lo, Key hi) {
+        Stack<Node> stack = new Stack<>();
+        List<Key> res = new LinkedList<>();
+        while ()
+        return res;
     }
 
     public static void main(String[] args) {

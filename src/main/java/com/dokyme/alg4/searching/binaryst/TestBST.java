@@ -20,7 +20,7 @@ public class TestBST {
 
     public void test() {
         List<String> records = new ArrayList<>();
-        BinaryTree<String, Integer> bst = new BinarySearchTreeNonRecursive<>();
+        BinarySearchTreeNonRecursive<String, Integer> bst = new BinarySearchTreeNonRecursive<>();
         int sz = StdIn.readInt();
         String line;
         for (int i = 0; i < sz; i++) {
@@ -29,6 +29,22 @@ public class TestBST {
             records.add(line);
         }
         printSeperation();
+
+        StdOut.println("Test keys()");
+        for(String k:bst.keys()){
+            StdOut.println(k);
+        }
+        printSeperation();
+
+        StdOut.println("Test keys(g,x)");
+        for(String k:bst.keys("g","x")){
+            StdOut.println(k);
+        }
+        printSeperation();
+
+//        StdOut.println("Test isOrdered()");
+//        StdOut.println(((BinarySearchTree<String, Integer>) bst).isOrdered());
+//        printSeperation();
 
         StdOut.println("Test min()");
         StdOut.println("Min key: " + bst.min());
@@ -76,6 +92,8 @@ public class TestBST {
             bst.deleteMax();
         }
         printSeperation();
+
+
     }
 
     public static void main(String[] args) {

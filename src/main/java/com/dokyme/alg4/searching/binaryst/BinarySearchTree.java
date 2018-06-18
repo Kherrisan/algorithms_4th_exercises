@@ -1,7 +1,6 @@
 package com.dokyme.alg4.searching.binaryst;
 
 import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.LinkedList;
@@ -17,6 +16,8 @@ import java.util.List;
 public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BinaryTree<Key, Value> {
 
     public Node root;
+
+    private Node cached;
 
     private boolean draw;
 
@@ -85,6 +86,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
 
     @Override
     public Value get(Key key) {
+        if (cached != null && cached.key.equals(key)) {
+            return cached.val;
+        }
         return get(root, key);
     }
 
@@ -105,12 +109,17 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
         } else if (cmp > 0) {
             return get(x.right, key);
         } else {
+            cached = x;
             return x.val;
         }
     }
 
     @Override
     public void put(Key key, Value val) {
+        if (cached != null && cached.key.equals(key)) {
+            cached.val = val;
+            return;
+        }
         root = put(root, key, val);
     }
 
@@ -181,10 +190,17 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
 
     @Override
     public Key min() {
-        return min(root).key;
+        Node n = min(root);
+        if (n == null) {
+            return null;
+        }
+        return n.key;
     }
 
     private Node min(Node x) {
+        if (x == null) {
+            return null;
+        }
         if (x.left == null) {
             return x;
         } else {
@@ -194,10 +210,17 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
 
     @Override
     public Key max() {
-        return max(root).key;
+        Node n = max(root);
+        if (n == null) {
+            return null;
+        }
+        return n.key;
     }
 
     private Node max(Node x) {
+        if (x == null) {
+            return null;
+        }
         if (x.right == null) {
             return x;
         } else {
@@ -432,6 +455,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
 
     }
 
+    @Override
     public Iterable<Key> keys() {
         return keys(min(), max());
     }
@@ -452,9 +476,69 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
         }
     }
 
-    public static void main(String[] args) {
-        for (int i = 2; i < 7; i++) {
-            StdOut.println(i + "\t" + shapes(i));
+    public boolean isBinaryTree() {
+        try {
+            isBinaryTree(root);
+        } catch (Exception e) {
+            return false;
         }
+        return true;
+    }
+
+    private int isBinaryTree(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        int c = isBinaryTree(node.left) + isBinaryTree(node.right) + 1;
+        assert c == node.N;
+        return c;
+    }
+
+    public boolean isOrdered() {
+        return isOrdered(root, min(root), max(root));
+    }
+
+    private boolean isOrdered(Node x, Node min, Node max) {
+        if (x == null) {
+            return true;
+        }
+        return isOrdered(x.left, min, x)
+                && isOrdered(x.right, x, max)
+                && (x.key.compareTo(min.key) > 0 || (x.key.compareTo(min.key) == 0 && x == min))
+                && (x.key.compareTo(max.key) < 0 || (x.key.compareTo(max.key) == 0 && x == max));
+    }
+
+    private boolean hasNoDuplicates(Node x) {
+
+        return true;
+    }
+
+    public boolean isBST() {
+        if (!isBinaryTree()) {
+            return false;
+        } else if (!isOrdered()) {
+            return false;
+        } else if (!hasNoDuplicates(root)) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkSelectAndRank() {
+        for (int i = 0; i < size() - 1; i++) {
+            if (i != rank(select(i))) {
+                return false;
+            }
+        }
+        for (Key key : keys()) {
+            if (!key.equals(select(rank(key)))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

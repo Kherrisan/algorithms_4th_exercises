@@ -19,7 +19,7 @@ public class DifferentTypeElements {
         private String id;
         private double d;
 
-        public StringPK(String id {
+        public StringPK(String id ){
             this.id = id;
             this.d = StdRandom.uniform();
         }

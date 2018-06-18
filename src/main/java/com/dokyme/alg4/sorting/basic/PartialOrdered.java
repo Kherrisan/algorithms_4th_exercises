@@ -31,7 +31,7 @@ public class PartialOrdered {
     }
 
     public static double testDistance10(Sorting sorting, int length, int times) {
-
+        return 0d;
     }
 
     public static double test5random(Sorting sorting, int length, int times) {
@@ -40,7 +40,7 @@ public class PartialOrdered {
             public Integer mock(int i) {
                 int ch = StdRandom.uniform(100);
                 if (ch <= 5) {
-                    StdRandom.uniform(length);
+                    return StdRandom.uniform(length);
                 } else {
                     return i;
                 }
