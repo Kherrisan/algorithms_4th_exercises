@@ -51,7 +51,7 @@ public class PartialOrdered {
     }
 
     public static void main(String[] args) {
-        test(new Sorting[]{new Insertion(), new Selection(), new Shell()}, 10000, 1000000, 100, ((sorting, length, times) -> {
+        test(new Sorting[]{new Insertion(), new Selection(), new Shell()}, 10000, 100000, 10, ((sorting, length, times) -> {
             test95Ordered(sorting, length, times);
             test5random(sorting, length, times);
             testDistance10(sorting, length, times);

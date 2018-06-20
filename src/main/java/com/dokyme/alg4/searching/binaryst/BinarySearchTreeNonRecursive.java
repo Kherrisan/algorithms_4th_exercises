@@ -354,7 +354,4 @@ public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> im
         return 0;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

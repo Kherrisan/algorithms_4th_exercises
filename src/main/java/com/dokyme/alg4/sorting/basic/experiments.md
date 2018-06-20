@@ -384,13 +384,85 @@ Merge	GEOMETRIC	8000	0.09400000000000007
 
 ## 2.1.36 不均匀的数据
 
-猜想：shell排序始终是最快的，当存在大量相同元素时，选择排序更快一些。
+猜想：shell排序始终是最快的，当存在大量相同元素时，另外两种元素中选择排序更快一些，因为插入排序需要消耗大量的时间在数组元素后移上，而这部分多花的时间会比选择排序额外多出的比较操作所需要的时间更多。
 
 [UnuniformData.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/UnuniformData.java)
 
+```java
+Half-Quarter-Quarter	Insertion	10000	0.568000
+Half-Half	Insertion	10000	0.702000
+Half-Random	Insertion	10000	0.609000
+Half-Quarter-Quarter	Selection	10000	0.789000
+Half-Half	Selection	10000	0.747000
+Half-Random	Selection	10000	0.771000
+Half-Quarter-Quarter	Shell	10000	0.008000
+Half-Half	Shell	10000	0.007000
+Half-Random	Shell	10000	0.007000
+Half-Quarter-Quarter	Insertion	20000	1.547000
+Half-Half	Insertion	20000	1.246000
+Half-Random	Insertion	20000	1.872000
+Half-Quarter-Quarter	Selection	20000	2.951000
+Half-Half	Selection	20000	2.937000
+Half-Random	Selection	20000	3.214000
+Half-Quarter-Quarter	Shell	20000	0.008000
+Half-Half	Shell	20000	0.002000
+Half-Random	Shell	20000	0.016000
+Half-Quarter-Quarter	Insertion	40000	6.197000
+Half-Half	Insertion	40000	4.969000
+Half-Random	Insertion	40000	8.840000
+Half-Quarter-Quarter	Selection	40000	11.768000
+Half-Half	Selection	40000	11.783000
+Half-Random	Selection	40000	14.493000
+Half-Quarter-Quarter	Shell	40000	0.012000
+Half-Half	Shell	40000	0.010000
+Half-Random	Shell	40000	0.042000
+Half-Quarter-Quarter	Insertion	80000	25.246000
+Half-Half	Insertion	80000	20.017000
+Half-Random	Insertion	80000	42.451000
+Half-Quarter-Quarter	Selection	80000	47.254000
+Half-Half	Selection	80000	48.054000
+Half-Random	Selection	80000	83.642000
+Half-Quarter-Quarter	Shell	80000	0.030000
+Half-Half	Shell	80000	0.026000
+Half-Random	Shell	80000	0.112000
+```
+
+**然而结果是，希尔排序最快，插入排序明显优于选择排序。**
+
 ## 2.1.37 部分有序
 
-猜想：shell排序始终是最快的，插入排序比选择排序快很多很多，接近于shell排序。
+"所有的元素和它们的正确位置的距离都不超过10"，这个不知道该怎么写。
+
+猜想：shell排序始终是最快的，插入排序比选择排序快很多很多，接近于shell排序，因为插入排序能够对部分有序作出积极的反映，而选择排序则无动于衷。
+
+```java
+95%-Ordered	Insertion	10000	0.097000
+5%-Scatter	Insertion	10000	0.070000
+95%-Ordered	Insertion	20000	0.309000
+5%-Scatter	Insertion	20000	0.570000
+95%-Ordered	Insertion	40000	1.133000
+5%-Scatter	Insertion	40000	0.816000
+95%-Ordered	Insertion	80000	3.939000
+5%-Scatter	Insertion	80000	3.423000
+95%-Ordered	Selection	10000	1.941000
+5%-Scatter	Selection	10000	1.891000
+95%-Ordered	Selection	20000	7.975000
+5%-Scatter	Selection	20000	7.772000
+95%-Ordered	Selection	40000	35.156000
+5%-Scatter	Selection	40000	32.574000
+95%-Ordered	Selection	80000	125.827000
+5%-Scatter	Selection	80000	124.241000
+95%-Ordered	Shell	10000	0.018000
+5%-Scatter	Shell	10000	0.010000
+95%-Ordered	Shell	20000	0.021000
+5%-Scatter	Shell	20000	0.020000
+95%-Ordered	Shell	40000	0.044000
+5%-Scatter	Shell	40000	0.051000
+95%-Ordered	Shell	80000	0.101000
+5%-Scatter	Shell	80000	0.107000
+```
+
+实际结果与假设基本一致。希尔排序对于大部分有序数组所需要的时间几乎是线性的。
 
 [PartialOrdered.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/PartialOrdered.java)
 

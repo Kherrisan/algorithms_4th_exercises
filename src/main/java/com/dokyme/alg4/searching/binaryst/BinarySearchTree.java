@@ -313,6 +313,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements com
         }
     }
 
+    @Override
     public int rank(Key key) {
         return rank(root, key);
     }
@@ -573,7 +574,4 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements com
         return 0;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

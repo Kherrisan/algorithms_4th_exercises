@@ -103,7 +103,7 @@ public class Example {
     }
 
     public static <T extends Comparable<T>> T[] generate(int length, DataMocker<T> generator) {
-        T[] a = (T[]) new Object[length];
+        T[] a = (T[]) new Comparable[length];
         for (int i = 0; i < length; i++) {
             a[i] = generator.mock(i);
         }
@@ -203,6 +203,22 @@ public class Example {
             for (int length = minLength; length <= maxLength; length *= 2) {
                 action.run(sorting, length, times);
             }
+        }
+    }
+
+    public static <T extends Comparable<T>> void test(Sorting[] sortings, int minLength, int maxLength, int times, DataMocker<T> mocker) {
+        for (int length = minLength; length <= maxLength; length *= 2) {
+            StdOut.println("Length:" + length);
+            for (Sorting sorting : sortings) {
+                double t = 0d;
+                for (int i = 0; i < times; i++) {
+                    Stopwatch stopwatch = new Stopwatch();
+                    sorting.sort(generate(length, mocker));
+                    t += stopwatch.elapsedTime();
+                }
+                StdOut.println(String.format("%s(x%d)\t%f", sorting.toString(), times, t));
+            }
+            StdOut.println();
         }
     }
 

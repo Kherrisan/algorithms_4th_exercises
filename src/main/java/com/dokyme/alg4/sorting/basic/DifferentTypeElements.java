@@ -19,7 +19,7 @@ public class DifferentTypeElements {
         private String id;
         private double d;
 
-        public StringPK(String id ){
+        public StringPK(String id) {
             this.id = id;
             this.d = StdRandom.uniform();
         }
@@ -38,7 +38,7 @@ public class DifferentTypeElements {
             this.id = id;
             this.list = new String[10];
             for (int i = 0; i < list.length; i++) {
-                list[i] = list[i].hashCode() + "" + list[i].hashCode();
+                list[i] = "" + StdRandom.uniform();
             }
         }
 
@@ -90,7 +90,7 @@ public class DifferentTypeElements {
     }
 
     public static void main(String[] args) {
-        test(new Sorting[]{new Selection(), new Insertion(), new Shell()}, 10000, 100000, 100, ((sorting, length, times) -> {
+        test(new Sorting[]{new Selection(), new Insertion(), new Shell()}, 10000, 100000, 10, ((sorting, length, times) -> {
             testDoublePK(sorting, length, times);
             testIntegerPK(sorting, length, times);
             testStringPK(sorting, length, times);

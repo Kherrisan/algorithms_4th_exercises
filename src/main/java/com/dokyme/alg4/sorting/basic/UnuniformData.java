@@ -66,9 +66,9 @@ public class UnuniformData {
         };
         for (int length = 10000; length < 100000; length <<= 1) {
             for (Sorting s : sorts) {
-                halfQuaQua(s, length, 100);
-                halfZeroOne(s, length, 100);
-                halfRandom(s, length, 100);
+                halfQuaQua(s, length, 10);
+                halfZeroOne(s, length, 10);
+                halfRandom(s, length, 10);
             }
         }
     }

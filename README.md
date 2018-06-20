@@ -6,7 +6,7 @@
 # 参考仓库
 
 - [jimmysuncpt/Algorithms](https://github.com/jimmysuncpt/Algorithms)
-- [reneargento/algorithms-sedgewick-wayne](https://github.com/reneargento/algorithms-sedgewick-wayne)
+- [reneargento/algorithms-sedgewick-wayne](https://github.com/reneargento/algorithms-sedgewick-wayne)(这个仓库里的答案很详细)
 
 # 2.排序
 
@@ -60,4 +60,10 @@
 
 [练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/binaryst/exercises.md)
 
-[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/binaryst/exercises.md)
+[提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/binaryst/improvements.md)
+
+## 3.3 平衡查找树
+
+[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/balanced/exercises.md)
+
+[提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/balanced/improvements.md)

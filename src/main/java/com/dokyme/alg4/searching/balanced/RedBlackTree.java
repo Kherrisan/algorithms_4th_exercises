@@ -3,6 +3,9 @@ package com.dokyme.alg4.searching.balanced;
 
 import com.dokyme.alg4.searching.st.SymbolTable;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  *
@@ -41,15 +44,31 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements SymbolT
     }
 
     private Node rotateLeft(Node h) {
-
+        Node x = h.right;
+        h.right = x.left;
+        x.left = h;
+        x.color = h.color;
+        h.color = RED;
+        x.n = h.n;
+        h.n = size(h.left) + size(h.right) + 1;
+        return x;
     }
 
     private Node rotateRight(Node h) {
-
+        Node x = h.left;
+        h.right = x.left;
+        x.right = h;
+        x.color = h.color;
+        h.color = RED;
+        x.n = h.n;
+        h.n = size(h.left) + size(h.right) + 1;
+        return x;
     }
 
     private void flipColors(Node h) {
-
+        h.color = RED;
+        h.left.color = BLACK;
+        h.right.color = BLACK;
     }
 
     @Override
@@ -71,7 +90,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements SymbolT
             h.val = val;
         }
 
-        //
         if (isRed(h.right) && !isRed(h.left)) {
             h = rotateLeft(h);
         }
@@ -259,11 +277,31 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements SymbolT
 
     @Override
     public Iterable<Key> keys(Key lo, Key hi) {
-        return null;
+        List<Key> list = new LinkedList<>();
+        keys(list, root, lo, hi);
+        return list;
+    }
+
+    private void keys(List<Key> list, Node h, Key lo, Key hi) {
+        if (h == null) {
+            return;
+        }
+        int clo = lo.compareTo(h.key);
+        int chi = hi.compareTo(h.key);
+        if (clo < 0) {
+            //如果lo<key，说明h的左子树还存在可能符合要求的节点
+            keys(list, h.left, lo, hi);
+        }
+        if (clo <= 0 && chi >= 0) {
+            list.add(h.key);
+        }
+        if (chi > 0) {
+            keys(list, h.right, lo, hi);
+        }
     }
 
     @Override
     public Iterable<Key> keys() {
-        return null;
+        return keys(min(), max());
     }
 }

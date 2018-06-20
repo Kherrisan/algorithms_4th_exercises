@@ -204,7 +204,4 @@ public class BinarySearchTreeWithoutRank<Key extends Comparable<Key>, Value> imp
         return null;
     }
 
-    public static void main(String[] args) {
-
-    }
 }
