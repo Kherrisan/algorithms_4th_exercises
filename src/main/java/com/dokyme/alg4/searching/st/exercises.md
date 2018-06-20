@@ -2,23 +2,23 @@
 
 ## 3.1.1 
 
-[GPA.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/GPA.java)
+[GPA.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/GPA.java)
 
 ## 3.1.2
 
-[ArrayST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/ArrayST.java)
+[ArrayST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/ArrayST.java)
 
 ## 3.1.3
 
-[OrderedSequentialSearchST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/OrderedSequentialSearchST.java)
+[OrderedSequentialSearchST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/OrderedSequentialSearchST.java)
 
 ## 3.1.4
 
-[Event.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/Event.java)
+[Event.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/Event.java)
 
 ## 3.1.5
 
-[SequentialSearchST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/SequentialSearchST.java)
+[SequentialSearchST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/SequentialSearchST.java)
 
 ## 3.1.6
 
@@ -30,7 +30,7 @@ N=10,100,1000,平均有N个不同的键，N>1000时，还是只有N个不同的�
 
 ## 3.1.8
 
-[FrequencyCounter.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/FrequencyCounter.java)
+[FrequencyCounter.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/FrequencyCounter.java)
 
 monseigneur 101
 
@@ -74,7 +74,7 @@ N   O   I   T   U   Q   Y   S   A   E
 
 ## 3.1.12
 
-[BinarySearchST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/BinarySearchST.java)
+[BinarySearchST.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/BinarySearchST.java)
 
 ## 3.1.13
 

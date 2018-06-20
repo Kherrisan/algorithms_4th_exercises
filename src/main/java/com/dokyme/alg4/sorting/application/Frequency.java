@@ -39,7 +39,7 @@ public class Frequency {
          * object is an instance, the at-sign character `{@code @}', and
          * the unsigned hexadecimal representation of the hash code of the
          * object. In other words, this method returns a string equal to the
-         * value of:
+         * val of:
          * <blockquote>
          * <pre>
          * getClass().getName() + '@' + Integer.toHexString(hashCode())
@@ -80,7 +80,7 @@ public class Frequency {
          * <p>In the foregoing description, the notation
          * <tt>sgn(</tt><i>expression</i><tt>)</tt> designates the mathematical
          * <i>signum</i> function, which is defined to return one of <tt>-1</tt>,
-         * <tt>0</tt>, or <tt>1</tt> according to whether the value of
+         * <tt>0</tt>, or <tt>1</tt> according to whether the val of
          * <i>expression</i> is negative, zero or positive.
          *
          * @param o the object to be compared.

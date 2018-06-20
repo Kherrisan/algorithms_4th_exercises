@@ -2,7 +2,6 @@ package com.dokyme.alg4.searching.binaryst;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Stack;
 
 /**
@@ -14,7 +13,7 @@ import java.util.Stack;
  * @date 2018/6/8-19:29
  * Description:
  */
-public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> implements BinaryTree<Key, Value> {
+public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> implements com.dokyme.alg4.searching.st.SymbolTable<Key, Value> {
 
     private class Node {
         private Key key;
@@ -341,8 +340,18 @@ public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> im
     public Iterable<Key> keys(Node x, Key lo, Key hi) {
         Stack<Node> stack = new Stack<>();
         List<Key> res = new LinkedList<>();
-        while ()
+
         return res;
+    }
+
+    @Override
+    public boolean contains(Key key) {
+        return false;
+    }
+
+    @Override
+    public int size(Key lo, Key hi) {
+        return 0;
     }
 
     public static void main(String[] args) {

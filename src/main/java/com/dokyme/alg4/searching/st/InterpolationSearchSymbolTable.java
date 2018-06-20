@@ -17,13 +17,13 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  * @date 2018/6/2-17:58
  * Description:
  */
-public class InterpolationSearchST<Value> extends BinarySearchST<Integer, Value> {
+public class InterpolationSearchSymbolTable<Value> extends BinarySearchSymbolTable<Integer, Value> {
 
-    public InterpolationSearchST(Item<Integer, Value>[] items) {
+    public InterpolationSearchSymbolTable(Item<Integer, Value>[] items) {
         super(items);
     }
 
-    public InterpolationSearchST(Value[] values) {
+    public InterpolationSearchSymbolTable(Value[] values) {
         super(values.length);
         items = new Item[values.length];
         for (int i = 0; i < values.length; i++) {
@@ -33,7 +33,7 @@ public class InterpolationSearchST<Value> extends BinarySearchST<Integer, Value>
         new Merge().sort(items);
     }
 
-    public InterpolationSearchST(int capacity) {
+    public InterpolationSearchSymbolTable(int capacity) {
         super(capacity);
     }
 
@@ -74,7 +74,7 @@ public class InterpolationSearchST<Value> extends BinarySearchST<Integer, Value>
         for (int i = 0; i < 100; i++) {
             array[i] = i;
         }
-        InterpolationSearchST st = new InterpolationSearchST<>(array);
+        InterpolationSearchSymbolTable st = new InterpolationSearchSymbolTable<>(array);
         assert st.rank(0) == 0;
         for (int i = 0; i < 100; i++) {
             assert st.rank(i) == i;
@@ -90,8 +90,8 @@ public class InterpolationSearchST<Value> extends BinarySearchST<Integer, Value>
                     return StdRandom.uniform(ic);
                 }
             });
-            InterpolationSearchST<String> itro = new InterpolationSearchST<>(i);
-            BinarySearchST<Integer, String> bin = new BinarySearchST<>(i);
+            InterpolationSearchSymbolTable<String> itro = new InterpolationSearchSymbolTable<>(i);
+            BinarySearchSymbolTable<Integer, String> bin = new BinarySearchSymbolTable<>(i);
             for (int k = 0; k < keys.length; k++) {
                 try {
                     itro.put(keys[k], "");

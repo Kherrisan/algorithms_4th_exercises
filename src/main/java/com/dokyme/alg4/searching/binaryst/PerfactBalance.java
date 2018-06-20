@@ -12,13 +12,13 @@ import java.util.Arrays;
  */
 public class PerfactBalance {
 
-    public static BinaryTree<String, Integer> build(String[] arrays, BinaryTree<String, Integer> tree) {
+    public static BinarySearchTree<String, Integer> build(String[] arrays, BinarySearchTree<String, Integer> tree) {
         Arrays.sort(arrays);
         insert(arrays, 0, arrays.length - 1, tree);
         return tree;
     }
 
-    private static void insert(String[] arrays, int lo, int hi, BinaryTree<String, Integer> tree) {
+    private static void insert(String[] arrays, int lo, int hi, BinarySearchTree<String, Integer> tree) {
         if (lo > hi) {
             return;
         }

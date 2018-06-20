@@ -17,7 +17,7 @@ public class TestBinarySearch {
 
     public static boolean test() {
         List<String> list = new ArrayList<>();
-        BinarySearchST<String, Integer> st = new BinarySearchST<String, Integer>(10);
+        BinarySearchSymbolTable<String, Integer> st = new BinarySearchSymbolTable<String, Integer>(10);
         for (int i = 0; !StdIn.isEmpty(); i++) {
             st.put(StdIn.readString(), i);
         }

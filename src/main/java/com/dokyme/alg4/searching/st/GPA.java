@@ -1,6 +1,5 @@
 package com.dokyme.alg4.searching.st;
 
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
@@ -13,7 +12,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class GPA {
 
     public static void main(String[] args) {
-        ST<String, Double> gpaTable = new BinarySearchST<>(10);
+        SymbolTable<String, Double> gpaTable = new BinarySearchSymbolTable<>(10);
         gpaTable.put("A+", 4.33);
         gpaTable.put("A", 4.00);
         gpaTable.put("A-", 3.67);

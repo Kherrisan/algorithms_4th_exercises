@@ -80,7 +80,7 @@ N对键值，SequentialSearchST使用链表存储键值，因此占用的空间�
 
 ## 3.1.26 基于字典的频率统计
 
-[FrequencyCountDictionary.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/FrequencyCountDictionary.java)
+[FrequencyCountDictionary.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/FrequencyCountDictionary.java)
 
 ## 3.1.27 小符号表
 
@@ -90,7 +90,7 @@ N对键值，SequentialSearchST使用链表存储键值，因此占用的空间�
 
 ## 3.1.29 测试用例
 
-[TestBinarySearch.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/TestBinarySearch.java)
+[TestBinarySearch.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/TestBinarySearch.java)
 
 ## 3.1.30 验证
 

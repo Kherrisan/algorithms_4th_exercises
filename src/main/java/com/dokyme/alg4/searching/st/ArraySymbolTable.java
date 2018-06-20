@@ -1,7 +1,5 @@
 package com.dokyme.alg4.searching.st;
 
-import java.util.Iterator;
-
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  *
@@ -9,7 +7,7 @@ import java.util.Iterator;
  * @date 2018/6/1-18:09
  * Description:
  */
-public class ArrayST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
+public class ArraySymbolTable<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
     private Key[] keys;
 
@@ -17,7 +15,7 @@ public class ArrayST<Key extends Comparable<Key>, Value> extends ST<Key, Value> 
 
     private int size;
 
-    public ArrayST(int capacity) {
+    public ArraySymbolTable(int capacity) {
         keys = (Key[]) new Comparable[capacity];
         vals = (Value[]) new Object[capacity];
     }
@@ -134,17 +132,17 @@ public class ArrayST<Key extends Comparable<Key>, Value> extends ST<Key, Value> 
 
     @Override
     public void deleteMin() {
-        super.deleteMin();
+        delete(min());
     }
 
     @Override
     public void deleteMax() {
-        super.deleteMax();
+        delete(max());
     }
 
     @Override
     public int size(Key lo, Key hi) {
-        return super.size(lo, hi);
+        return size;
     }
 
     @Override
@@ -154,7 +152,7 @@ public class ArrayST<Key extends Comparable<Key>, Value> extends ST<Key, Value> 
 
     @Override
     public Iterable<Key> keys() {
-        return super.keys();
+        return keys(min(),max());
     }
 
     public static void main(String[] args) {

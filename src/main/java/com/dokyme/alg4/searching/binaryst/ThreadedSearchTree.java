@@ -8,7 +8,7 @@ package com.dokyme.alg4.searching.binaryst;
  * @date 2018/6/18-12:17
  * Description:
  */
-public class ThreadedSearchTree<Key extends Comparable<Key>, Value> implements BinaryTree<Key, Value> {
+public class ThreadedSearchTree<Key extends Comparable<Key>, Value> implements com.dokyme.alg4.searching.st.SymbolTable<Key, Value> {
 
     public class Node {
         private Node left;
@@ -401,6 +401,21 @@ public class ThreadedSearchTree<Key extends Comparable<Key>, Value> implements B
             }
         }
         return r;
+    }
+
+    @Override
+    public boolean contains(Key key) {
+        return false;
+    }
+
+    @Override
+    public int size(Key lo, Key hi) {
+        return 0;
+    }
+
+    @Override
+    public Iterable<Key> keys(Key lo, Key hi) {
+        return null;
     }
 
     @Override

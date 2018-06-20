@@ -1,10 +1,12 @@
 package com.dokyme.alg4.searching.binaryst;
 
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -13,7 +15,7 @@ import java.util.List;
  * @date 2018/6/3-17:58
  * Description:
  */
-public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BinaryTree<Key, Value> {
+public class BinarySearchTree<Key extends Comparable<Key>, Value> implements com.dokyme.alg4.searching.st.SymbolTable<Key, Value> {
 
     public Node root;
 
@@ -56,6 +58,11 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
             }
             Node n = (Node) obj;
             return key == n.key && val == n.val && left == n.left && right == n.right;
+        }
+
+        @Override
+        public String toString() {
+            return key.toString();
         }
     }
 
@@ -282,6 +289,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
         }
     }
 
+    @Override
     public Key select(int k) {
         Node t = select(root, k);
         if (t == null) {
@@ -536,6 +544,33 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
             }
         }
         return true;
+    }
+
+    public void printLevel(){
+        printLevel(root);
+    }
+
+    public void printLevel(Node x) {
+        Queue<Node> q = new LinkedList<>();
+        q.offer(x);
+        while (!q.isEmpty()) {
+            x = q.poll();
+            if (x != null) {
+                StdOut.println(x);
+                q.offer(x.left);
+                q.offer(x.right);
+            }
+        }
+    }
+
+    @Override
+    public boolean contains(Key key) {
+        return false;
+    }
+
+    @Override
+    public int size(Key lo, Key hi) {
+        return 0;
     }
 
     public static void main(String[] args) {

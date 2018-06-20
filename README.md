@@ -52,9 +52,9 @@
 
 ## 3.1 符号表
 
-[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/exercises.md)
+[练习](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/exercises.md)
 
-[提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/st/improvements.md)
+[提高题](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/symbolTable/improvements.md)
 
 ## 3.2 二叉查找树
 

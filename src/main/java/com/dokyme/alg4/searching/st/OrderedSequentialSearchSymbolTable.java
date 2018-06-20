@@ -1,7 +1,5 @@
 package com.dokyme.alg4.searching.st;
 
-import java.util.Iterator;
-
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
  *
@@ -9,7 +7,7 @@ import java.util.Iterator;
  * @date 2018/6/1-18:20
  * Description:
  */
-public class OrderedSequentialSearchST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
+public class OrderedSequentialSearchSymbolTable<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
     private class Node {
         Key key;
@@ -130,17 +128,17 @@ public class OrderedSequentialSearchST<Key extends Comparable<Key>, Value> exten
 
     @Override
     public void deleteMin() {
-        super.deleteMin();
+        delete(min());
     }
 
     @Override
     public void deleteMax() {
-        super.deleteMax();
+        delete(max());
     }
 
     @Override
     public int size(Key lo, Key hi) {
-        return super.size(lo, hi);
+        return size;
     }
 
     @Override
@@ -150,7 +148,7 @@ public class OrderedSequentialSearchST<Key extends Comparable<Key>, Value> exten
 
     @Override
     public Iterable<Key> keys() {
-        return super.keys();
+        return keys(min(),max());
     }
 
     public static void main(String[] args) {

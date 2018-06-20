@@ -1,9 +1,5 @@
 package com.dokyme.alg4.searching.st;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -34,21 +30,21 @@ public class FrequencyCountDictionary {
         }
     }
 
-    public static void count(String dictname, String filename, ST<String, Integer> st) {
+    public static void count(String dictname, String filename, SymbolTable<String, Integer> symbolTable) {
         try {
             String[] dictWords = new FileIn(dictname).readAllStrings();
             String[] words = new FileIn(filename).readAllStrings();
             for (String word : words) {
-                if (st.contains(word)) {
-                    st.put(word, st.get(word) + 1);
+                if (symbolTable.contains(word)) {
+                    symbolTable.put(word, symbolTable.get(word) + 1);
                 } else {
-                    st.put(word, 1);
+                    symbolTable.put(word, 1);
                 }
             }
-            Word[] wl = new Word[st.size()];
+            Word[] wl = new Word[symbolTable.size()];
             int i = 0;
-            for (String w : st.keys()) {
-                wl[i++] = new Word(w, st.get(w));
+            for (String w : symbolTable.keys()) {
+                wl[i++] = new Word(w, symbolTable.get(w));
             }
             Arrays.sort(wl, new Comparator<Word>() {
                 @Override
@@ -61,8 +57,8 @@ public class FrequencyCountDictionary {
             }
             StdOut.println("=================================");
             for (String w : dictWords) {
-                if (st.contains(w)) {
-                    StdOut.println(w + "\t-\t" + st.get(w));
+                if (symbolTable.contains(w)) {
+                    StdOut.println(w + "\t-\t" + symbolTable.get(w));
                 }
             }
         } catch (Exception e) {

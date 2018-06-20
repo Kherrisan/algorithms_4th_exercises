@@ -12,7 +12,7 @@ import java.util.Queue;
  * @date 2018/6/1-17:51
  * Description:
  */
-public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
+public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
     protected Item<Key, Value>[] items;
 
@@ -35,11 +35,11 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 
     protected int size;
 
-    public BinarySearchST(int capacity) {
+    public BinarySearchSymbolTable(int capacity) {
         items = new Item[capacity];
     }
 
-    public BinarySearchST(Item<Key, Value>[] items) {
+    public BinarySearchSymbolTable(Item<Key, Value>[] items) {
         this.items = items;
         size = items.length;
         new Merge().sort(items);
@@ -229,7 +229,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 
     @Override
     public int size(Key lo, Key hi) {
-        return super.size(lo, hi);
+        return size;
     }
 
     @Override

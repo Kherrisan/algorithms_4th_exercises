@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * @date 2018/6/1-17:44
  * Description:
  */
-public class SequentialSearchST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
+public class SequentialSearchSymbolTable<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
     private Node cached;
 
@@ -124,17 +124,17 @@ public class SequentialSearchST<Key extends Comparable<Key>, Value> extends ST<K
 
     @Override
     public void deleteMin() {
-        super.deleteMin();
+        delete(min());
     }
 
     @Override
     public void deleteMax() {
-        super.deleteMax();
+        delete(max());
     }
 
     @Override
     public int size(Key lo, Key hi) {
-        return super.size(lo, hi);
+        return size;
     }
 
     @Override
@@ -149,6 +149,11 @@ public class SequentialSearchST<Key extends Comparable<Key>, Value> extends ST<K
             }
         }
         return null;
+    }
+
+    @Override
+    public Iterable<Key> keys() {
+        return keys(min(),max());
     }
 
     public static void main(String[] args) {

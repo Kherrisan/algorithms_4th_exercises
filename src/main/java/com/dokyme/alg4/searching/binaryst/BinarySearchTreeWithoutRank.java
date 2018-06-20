@@ -7,7 +7,7 @@ package com.dokyme.alg4.searching.binaryst;
  * @date 2018/6/8-18:54
  * Description:
  */
-public class BinarySearchTreeWithoutRank<Key extends Comparable<Key>, Value> implements BinaryTree<Key, Value> {
+public class BinarySearchTreeWithoutRank<Key extends Comparable<Key>, Value> implements com.dokyme.alg4.searching.st.SymbolTable<Key, Value> {
 
     private int size;
 
@@ -187,6 +187,21 @@ public class BinarySearchTreeWithoutRank<Key extends Comparable<Key>, Value> imp
             return x;
         }
         return max(x.right);
+    }
+
+    @Override
+    public boolean contains(Key key) {
+        return false;
+    }
+
+    @Override
+    public int size(Key lo, Key hi) {
+        return 0;
+    }
+
+    @Override
+    public Iterable<Key> keys(Key lo, Key hi) {
+        return null;
     }
 
     public static void main(String[] args) {

@@ -209,3 +209,37 @@ SequentialSearchST
         return res;
     }
 ```
+
+## 3.2.37 层级遍历
+
+实际上就是广度优先搜索。
+
+```java
+    public void printLevel(){
+        printLevel(root);
+    }
+
+    public void printLevel(Node x) {
+        Queue<Node> q = new LinkedList<>();
+        q.offer(x);
+        while (!q.isEmpty()) {
+            x = q.poll();
+            if (x != null) {
+                StdOut.println(x);
+                q.offer(x.left);
+                q.offer(x.right);
+            }
+        }
+    }
+```
+
+个人感觉广度优先遍历比深度更简单一些。
+
+## 3.2.38 绘图
+
+这道题工作量很大。
+
+[一个介绍树的绘制算法的PPT](http://graphics.stanford.edu/courses/cs448b-02-winter/lectures/treesgraphs/tree.graph.pdf)
+
+[另一个国外的材料](https://llimllib.github.io/pymag-trees/)
+

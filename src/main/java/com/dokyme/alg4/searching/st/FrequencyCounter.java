@@ -1,11 +1,8 @@
 package com.dokyme.alg4.searching.st;
 
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Scanner;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -16,7 +13,7 @@ import java.util.Scanner;
  */
 public class FrequencyCounter {
 
-    private static void count(ST<String, Integer> st, int threshold, String filename, int count) {
+    private static void count(SymbolTable<String, Integer> symbolTable, int threshold, String filename, int count) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
             String line;
@@ -26,10 +23,10 @@ public class FrequencyCounter {
                     if (tok.length() < threshold) {
                         continue;
                     }
-                    if (st.contains(tok)) {
-                        st.put(tok, st.get(tok) + 1);
+                    if (symbolTable.contains(tok)) {
+                        symbolTable.put(tok, symbolTable.get(tok) + 1);
                     } else {
-                        st.put(tok, 1);
+                        symbolTable.put(tok, 1);
                     }
                 }
             }
@@ -39,7 +36,7 @@ public class FrequencyCounter {
         }
     }
 
-    public static void count(ST<String, Integer> st, int threshold, String filename) {
+    public static void count(SymbolTable<String, Integer> symbolTable, int threshold, String filename) {
         try {
             int total = 0;
             String lastWord = "";
@@ -53,28 +50,28 @@ public class FrequencyCounter {
                     }
                     total++;
                     lastWord = tok;
-                    if (st.contains(tok)) {
-                        st.put(tok, st.get(tok) + 1);
+                    if (symbolTable.contains(tok)) {
+                        symbolTable.put(tok, symbolTable.get(tok) + 1);
                     } else {
-                        st.put(tok, 1);
+                        symbolTable.put(tok, 1);
                     }
                 }
             }
             StdOut.println("Last word:" + lastWord + ", " + total + " words so far.");
 //            String max = "";
-//            st.put(max, 0);
-//            for (String word : st.keys()) {
-//                if (word.length() > 10 && st.get(word) > st.get(max)) {
+//            symbolTable.put(max, 0);
+//            for (String word : symbolTable.keys()) {
+//                if (word.length() > 10 && symbolTable.get(word) > symbolTable.get(max)) {
 //                    max = word;
 //                }
 //            }
-//            StdOut.println(max + " " + st.get(max));
+//            StdOut.println(max + " " + symbolTable.get(max));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        count(new BinarySearchST<>(10), 10, "src/main/resources/tale.txt");
+        count(new BinarySearchSymbolTable<>(10), 10, "src/main/resources/tale.txt");
     }
 }
