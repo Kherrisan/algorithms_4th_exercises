@@ -14,62 +14,29 @@ import static com.dokyme.alg4.sorting.basic.Example.*;
  */
 public class ExtremeTest {
 
-    public static boolean test(Sorting sorting) {
-        boolean pass = true;
+    public static void testOrdered(Sorting[] sortings, int minLength, int maxLength, int times) {
+        test(sortings, minLength, maxLength, times, i -> i * 1.1);
+    }
 
-        int length = 10000;
-
-        Double[] emptyArray = new Double[0];
-        sorting.sort(emptyArray);
-
-        Double[] oneArray = new Double[1];
-        sorting.sort(oneArray);
-
-        Double[] ascArray = new Double[length];
-        for (int i = 0; i < length; i++) {
-            ascArray[i] = i * 1.0;
+    public static void testDescending(Sorting[] sortings, int minLength, int maxLength, int times) {
+        for (int l = minLength; l <= maxLength; l *= 2) {
+            final int length = l;
+            test(sortings, i -> (length - i) * 1.1, l, times);
         }
-        sorting.sort(ascArray);
-        pass = isSorted(ascArray) && pass;
+    }
 
-        Double[] descArray = new Double[length];
-        for (int i = 0; i < length; i++) {
-            descArray[i] = (length - i) * 1.0;
-        }
-        sorting.sort(descArray);
-        pass = isSorted(descArray) && pass;
-
-        Double[] sameArray = new Double[length];
-        for (int i = 0; i < length; i++) {
-            sameArray[i] = 5.0;
-        }
-        sorting.sort(sameArray);
-        pass = isSorted(sameArray) && pass;
-
-        Double[] binaryArray = new Double[length];
-        for (int i = 0; i < length; i++) {
-            binaryArray[i] = i % 2 * 1.0;
-        }
-        sorting.sort(binaryArray);
-        pass = isSorted(binaryArray) && pass;
-
-        binaryArray = generate(Double.class, length, new DataMocker<Double>() {
-            @Override
-            public Double mock(int i) {
-                if (i > 100) {
-                    return 1.0;
-                } else {
-                    return 0d;
-                }
-            }
-        });
-        sorting.sort(binaryArray);
-        pass = isSorted(binaryArray) && pass;
-
-        return pass;
+    public static void testSameValue(Sorting[] sortings, int minLength, int maxLength, int times) {
+        test(sortings, minLength, maxLength, times, i -> 1.1);
     }
 
     public static void main(String[] args) {
-        assert test(new Quick());
+        Sorting[] sortings = new Sorting[]{
+                new Selection(),
+                new Insertion(),
+                new Shell()
+        };
+        testOrdered(sortings, 10000, 100000, 10);
+        testDescending(sortings, 10000, 100000, 10);
+        testSameValue(sortings, 10000, 100000, 10);
     }
 }

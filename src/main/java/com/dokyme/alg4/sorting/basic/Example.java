@@ -194,6 +194,21 @@ public class Example {
         return total;
     }
 
+    public static <T extends Comparable<T>> void test(Sorting[] sortings, DataMocker<T> mocker, int length, int times) {
+        StdOut.println("Length:" + length);
+        for (Sorting sorting : sortings) {
+            double t = 0d;
+            for (int i = 0; i < times; i++) {
+                Comparable[] arrays = generate(length, mocker);
+                Stopwatch w = new Stopwatch();
+                sorting.sort(arrays);
+                t += w.elapsedTime();
+            }
+            StdOut.println(String.format("%s(x%d)\t%f", sorting.getClass().getSimpleName(), times, t));
+        }
+        StdOut.println();
+    }
+
     public interface EachSortingAction {
         void run(Sorting sorting, int length, int times);
     }

@@ -68,21 +68,21 @@ Selection:248.3	Insertion:182.6	Shell:2.2
 
 ## 2.1.28 相等的主键
 
-如果数组中有相当一部分元素是相等的话，那么选择排序所需要的时间不会产生明显的变换，插入排序中，较小元素前移的步骤所需要的步数应该也不会产生太大的变换。当然这只是我的主观想法。
+如果数组中有相当一部分元素是相等的话，那么选择排序所需要的时间不会产生明显的变化，插入排序中，较小元素前移的步骤所需要的步数应该也不会产生太大的变换。当然这只是我的主观想法。
 
 ```java
 Selection: 19.037
 Insertion: 8.597
 ```
 
-实际结果是，选择排序快。使用int[]数组进行排序，再进行测试：
+实际结果是，插入排序快。使用int[]数组进行排序，再进行测试：
 
 ```java
 Selection: 2.6479999999999997
 Insertion: 1.8760000000000001
 ```
 
-插入排序是稳定排序，选择排序不稳定，然而结果却是选择排序更快一些。尝试分析其中缘由：选择排序是所有排序中移动元素位置最少的排序方法，但其需要的比较次数较插入排序更多，出现了这种结果，说明在大量重复元素的情况下，在int[]中移动元素的消耗大于比较int变量大小的消耗。当然这种消耗即便是在对中长数组排序的情况下也还是仅仅会造成常数级别的差距。
+结果是插入排序更快一些。
 
 最后在测试的排序算法中加入了快排，快排一骑红尘。
 
@@ -303,6 +303,8 @@ N:4096000	abs_predict:149.001001	rel_predict:6.874710	real:6.942000	ratio:2.4863
 
 [ExtremeTest.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/ExtremeTest.java)
 
+希尔排序就是快，这个不必多说，至于选择排序和插入排序之间的菜鸡互啄，选择排序所用的时间是相对稳定的，而插入排序所用的时间取决于一个度量：逆序对的数量，逆序对越少，排序时间越快。
+
 ## 2.1.35 不均匀的概率分布
 
 [UnuniformDistribution.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/UnuniformDistribution.java)
@@ -473,4 +475,43 @@ shell排序在各种情况下都是最快的，插入排序需要更少的比较
 
 [DifferentTypeElements.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/sorting/basic/DifferentTypeElements.java)
 
+```java
+Double-String[10]	Selection	10000	3.402000
+Int-Int[20]	        Selection	10000	1.485000
+String-Double	    Selection	10000	5.074000
+Double-String[10]	Selection	20000	31.248000
+Int-Int[20]	        Selection	20000	21.576000
+String-Double	    Selection	20000	35.273000
+Double-String[10]	Selection	40000	312.879000
+Int-Int[20]	        Selection	40000	159.163000
+String-Double	    Selection	40000	134.889000
+Double-String[10]	Selection	80000	1725.878000
+Int-Int[20]	        Selection	80000	1133.537000
+String-Double	    Selection	80000	1160.325000
+Double-String[10]	Insertion	10000	1.965000
+Int-Int[20]	        Insertion	10000	5.208000
+String-Double	    Insertion	10000	5.201000
+Double-String[10]	Insertion	20000	25.594000
+Int-Int[20]	        Insertion	20000	10.468000
+String-Double	    Insertion	20000	13.038000
+Double-String[10]	Insertion	40000	127.083000
+Int-Int[20]	        Insertion	40000	42.355000
+String-Double	    Insertion	40000	51.514000
+Double-String[10]	Insertion	80000	565.728000
+Int-Int[20]	        Insertion	80000	251.464000
+String-Double	    Insertion	80000	242.488000
+Double-String[10]	Shell	    10000	0.037000
+Int-Int[20]	        Shell	    10000	0.029000
+String-Double	    Shell	    10000	0.046000
+Double-String[10]	Shell	    20000	0.142000
+Int-Int[20]	        Shell	    20000	0.066000
+String-Double	    Shell	    20000	0.113000
+Double-String[10]	Shell	    40000	0.399000
+Int-Int[20]	        Shell	    40000	0.245000
+String-Double	    Shell	    40000	0.293000
+Double-String[10]	Shell	    80000	0.955000
+Int-Int[20]	        Shell	    80000	0.610000
+String-Double	    Shell	    80000	0.757000
+```
 
+- 同一种排序算法，
