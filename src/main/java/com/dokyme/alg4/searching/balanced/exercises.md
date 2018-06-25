@@ -2,11 +2,11 @@
 
 ## 3.3.1
 
-![](https://s1.ax1x.com/2018/06/25/PCaJnU.jpg)
+![](https://s1.ax1x.com/2018/06/25/PCdnKK.jpg)
 
 ## 3.3.2
 
-![](https://s1.ax1x.com/2018/06/25/PCa6BD.jpg)
+![](https://s1.ax1x.com/2018/06/25/PCdZgx.jpg)
 
 ## 3.3.3
 
@@ -22,14 +22,14 @@
 
 看来给定节点个数的2-3树的不同结构的个数远没有二叉搜索树的结构来的多。
 
-![](https://s1.ax1x.com/2018/06/25/PCaW4A.jpg)
+![](https://s1.ax1x.com/2018/06/25/PCdECR.jpg)
 
 ## 3.3.6
 
 计算节点个数为N时所有可能树结构出现的概率，可以通过计算N-1时各结构的出现次数乘以在该结构上各位置插入一个新节点所构成的新的树个数。
 
-![](https://s1.ax1x.com/2018/06/25/PCaqEQ.jpg)
+![](https://s1.ax1x.com/2018/06/25/PCdev6.jpg)
 
 ## 3.3.7
 
-![](https://s1.ax1x.com/2018/06/25/PCdCbF.jpg)
+![](https://s1.ax1x.com/2018/06/25/PCdV81.jpg)
