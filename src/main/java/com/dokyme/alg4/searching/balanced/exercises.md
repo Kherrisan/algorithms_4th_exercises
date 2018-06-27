@@ -33,3 +33,59 @@
 ## 3.3.7
 
 ![](https://s1.ax1x.com/2018/06/25/PCdV81.jpg)
+
+## 3.3.8
+
+题目不太理解
+
+**暂留**
+
+## 3.3.9
+
+## 3.3.10
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-3-10-1.jpg)
+
+## 3.3.11
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-3-11-1.jpg)
+
+## 3.3.12
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-3-12-1.jpg)
+
+## 3.3.13
+
+如果按照升序将键插入一棵红黑树，那么红黑树的树的高度的确是单调递增的，当然不是每次插入都会使高度增加。
+
+## 3.3.14
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-3-14-1.jpg)
+
+## 3.3.15
+
+如果按照降序将键插入一棵红黑树，那么高度还是递增的，偶尔不增，但不会减。
+
+## 3.3.16
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-3-16-1.jpg)
+
+## 3.3.17
+
+## 3.3.18
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-3-18-1.jpg)
+
+## 3.3.19
+
+**暂留**
+
+## 3.3.20
+
+![](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/resources/3-3-20-1.jpg)
+
+## 3.3.21
+
+[TestRB.java](https://github.com/Dokyme/algorithms_4th_exercises/blob/master/src/main/java/com/dokyme/alg4/searching/balanced/TestRB.java)
+
+## 3.3.22

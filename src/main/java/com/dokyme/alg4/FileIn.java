@@ -15,34 +15,78 @@ public class FileIn {
 
     private String path;
 
-    public FileIn(String path) {
+    private BufferedReader reader;
+
+    private String[] tokens;
+
+    private int cursor;
+
+    private static FileIn fileIn;
+
+    public static boolean setFile(String path) {
+        try {
+            fileIn = new FileIn(path);
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String readString() {
+        return fileIn.readStr();
+    }
+
+    public static int readInt() {
+        return fileIn.readI();
+    }
+
+    private FileIn(String path) throws IOException {
         this.path = path;
+        reader = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+    }
+
+    private boolean readNext() {
+        if (tokens == null) {
+            return false;
+        }
+        cursor++;
+        if (cursor == tokens.length) {
+            try {
+                String line = reader.readLine();
+                tokens = line.split(" ");
+                cursor = 0;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isEmpty() {
+        return false;
+    }
+
+    private int readI() {
+        if (!readNext()) {
+            return Integer.MAX_VALUE;
+        }
+        return Integer.valueOf(tokens[cursor]);
+    }
+
+    private String readStr() {
+        if (!readNext()) {
+            return null;
+        }
+        return tokens[cursor];
     }
 
     public String[] readAllStrings() {
-        List<String> list = new ArrayList<>();
-        String line;
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-            while ((line = reader.readLine()) != null) {
-                for (String word : line.split(" ")) {
-                    list.add(word);
-                }
-            }
-            return list.toArray(new String[list.size()]);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return new String[0];
+        return null;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        reader.close();
     }
 
     public static void main(String[] args) {
