@@ -32,8 +32,10 @@ public class FrequencyCountDictionary {
 
     public static void count(String dictname, String filename, SymbolTable<String, Integer> symbolTable) {
         try {
-            String[] dictWords = new FileIn(dictname).readAllStrings();
-            String[] words = new FileIn(filename).readAllStrings();
+            FileIn.setFile(dictname);
+            String[] dictWords = FileIn.readAllStrings();
+            FileIn.setFile(filename);
+            String[] words = FileIn.readAllStrings();
             for (String word : words) {
                 if (symbolTable.contains(word)) {
                     symbolTable.put(word, symbolTable.get(word) + 1);

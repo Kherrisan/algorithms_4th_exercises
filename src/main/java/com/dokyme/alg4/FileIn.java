@@ -80,7 +80,7 @@ public class FileIn {
         return tokens[cursor];
     }
 
-    public String[] readAllStrings() {
+    public static String[] readAllStrings() {
         return null;
     }
 

@@ -21,22 +21,38 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements com
 
     private Node cached;
 
-    private boolean draw;
+    public void draw() {
 
-    public class Node {
+    }
+
+    public class Node implements BinaryTreeNode {
         private Key key;
         private Value val;
         private Node left, right;
         private int N;
         private int h;
 
-        private double x;
-        private double y;
-
         public Node(Key key, Value val, int n) {
             this.key = key;
             this.val = val;
             N = n;
+        }
+
+        @Override
+        public BinaryTreeNode left() {
+            return left;
+        }
+
+        @Override
+        public BinaryTreeNode right() {
+            return right;
+        }
+
+        public Node[] children() {
+            Node[] nodes = (Node[]) new Object[2];
+            nodes[0] = left;
+            nodes[1] = right;
+            return nodes;
         }
 
         @Override
@@ -70,7 +86,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements com
     }
 
     public BinarySearchTree(boolean draw) {
-        this.draw = draw;
+
     }
 
     @Override
@@ -457,13 +473,6 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements com
 
     }
 
-    public void draw() {
-        StdDraw.setXscale(0, 960);
-        StdDraw.setYscale(0, 640);
-        final double r = 5d;
-
-    }
-
     @Override
     public Iterable<Key> keys() {
         return keys(min(), max());
@@ -547,7 +556,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements com
         return true;
     }
 
-    public void printLevel(){
+    public void printLevel() {
         printLevel(root);
     }
 
