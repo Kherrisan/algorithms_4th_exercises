@@ -15,26 +15,9 @@ import java.util.List;
  */
 public class RedBlackTree<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
-    private Node root;
-
     private static final boolean RED = true;
-
     private static final boolean BLACK = false;
-
-    private class Node {
-        Key key;
-        Value val;
-        Node left, right;
-        int n;
-        boolean color;
-
-        public Node(Key key, Value val, int n, boolean color) {
-            this.key = key;
-            this.val = val;
-            this.n = n;
-            this.color = color;
-        }
-    }
+    private Node root;
 
     private boolean isRed(Node x) {
         if (x == null) {
@@ -56,7 +39,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements SymbolT
 
     private Node rotateRight(Node h) {
         Node x = h.left;
-        h.right = x.left;
+        h.left = x.right;
         x.right = h;
         x.color = h.color;
         h.color = RED;
@@ -79,7 +62,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements SymbolT
 
     private Node put(Node h, Key key, Value val) {
         if (h == null) {
-            return null;
+            return new Node(key, val, 1, RED);
         }
         int cmp = key.compareTo(h.key);
         if (cmp < 0) {
@@ -303,5 +286,20 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements SymbolT
     @Override
     public Iterable<Key> keys() {
         return keys(min(), max());
+    }
+
+    private class Node {
+        Key key;
+        Value val;
+        Node left, right;
+        int n;
+        boolean color;
+
+        public Node(Key key, Value val, int n, boolean color) {
+            this.key = key;
+            this.val = val;
+            this.n = n;
+            this.color = color;
+        }
     }
 }

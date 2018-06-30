@@ -51,7 +51,7 @@ d.不可能，8不可能在7的左子树里
 我选择在节点处保存一个新的字段，存放该节点的高度。在树的结构发生变化时（put，delete操作），手动调整路径中每个节点的高度值。
 
 ```java
-        x.h = Math.max(height(x.left), height(x.right)) + 1;
+        x.h = Math.max(depth(x.left), depth(x.right)) + 1;
 ```
 
 ## 3.2.7
@@ -76,7 +76,7 @@ d.不可能，8不可能在7的左子树里
         if (x == null) {
             return 0;
         }
-        return height(x) + innerPath(x.left) + innerPath(x.right);
+        return depth(x) + innerPath(x.left) + innerPath(x.right);
     }
 ```
 
