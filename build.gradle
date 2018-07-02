@@ -15,5 +15,8 @@ dependencies {
     compile fileTree(dir: 'lib', include: ['*.jar'])
     // https://mvnrepository.com/artifact/org.jfree/jfreechart
     compile group: 'org.jfree', name: 'jfreechart', version: '1.5.0'
+}
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }

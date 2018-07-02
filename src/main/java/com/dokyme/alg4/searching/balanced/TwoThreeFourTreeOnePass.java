@@ -10,7 +10,7 @@ import com.dokyme.alg4.searching.st.SymbolTable;
  * @date 2018/6/30-14:53
  * Description:
  */
-public class TwoThreeFourTreeOnePass<Key extends Comparable<Key>, Value> extends SymbolTable<Key, Value> {
+public class TwoThreeFourTreeOnePass<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
     private static final boolean BLACK = false;
     private static final boolean RED = true;

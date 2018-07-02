@@ -25,12 +25,12 @@ public class TwoThreeFourTreeTopDown<Key extends Comparable<Key>, Value> impleme
 
     public static void main(String[] args) {
         //测试其平均路径长度
-        for (int n = 1000; n <= 100000; n <<= 2) {
+        for (int n = 1000; n <= 5000000; n <<= 2) {
             TwoThreeFourTreeTopDown<String, Integer> tree = new TwoThreeFourTreeTopDown<>();
             for (int i = 0; i < n; i++) {
                 tree.put(randomString(16), 1);
             }
-            StdOut.println(String.format("Size:%d\tInnerPathLength:%d\tAveragePathLength:%f", tree.size(), tree.innerPath(), tree.innerPath() * 1.0 / tree.size()));
+            StdOut.print(String.format("Size:%d\tInnerPathLength:%d\tAveragePathLength:%f", tree.size(), tree.innerPath(), tree.innerPath() * 1.0 / tree.size()));
             printSeperation();
         }
     }
