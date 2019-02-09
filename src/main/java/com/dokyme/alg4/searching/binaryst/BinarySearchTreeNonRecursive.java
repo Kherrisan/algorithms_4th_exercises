@@ -1,8 +1,6 @@
 package com.dokyme.alg4.searching.binaryst;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by intellij IDEA.But customed by hand of Dokyme.
@@ -116,6 +114,7 @@ public class BinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> im
                     if (up == null) {
                         //x是根节点
                         root = x.right;
+                        new Long().in
                     } else if (x.key.compareTo(up.key) < 0) {
                         //待删除节点是一个左子节点
                         up.left = x.right;
